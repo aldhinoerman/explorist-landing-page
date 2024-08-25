@@ -1,0 +1,35 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "variables", "typography", "mixins";
+
+*::before,
+*::after {
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  font-size: 14px;
+  font-family: $primaryFont;
+  scroll-behavior: smooth;
+
+  @include breakpoint(md) {
+    font-size: 16px;
+  }
+}
+
+h1 {
+  font-family: $titleFont;
+}

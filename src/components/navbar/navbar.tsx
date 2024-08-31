@@ -7,12 +7,17 @@ import React, { useState } from "react";
 import { navData } from "./utils";
 import { Hamburger } from "@/modules";
 
-const Navbar = () => {
+interface NavbarProps {
+  isParent?: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isParent }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleCollapse = () => {
     setIsNavOpen((prevState) => !prevState);
   };
+
   return (
     <>
       <nav className="flex align-middle justify-between max-w-[1440px] mx-auto">
@@ -27,7 +32,10 @@ const Navbar = () => {
         <ul className="hidden md:flex align-middle justify-around gap-4 md:gap-8 list-none">
           {navData.map((obj, idx) => (
             <li key={idx} className="text-center flex align-middle text-white">
-              <Link href={obj.link} className="my-auto">
+              <Link
+                href={!isParent ? `/${obj.link}` : obj.link}
+                className="my-auto"
+              >
                 {obj.title}
               </Link>
             </li>
@@ -60,7 +68,7 @@ const Navbar = () => {
         <ul className="flex flex-col items-center justify-between min-h-[250px]">
           {navData.map((val, index) => (
             <li key={index} className="border-b border-gray-400 my-8 uppercase">
-              <a href={val.link}>{val.title}</a>
+              <a href={!isParent ? `/${val.link}` : val.link}>{val.title}</a>
             </li>
           ))}
         </ul>

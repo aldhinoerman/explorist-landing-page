@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
-    domains: ["friendlybalitour.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "friendlybalitour.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img.daisyui.com",
+      },
+    ],
   },
 };
 

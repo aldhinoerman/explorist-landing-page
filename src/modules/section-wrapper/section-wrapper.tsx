@@ -6,7 +6,11 @@ interface WrapperProps extends React.PropsWithChildren {
 
 const SectionWrapper = ({ children, id, ...props }: WrapperProps) => {
   return (
-    <section id={id ?? "#"} className="my-28" {...props}>
+    <section
+      id={id ?? "#"}
+      className="my-28 max-w-[1440px] md:px-12"
+      {...props}
+    >
       {children}
     </section>
   );

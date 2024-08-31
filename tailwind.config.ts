@@ -15,6 +15,7 @@ const config: Config = {
       danger: "#F178B6",
       success: "#2D8985",
       white: "#ffffff",
+      whiteblue: "#f6f6f6",
     },
     extend: {
       backgroundImage: {
@@ -24,6 +25,22 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#177BA5",
+          secondary: "#292D32",
+          dark: "#292D32",
+          danger: "#F178B6",
+          success: "#2D8985",
+          white: "#ffffff",
+          whiteblue: "#f6f6f6",
+        },
+      },
+      "light",
+    ],
+  },
 };
 export default config;

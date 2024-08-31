@@ -6,7 +6,7 @@ interface ICardItem {
   type: string;
   category: string;
   lengthTour: string;
-  date: Moment;
+  date: string;
   price: number;
 }
 

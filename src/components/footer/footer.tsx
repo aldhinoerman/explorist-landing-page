@@ -1,0 +1,54 @@
+import { Button, SocialLink } from "@/modules";
+import Link from "next/link";
+import React from "react";
+
+const Footer = () => {
+  return (
+    <footer className="bg-whiteblue" id="contact">
+      <div className="max-w-[1440px] mx-auto p-4 md:p-12 flex flex-col gap-4 md:flex-row md:justify-between">
+        <div className="w-full md:max-w-[300px]">
+          <div>
+            <h4 className="mb-4">Stay Connected</h4>
+            <p className="font-light mt-2">
+              Address: Denpasar, Bali, Indonesia
+            </p>
+            <p className="font-light mt-2">Phone: (+62) 82 145 500 117</p>
+            <p className="font-light mt-2">E-Mail: exploristbali@gmail.com</p>
+          </div>
+          <div className="mt-4">
+            <h4 className="mb-4">Follow us on social media</h4>
+            <SocialLink />
+          </div>
+        </div>
+        <div className="w-full md:max-w-[300px]">
+          <h4 className="mb-4">Explorist</h4>
+          <Link href={"#package"}>
+            <p className="font-light">Destinations</p>
+          </Link>
+        </div>
+        <div className="w-full md:max-w-[300px]">
+          <h4>Newsletter</h4>
+
+          <form>
+            <input
+              type="email"
+              placeholder="Enter Your Email Address"
+              className="input input-bordered input-primary w-full !outline-none mt-4"
+            />
+
+            <Button
+              variant="primary"
+              size="large"
+              type="submit"
+              className="!w-full my-4"
+            >
+              Get the Hottest offers
+            </Button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

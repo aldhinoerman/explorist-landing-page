@@ -1,9 +1,13 @@
+"use client";
+
 import { Button, Card } from "@/modules";
 import { capitalizeFirstLetter, formatCurrency } from "@/utils";
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
 import { ICardItem } from "./utils";
+import { useRouter } from "next/navigation";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 interface CardItemProps {
   withSub?: boolean;
@@ -11,6 +15,9 @@ interface CardItemProps {
 }
 
 const CardItem = ({ data, withSub }: CardItemProps) => {
+  const router = useRouter();
+
+  const handleClickButton = () => {};
   return (
     <Card>
       <h4 className="text-center">{data.title}</h4>
@@ -27,7 +34,7 @@ const CardItem = ({ data, withSub }: CardItemProps) => {
       </div>
 
       {withSub && (
-        <div className="flex align-middle gap-2 justify-between">
+        <div className="flex flex-col md:flex-row align-middle gap-2 justify-between">
           <div
             className={`${
               data.type === "success" ? "bg-success" : "bg-danger"
@@ -36,7 +43,7 @@ const CardItem = ({ data, withSub }: CardItemProps) => {
             <p
               className={`${
                 data.type === "success" ? "text-success" : "text-danger"
-              } my-auto`}
+              } my-auto text-center`}
             >
               {capitalizeFirstLetter(data.category)}
             </p>
@@ -48,13 +55,19 @@ const CardItem = ({ data, withSub }: CardItemProps) => {
         </div>
       )}
 
-      <div className="flex align-middle justify-between mt-4">
-        <h4>
+      <div className="flex flex-col md:flex-row gap-4 align-middle justify-between mt-4">
+        <h4 className="text-center md:text-left">
           {formatCurrency(data.price)}
           <span className="text-secondary text-sm font-normal">/pax</span>
         </h4>
 
-        <Button type="primary">Book Now</Button>
+        <Button
+          variant="primary"
+          onClick={handleClickButton}
+          icon={<MagnifyingGlassIcon className="w-5 h-5 my-auto" />}
+        >
+          Detail
+        </Button>
       </div>
     </Card>
   );

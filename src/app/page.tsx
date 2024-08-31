@@ -1,14 +1,19 @@
 import { Images } from "@/assets";
-import { Activity, Header, Hero, TopTrip } from "@/components";
+import {
+  Activity,
+  Destinations,
+  Hero,
+  Nusped,
+  Testimoni,
+  TopTrip,
+} from "@/components";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
       <main className="text-dark max-w-[1440px] mx-auto px-4 md:px-12">
-        <Header />
-
-        <div className="absolute -z-10 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[500px]">
+        <div className="absolute -z-10 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
           <div className="relative h-full">
             <Image
               src={Images.Mountain}
@@ -29,6 +34,9 @@ export default function Home() {
 
         <TopTrip />
         <Activity />
+        <Destinations />
+        <Nusped />
+        <Testimoni />
       </main>
     </>
   );

@@ -1,4 +1,4 @@
-import Logo from "./Explorist Logo.png";
+import Logo from "./new_explorist.png";
 import Mountain from "./mountain.jpg";
 
 const Images = {

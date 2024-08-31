@@ -2,6 +2,7 @@ import { Button, SectionWrapper } from "@/modules";
 import React from "react";
 import { activities } from "./utils";
 import { CardItem } from "../card-item";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
 const Activity = () => {
   return (
@@ -14,8 +15,13 @@ const Activity = () => {
         ))}
       </div>
 
-      <div className="text-center mt-12">
-        <Button type="primary" size="large">
+      <div className="flex justify-center mt-12">
+        <Button
+          variant="primary"
+          size="large"
+          icon={<ChevronRightIcon className="w-4 h-4 my-auto" />}
+          iconPosition="right"
+        >
           More Activities
         </Button>
       </div>

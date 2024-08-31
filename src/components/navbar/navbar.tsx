@@ -15,9 +15,9 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="flex align-middle justify-between">
+      <nav className="flex align-middle justify-between max-w-[1440px] mx-auto">
         {/* Logo */}
-        <div className="w-16 md:w-24">
+        <div className="w-16 md:w-44">
           <Link href={"/"}>
             <Image src={Images.Logo} alt="logo" sizes="100%" />
           </Link>

@@ -1,9 +1,13 @@
 import { Navbar } from "../navbar";
 
-const Header = () => {
+interface HeaderProps {
+  isParent?: boolean;
+}
+
+const Header = ({ isParent }: HeaderProps) => {
   return (
     <header className="z-10 p-2 md:p-8">
-      <Navbar />
+      <Navbar isParent={isParent} />
     </header>
   );
 };

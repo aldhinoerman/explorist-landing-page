@@ -7,3 +7,4 @@ export * from "./destinations";
 export * from "./nusped";
 export * from "./testimoni";
 export * from "./footer";
+export * from "./card-item";

@@ -1,9 +1,17 @@
 import React from "react";
 
-const Hero = () => {
+interface HeroProps {
+  title: string;
+  description?: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ title, description }) => {
   return (
     <>
-      <h1 className="text-4xl md:text-6xl">Explore, Dream, Travel</h1>
+      <div>
+        <h1 className="text-4xl md:text-6xl">{title}</h1>
+        {description && <p className="my-8">{description}</p>}
+      </div>
     </>
   );
 };

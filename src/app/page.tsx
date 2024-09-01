@@ -16,13 +16,12 @@ export default function Home() {
     <>
       <Header isParent />
       <main className="text-dark max-w-[1440px] mx-auto px-4 md:px-12">
-        <div className="absolute -z-10 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
+        <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
           <div className="relative h-full">
             <Image
               src={Images.Mountain}
               fill
               style={{ objectFit: "cover", filter: "brightness(75%)" }}
-              // quality={100}
               priority
               alt="Mountain Background"
             />
@@ -32,14 +31,14 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center mt-16">
-          <Hero title="Explore, Dream, Travel" />
+          <Hero title="Explore More Discover More" />
         </div>
 
         <TopTrip />
         <Activity />
         <Destinations />
         <Nusped />
-        <Testimoni />
+        {/* <Testimoni /> */}
       </main>
       <Footer />
     </>

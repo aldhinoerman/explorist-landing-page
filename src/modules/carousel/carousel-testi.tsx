@@ -13,7 +13,7 @@ const CarouselTesti: React.FC<CarouselTestiProps> = ({ items }) => {
       <div className="carousel carousel-center space-x-4 p-20">
         {items?.length > 0 &&
           items.map((obj, idx) => (
-            <div id="item1" className="carousel-item" key={idx}>
+            <div id={`testi-${idx}`} className="carousel-item" key={idx}>
               <Card width={500} bodyClass="h-full" mobileWidth={200}>
                 <div className="flex flex-col justify-center h-full gap-4 text-center">
                   <p>{obj.name}</p>
@@ -26,7 +26,7 @@ const CarouselTesti: React.FC<CarouselTestiProps> = ({ items }) => {
       <div className="flex w-full justify-center gap-2 py-2">
         {items?.length > 0 &&
           items.map((_, index) => (
-            <Link href={`testi-${index}`} key={index} className="btn btn-xs">
+            <Link href={`#testi-${index}`} key={index} className="btn btn-xs">
               {String(index + 1)}
             </Link>
           ))}

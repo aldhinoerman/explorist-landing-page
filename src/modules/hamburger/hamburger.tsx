@@ -9,7 +9,7 @@ const Hamburger = ({ toggleMenu }: HamburgerProps) => {
   return (
     <button
       onClick={toggleMenu}
-      className="z-100 text-white p-3"
+      className="relative z-50 text-white p-3"
       style={{ width: "35px" }}
     >
       <svg

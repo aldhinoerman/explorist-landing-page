@@ -50,6 +50,7 @@ const CarouselPict = ({ scroll, items, type }: CarouselPictProps) => {
                   alt={`carousel-img-${idx}`}
                   fill
                   style={{ objectFit: "cover", filter: "brightness(75%)" }}
+                  sizes="100%"
                   priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark via-transparent to-transparent p-4">

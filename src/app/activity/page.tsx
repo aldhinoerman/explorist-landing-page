@@ -19,7 +19,7 @@ const Activity = () => {
   const limitedItems = activities.slice(0, limit);
   return (
     <>
-      <div className="absolute -z-10 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
+      <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
         <div className="relative h-full">
           <Image
             src={Images.Rafting}
@@ -41,10 +41,10 @@ const Activity = () => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 justify-center mt-40">
+      {/* <div className="flex flex-wrap gap-4 justify-center mt-40">
         {limitedItems?.length > 0 &&
           limitedItems.map((obj, idx) => <CardItem data={obj} key={idx} />)}
-      </div>
+      </div> */}
 
       <div className="text-center">
         <Button

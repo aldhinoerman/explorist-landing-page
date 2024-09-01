@@ -8,6 +8,7 @@ import React from "react";
 import { ICardItem } from "./utils";
 import { useRouter } from "next/navigation";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 interface CardItemProps {
   withSub?: boolean;
@@ -66,7 +67,7 @@ const CardItem = ({ data, withSub }: CardItemProps) => {
           onClick={handleClickButton}
           icon={<MagnifyingGlassIcon className="w-5 h-5 my-auto" />}
         >
-          Detail
+          <Link href={data.link}>Detail</Link>
         </Button>
       </div>
     </Card>

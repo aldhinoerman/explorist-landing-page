@@ -24,9 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="mytheme">
-      <body>
-        {children}
-      </body>
+      <body className="bg-white">{children}</body>
     </html>
   );
 }

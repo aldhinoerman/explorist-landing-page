@@ -1,6 +1,7 @@
 import { Button, SectionWrapper } from "@/modules";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Nusped = () => {
@@ -27,7 +28,7 @@ const Nusped = () => {
             </p>
 
             <Button icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}>
-              Read More
+              <Link href={"package/nusa-penida"}>Read More</Link>
             </Button>
           </div>
         </div>

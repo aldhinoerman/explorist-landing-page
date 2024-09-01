@@ -20,7 +20,7 @@ const PackagePage = async ({ params }: PackagePageProps) => {
 
   return (
     <>
-      <div className="absolute -z-10 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
+      <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
         <div className="relative h-full">
           <Image
             src={Images.Mountain}

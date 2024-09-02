@@ -19,13 +19,10 @@ const Card = ({
   const maxMobileWidth = mobileWidth
     ? `max-w-[${mobileWidth}px]`
     : "max-w-[165px]";
-  const style = {
-    maxWidth: width ? `${width}px` : "165px",
-  };
   return (
     <div
       className={classNames(
-        "w-full h-full rounded-3xl min-w-[75px] min-h-[150px] shadow-lg",
+        "w-full h-full rounded-3xl min-w-[75px] min-h-[150px] shadow-xl",
         maxMobileWidth,
         maxWidth
       )}

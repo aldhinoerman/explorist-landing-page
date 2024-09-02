@@ -1,7 +1,7 @@
 import { Footer, Header } from "@/components";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-const ActivityLayout = ({ children }: { children: React.ReactNode }) => {
+const ActivityLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <Header />

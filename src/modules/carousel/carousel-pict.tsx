@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ICarouselItems } from "./utils";
 
 interface CarouselPictProps {
@@ -12,10 +12,20 @@ interface CarouselPictProps {
 const CarouselPict = ({ scroll, items, type }: CarouselPictProps) => {
   const carouselRef = useRef<null | HTMLDivElement>(null);
 
+  const [scrollEvent, setScrollEvent] = useState(true);
+
+  useEffect(() => {
+    handleScrollEvent(scroll ?? false);
+  }, [scroll]);
+
+  const handleScrollEvent = (status: boolean) => {
+    setScrollEvent(status);
+  };
+
   useEffect(() => {
     let scrollInterval: NodeJS.Timeout;
 
-    if (scroll) {
+    if (scrollEvent) {
       scrollInterval = setInterval(() => {
         if (carouselRef.current) {
           const maxScrollLeft =
@@ -30,12 +40,14 @@ const CarouselPict = ({ scroll, items, type }: CarouselPictProps) => {
     }
 
     return () => clearInterval(scrollInterval); // Clean up on unmount
-  }, [scroll]);
+  }, [scrollEvent]);
 
   return (
     <div
       ref={carouselRef}
-      className="carousel carousel-center bg-neutral rounded-box max-w-2xl space-x-4 p-4 overflow-x-auto"
+      onMouseEnter={() => handleScrollEvent(false)}
+      onMouseLeave={() => handleScrollEvent(true)}
+      className="carousel carousel-center bg-neutral rounded-box max-w-[300px] sm:max-w-[350px] md:max-w-2xl space-x-4 p-4 overflow-x-auto"
     >
       {items?.length > 0 &&
         items.map((obj, idx) => (

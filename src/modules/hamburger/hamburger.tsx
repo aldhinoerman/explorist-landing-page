@@ -3,13 +3,14 @@ import React from "react";
 
 interface HamburgerProps {
   toggleMenu: () => void;
+  smallImg?: boolean;
 }
 
-const Hamburger = ({ toggleMenu }: HamburgerProps) => {
+const Hamburger = ({ toggleMenu, smallImg }: HamburgerProps) => {
   return (
     <button
       onClick={toggleMenu}
-      className="relative z-50 text-white p-3"
+      className={`relative z-50 ${!smallImg && "text-white"} p-3`}
       style={{ width: "35px" }}
     >
       <svg

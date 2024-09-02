@@ -1,22 +1,17 @@
 "use client";
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
 
-interface HeaderProps {
-  isParent?: boolean;
-}
-
-const Header = ({ isParent }: HeaderProps) => {
+const StickyHeader = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const handleCollapse = () => {
     setIsNavOpen((prevState) => !prevState);
   };
   return (
     <>
-      <header className="relative z-10 p-2 md:p-8">
-        <Navbar isParent={isParent} onNavCollapse={handleCollapse} />
+      <header className="sticky top-0 bg-white shadow-xl z-10 p-2 md:px-6 md:py-1 rounded-b-3xl">
+        <Navbar isParent={true} smallImg onNavCollapse={handleCollapse} />
       </header>
 
       <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
@@ -40,10 +35,7 @@ const Header = ({ isParent }: HeaderProps) => {
         <ul className="flex flex-col items-center justify-between min-h-[250px]">
           {navData.map((val, index) => (
             <li key={index} className="border-b border-gray-400 my-8 uppercase">
-              <a
-                href={!isParent ? `/${val.link}` : val.link}
-                onClick={handleCollapse}
-              >
+              <a href={`/${val.link}`} onClick={handleCollapse}>
                 {val.title}
               </a>
             </li>
@@ -74,4 +66,4 @@ const Header = ({ isParent }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default StickyHeader;

@@ -28,7 +28,7 @@ const Nusped = () => {
             </p>
 
             <Button icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}>
-              <Link href={"package/nusa-penida"}>Read More</Link>
+              <Link href={"/package/nusa-penida"}>Read More</Link>
             </Button>
           </div>
         </div>

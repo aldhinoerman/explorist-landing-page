@@ -8,3 +8,4 @@ export * from "./nusped";
 export * from "./testimoni";
 export * from "./footer";
 export * from "./card-item";
+export * from "./package-component";

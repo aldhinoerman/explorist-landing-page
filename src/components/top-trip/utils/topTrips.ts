@@ -19,7 +19,7 @@ const topTrips = [
     pict: "https://friendlybalitour.com/wp-content/uploads/2023/10/1698628237128.jpg",
     date: moment().toISOString(),
     price: 45,
-    link: "package/bali",
+    link: "/package/bali",
   },
   {
     title: "Best Nusa Penida",
@@ -29,7 +29,7 @@ const topTrips = [
     pict: "https://friendlybalitour.com/wp-content/uploads/2023/10/1698684178334.jpg",
     date: moment().toISOString(),
     price: 135,
-    link: "package/nusa-penida",
+    link: "/package/nusa-penida",
   },
 ];
 

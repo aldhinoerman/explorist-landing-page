@@ -9,7 +9,7 @@ const activities = [
     date: moment().toISOString(),
     pict: "https://cdn.pixabay.com/photo/2017/04/26/11/02/quad-2262332_960_720.jpg",
     price: 150,
-    link: "book-now/explore-ubud-a",
+    link: "/details/explore-ubud-a",
   },
   {
     title: "Explore Ubud B",
@@ -19,7 +19,7 @@ const activities = [
     pict: "https://cdn.pixabay.com/photo/2018/06/30/00/13/tubing-3506869_1280.jpg",
     date: moment().toISOString(),
     price: 150,
-    link: "book-now/explore-ubud-b",
+    link: "/details/explore-ubud-b",
   },
   {
     title: "Explore Ubud C",
@@ -29,7 +29,7 @@ const activities = [
     pict: "https://friendlybalitour.com/wp-content/uploads/2023/10/1698628237089.jpg",
     date: moment().toISOString(),
     price: 150,
-    link: "book-now/explore-ubud-c",
+    link: "/details/explore-ubud-c",
   },
   {
     title: "Explore Ubud D",
@@ -39,7 +39,7 @@ const activities = [
     date: moment().toISOString(),
     pict: "https://cdn.pixabay.com/photo/2018/01/26/20/23/saber-3109719_960_720.jpg",
     price: 105,
-    link: "book-now/explore-ubud-d",
+    link: "/details/explore-ubud-d",
   },
   {
     title: "Ubud Family Fun",
@@ -49,7 +49,7 @@ const activities = [
     pict: "https://friendlybalitour.com/wp-content/uploads/2023/10/IMG_20231030_075214.jpg",
     date: moment().toISOString(),
     price: 110,
-    link: "book-now/explore-family-fun",
+    link: "/details/explore-family-fun",
   },
   {
     title: "Water Sport",
@@ -59,7 +59,7 @@ const activities = [
     pict: "https://friendlybalitour.com/wp-content/uploads/2023/10/1698645974707.jpg",
     date: moment().toISOString(),
     price: 105,
-    link: "book-now/water-sport",
+    link: "/details/water-sport",
   },
 ];
 

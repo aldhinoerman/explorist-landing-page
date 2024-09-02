@@ -10,7 +10,7 @@ const Hero: React.FC<HeroProps> = ({ title, description }) => {
     <>
       <div>
         <h1 className="text-4xl md:text-6xl">{title}</h1>
-        {description && <p className="my-8">{description}</p>}
+        {description && <p className="my-8 max-w-[550px]">{description}</p>}
       </div>
     </>
   );

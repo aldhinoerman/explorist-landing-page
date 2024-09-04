@@ -1,6 +1,6 @@
 "use client";
 import { bookDetails, IBookDetails } from "@/data";
-import { Button, Loading, TabContent, TabItem, Tabs } from "@/modules";
+import { Button, Loading, Modal, TabContent, TabItem, Tabs } from "@/modules";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -11,6 +11,7 @@ interface BookDetailProps {
 const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
   const [data, setData] = useState<IBookDetails | undefined>(undefined);
   const [activeTab, setActiveTab] = useState("activities");
+  const [modalShow, setModalShow] = useState<boolean>(false);
 
   useEffect(() => {
     getData();
@@ -22,6 +23,10 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
 
       return response;
     });
+  };
+
+  const handleShowModal = () => {
+    setModalShow((prevState) => !prevState);
   };
 
   const handleChangeTab = (tab: string) => {
@@ -49,7 +54,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
               <h4 className="font-light text-secondary mb-4">
                 {data.location}
               </h4>
-              <Button variant="primary" size="large">
+              <Button variant="primary" size="large" onClick={handleShowModal}>
                 Book Now
               </Button>
             </div>
@@ -116,7 +121,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           </div>
 
           <div className="text-center">
-            <Button variant="primary" size="large">
+            <Button variant="primary" size="large" onClick={handleShowModal}>
               Book Now
             </Button>
           </div>
@@ -124,6 +129,10 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
       ) : (
         <Loading size="large" />
       )}
+
+      <Modal isOpen={modalShow} title="test" onClose={handleShowModal}>
+        Test
+      </Modal>
     </>
   );
 };

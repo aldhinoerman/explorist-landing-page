@@ -8,3 +8,4 @@ export * from "./icon";
 export * from "./loading";
 export * from "./collapse";
 export * from "./tabs";
+export * from "./modal";

@@ -10,3 +10,6 @@ export * from "./footer";
 export * from "./card-item";
 export * from "./package-component";
 export * from "./sticky-header";
+export * from "./detail-banner";
+export * from "./book-detail";
+export * from "./contact-us";

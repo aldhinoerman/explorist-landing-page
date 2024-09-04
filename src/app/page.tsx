@@ -6,6 +6,7 @@ import {
   Header,
   Hero,
   Nusped,
+  StickyHeader,
   Testimoni,
   TopTrip,
 } from "@/components";
@@ -14,8 +15,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
+      <StickyHeader isParent />
       <Header isParent />
-      <main className="text-dark max-w-[1440px] mx-auto px-4 md:px-12">
+      <main className="text-dark max-w-[1440px] min-h-screen mx-auto px-4 md:px-12">
         <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
           <div className="relative h-full">
             <Image

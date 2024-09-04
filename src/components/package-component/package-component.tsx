@@ -48,7 +48,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 justify-center mt-72">
+      <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
         {limitedItems?.length > 0 &&
           limitedItems.map((obj, idx) => (
             <CardItem

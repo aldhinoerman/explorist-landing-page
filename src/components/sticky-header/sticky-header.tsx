@@ -1,16 +1,47 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
 
-const StickyHeader = () => {
+interface HeaderProps {
+  isParent?: boolean;
+}
+
+const StickyHeader: React.FC<HeaderProps> = ({ isParent }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleCollapse = () => {
     setIsNavOpen((prevState) => !prevState);
   };
+
   return (
     <>
-      <header className="sticky top-0 bg-white shadow-xl z-10 p-2 md:px-6 md:py-1 rounded-b-3xl">
+      <header
+        className={
+          !isParent
+            ? "sticky top-0 bg-white shadow-xl z-10 px-2 md:px-6 md:py-1 rounded-b-3xl"
+            : `fixed top-0 left-0 w-full bg-white shadow-xl px-2 md:px-6 md:py-1 rounded-b-3xl z-50 transition-transform duration-300 ease-in-out ${
+                isSticky ? "translate-y-0" : "-translate-y-full"
+              }`
+        }
+      >
         <Navbar isParent={true} smallImg onNavCollapse={handleCollapse} />
       </header>
 
@@ -49,11 +80,12 @@ const StickyHeader = () => {
       }
       .showMenuNav {
         display: block;
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100vh;
         top: 0;
         left: 0;
+        bottom: 0;
         background: white;
         z-index: 100;
         display: flex;

@@ -13,26 +13,33 @@ import Link from "next/link";
 interface CardItemProps {
   withSub?: boolean;
   data: ICardItem;
+  onClick?: () => void;
 }
 
-const CardItem = ({ data, withSub }: CardItemProps) => {
+const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
   const router = useRouter();
 
   const handleClickButton = () => {};
   return (
     <Card>
       <h4 className="text-center">{data.title}</h4>
-      <div className="w-full my-4">
-        <Image
-          src={data.pict}
-          alt="image-content"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: "100%", height: "auto" }}
-          className="rounded-3xl"
-        />
-      </div>
+      {data?.pict && (
+        <div
+          className="w-full my-4"
+          onClick={onClick}
+          style={{ cursor: onClick && "pointer" }}
+        >
+          <Image
+            src={data.pict}
+            alt="image-content"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+            className="rounded-3xl"
+          />
+        </div>
+      )}
 
       {withSub && (
         <div className="flex flex-col md:flex-row align-middle gap-2 justify-between">
@@ -56,20 +63,24 @@ const CardItem = ({ data, withSub }: CardItemProps) => {
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row gap-4 align-middle justify-between mt-4">
-        <h4 className="text-center md:text-left">
-          {formatCurrency(data.price)}
-          <span className="text-secondary text-sm font-normal">/pax</span>
-        </h4>
+      {data?.price && (
+        <div className="flex flex-col md:flex-row gap-4 align-middle justify-between mt-4">
+          <h4 className="text-center md:text-left">
+            {formatCurrency(data.price)}
+            <span className="text-secondary text-sm font-normal">/pax</span>
+          </h4>
 
-        <Button
-          variant="primary"
-          onClick={handleClickButton}
-          icon={<MagnifyingGlassIcon className="w-5 h-5 my-auto" />}
-        >
-          <Link href={data.link}>Detail</Link>
-        </Button>
-      </div>
+          <Link href={data?.link ?? ""}>
+            <Button
+              variant="primary"
+              onClick={handleClickButton}
+              icon={<MagnifyingGlassIcon className="w-5 h-5 my-auto" />}
+            >
+              Detail
+            </Button>
+          </Link>
+        </div>
+      )}
     </Card>
   );
 };

@@ -5,3 +5,6 @@ export * from "./button";
 export * from "./carousel";
 export * from "./social-link";
 export * from "./icon";
+export * from "./loading";
+export * from "./collapse";
+export * from "./tabs";

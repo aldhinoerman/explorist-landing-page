@@ -7,8 +7,8 @@ interface ICardItem {
   category?: string;
   lengthTour?: string;
   date?: string;
-  price: number;
-  link: string;
+  price?: number;
+  link?: string;
 }
 
 export type { ICardItem };

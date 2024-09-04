@@ -17,14 +17,16 @@ const Activity = () => {
       </div>
 
       <div className="flex justify-center mt-12">
-        <Button
-          variant="primary"
-          size="large"
-          icon={<ChevronRightIcon className="w-4 h-4 my-auto" />}
-          iconPosition="right"
-        >
-          <Link href={"activity"}>More Activities</Link>
-        </Button>
+        <Link href={"activity"}>
+          <Button
+            variant="primary"
+            size="large"
+            icon={<ChevronRightIcon className="w-4 h-4 my-auto" />}
+            iconPosition="right"
+          >
+            More Activities
+          </Button>
+        </Link>
       </div>
     </SectionWrapper>
   );

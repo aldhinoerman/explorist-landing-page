@@ -16,6 +16,9 @@ const config: Config = {
       success: "#2D8985",
       white: "#ffffff",
       whiteblue: "#f6f6f6",
+      phone: "#03E78B",
+      whatsapp: "#49E670",
+      mesenger: "#1E88E5",
     },
     extend: {
       backgroundImage: {
@@ -37,6 +40,9 @@ const config: Config = {
           success: "#2D8985",
           white: "#ffffff",
           whiteblue: "#f6f6f6",
+          phone: "#03E78B",
+          whatsapp: "#49E670",
+          mesenger: "#1E88E5",
         },
       },
       "light",

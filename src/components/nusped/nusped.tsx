@@ -27,9 +27,13 @@ const Nusped = () => {
               from Bali, the most famous tourist destination in Indonesia.
             </p>
 
-            <Button icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}>
-              <Link href={"/package/nusa-penida"}>Read More</Link>
-            </Button>
+            <Link href={"/package/nusa-penida"}>
+              <Button
+                icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}
+              >
+                Read More
+              </Button>
+            </Link>
           </div>
         </div>
       </SectionWrapper>

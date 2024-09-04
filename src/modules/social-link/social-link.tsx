@@ -2,26 +2,35 @@
 import React from "react";
 import { socialLinks } from "./utils";
 import { Button } from "../button";
-import { useRouter } from "next/navigation";
 import { Icon } from "../icon";
+import Link from "next/link";
 
 const SocialLink = () => {
-  const router = useRouter();
-  const handleRouter = (link: string | null | undefined) => {
-    if (link) {
-      window.open(link, "_blank");
-    }
-  };
   return (
     <div className="flex align-middle gap-4">
       {socialLinks?.length > 0 &&
         socialLinks.map((obj, idx) => (
-          <Button
-            icon={<Icon type={obj.icon} />}
+          <Link
+            href={obj.link}
             key={idx}
-            onClick={() => handleRouter(obj.link)}
-            size="small"
-          />
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              icon={
+                <Icon
+                  className={
+                    obj.icon === "whatsapp" || obj.icon === "instagram"
+                      ? "size-6"
+                      : ""
+                  }
+                  type={obj.icon}
+                />
+              }
+              key={idx}
+              size="small"
+            />
+          </Link>
         ))}
     </div>
   );

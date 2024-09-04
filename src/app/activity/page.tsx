@@ -34,14 +34,17 @@ const Activity = () => {
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center mt-16 min-h-[275px]">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center min-h-[275px]">
         <Hero title="Activity" description="Thrilling experiences await." />
       </div>
 
-      <div className="flex flex-wrap gap-4 justify-center mt-40">
+      <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
         {limitedItems?.length > 0 &&
           limitedItems.map((obj, idx) => (
-            <CardItem data={{ ...obj, link: `/details/${obj.key}` }} key={idx} />
+            <CardItem
+              data={{ ...obj, link: `/details/${obj.key}` }}
+              key={idx}
+            />
           ))}
       </div>
 

@@ -57,11 +57,12 @@ const Header = ({ isParent }: HeaderProps) => {
       }
       .showMenuNav {
         display: block;
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100vh;
         top: 0;
         left: 0;
+        bottom: 0;
         background: white;
         z-index: 100;
         display: flex;

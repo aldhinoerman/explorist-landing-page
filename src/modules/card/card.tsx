@@ -29,7 +29,9 @@ const Card = ({
       style={{ background: "white" }}
       {...rest}
     >
-      <div className={`px-6 py-8 ${bodyClass ?? ""}`}>{children}</div>
+      <div className={`px-6 py-8 min-h-[150px] ${bodyClass ?? ""}`}>
+        {children}
+      </div>
     </div>
   );
 };

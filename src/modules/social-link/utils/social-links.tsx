@@ -8,7 +8,7 @@ const socialLinks = [
   },
   {
     title: "Instagram",
-    link: "https://www.facebook.com/profile.php?id=61563745302502&mibextid=ZbWKwL",
+    link: "https://www.instagram.com/exploristtourbali",
     icon: "instagram",
   },
   {

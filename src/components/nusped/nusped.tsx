@@ -1,6 +1,6 @@
 "use client";
 import { Button, SectionWrapper } from "@/modules";
-import { useRequest } from "@/utils";
+import { CategoryProps, useRequest } from "@/utils";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ const Nusped = () => {
   const params = {
     param: "filters[key][$eq]=package/nusa-penida",
   };
-  const { data: nusped } = useRequest("categories", { ...params });
+  const { data: nusped } = useRequest<CategoryProps[]>("categories", { ...params });
   return (
     <>
       <SectionWrapper id="nusped">

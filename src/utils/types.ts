@@ -25,6 +25,7 @@ interface TourPackagesProps {
 }
 
 interface CategoryProps {
+  id: number;
   title: string;
   pict: string;
   description: string;

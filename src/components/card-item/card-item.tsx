@@ -13,10 +13,12 @@ import Link from "next/link";
 interface CardItemProps {
   withSub?: boolean;
   data: ICardItem;
+  to?: string;
+  useId?: boolean;
   onClick?: () => void;
 }
 
-const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
+const CardItem = ({ data, withSub, to, useId, onClick }: CardItemProps) => {
   const router = useRouter();
 
   const handleClickButton = () => {};
@@ -70,7 +72,13 @@ const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
             <span className="text-secondary text-sm font-normal">/pax</span>
           </h4>
 
-          <Link href={data?.link ?? ""}>
+          <Link
+            href={
+              to
+                ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
+                : data?.key || ""
+            }
+          >
             <Button
               variant="primary"
               onClick={handleClickButton}

@@ -1,10 +1,16 @@
+"use client";
 import { Button, SectionWrapper } from "@/modules";
+import { useRequest } from "@/utils";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Nusped = () => {
+  const params = {
+    param: "filters[key][$eq]=package/nusa-penida",
+  };
+  const { data: nusped } = useRequest("categories", { ...params });
   return (
     <>
       <SectionWrapper id="nusped">
@@ -27,7 +33,11 @@ const Nusped = () => {
               from Bali, the most famous tourist destination in Indonesia.
             </p>
 
-            <Link href={"/package/nusa-penida"}>
+            <Link
+              href={`/package/${
+                nusped && nusped?.length > 0 && nusped[0]?.id ? String(nusped[0].id) : ""
+              }`}
+            >
               <Button
                 icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}
               >

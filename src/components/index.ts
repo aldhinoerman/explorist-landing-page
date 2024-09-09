@@ -13,3 +13,4 @@ export * from "./sticky-header";
 export * from "./detail-banner";
 export * from "./book-detail";
 export * from "./contact-us";
+export * from "./error";

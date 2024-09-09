@@ -6,7 +6,7 @@ interface ICardItem {
   title: string;
   pict: string;
   type?: string;
-  category?: string | CategoryProps[];
+  category?: string;
   lengthTour?: string;
   date?: string;
   price?: number;

@@ -8,7 +8,7 @@ import { CardItem } from "../card-item";
 import { Button, Loading } from "@/modules";
 import { Nusped } from "../nusped";
 import { Destinations } from "../destinations";
-import { useRequest } from "@/utils";
+import { CategoryProps, TourPackagesProps, useRequest } from "@/utils";
 import { NotFound } from "../error";
 
 interface PackageComponentProps {
@@ -22,14 +22,14 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
     param: `filters[category][id][$contains]=${slug}`,
   };
 
-  const { data: category } = useRequest(`categories/${slug}`);
+  const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);
 
   const {
     data: packages,
     loading,
     handleSetPagination,
     pagination,
-  } = useRequest("tour-packages", { ...initialParams });
+  } = useRequest<TourPackagesProps[]>("tour-packages", { ...initialParams });
 
   const loadMore = () => {
     handleSetPagination(
@@ -66,7 +66,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
       <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
         {loading ? (
           <Loading />
-        ) : packages?.length > 0 ? (
+        ) : packages && packages?.length > 0 ? (
           packages.map((obj, idx) => (
             <CardItem data={obj} key={idx} to="details" useId />
           ))
@@ -81,12 +81,12 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
           size="large"
           onClick={loadMore}
           className="my-12"
-          disabled={
-            packages?.length === pagination?.pageSize ||
-            (pagination && pagination.pageSize)
+          disabled={Boolean(
+            (packages && packages?.length === pagination?.pageSize) ||
+              (packages && pagination && pagination.pageSize)
               ? packages?.length < pagination?.pageSize
-              : packages?.length < 6
-          }
+              : packages && packages?.length < 6
+          )}
         >
           Load More
         </Button>

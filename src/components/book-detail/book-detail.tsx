@@ -1,6 +1,6 @@
 "use client";
 import { Button, Loading, Modal, TabContent, TabItem, Tabs } from "@/modules";
-import { useRequest } from "@/utils";
+import { TourPackagesProps, useRequest } from "@/utils";
 import Image from "next/image";
 import React, { useCallback, useState } from "react";
 import { NotFound } from "../error";
@@ -13,9 +13,12 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
   const initialParams = {
     param: "populate=*",
   };
-  const { data: pack, loading } = useRequest(`tour-packages/${slug}`, {
-    ...initialParams,
-  });
+  const { data: pack, loading } = useRequest<TourPackagesProps>(
+    `tour-packages/${slug}`,
+    {
+      ...initialParams,
+    }
+  );
   const [activeTab, setActiveTab] = useState("activities");
   const [modalShow, setModalShow] = useState<boolean>(false);
 
@@ -33,7 +36,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         value: "activities",
         txt: "Activities",
         content:
-          pack?.package_items?.data?.length > 0
+          pack?.package_items?.data && pack?.package_items?.data?.length > 0
             ? pack.package_items.data.map((val: any) => ({
                 id: val.id,
                 ...val.attributes,
@@ -44,6 +47,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         value: "terms",
         txt: "Term & Conditions",
         content:
+          pack?.terms_conditions?.data &&
           pack?.terms_conditions?.data?.length > 0
             ? pack.terms_conditions.data.map((val: any) => ({
                 id: val.id,
@@ -55,7 +59,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         value: "itinerary",
         txt: "Itinerary",
         content:
-          pack?.itineraries?.data?.length > 0
+          pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
             ? pack.itineraries.data.map((val: any) => ({
                 id: val.id,
                 ...val.attributes,
@@ -66,20 +70,24 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         value: "pricing",
         txt: "Pricing",
         content:
-          pack?.pricings?.data?.length > 0
+          pack?.pricings?.data && pack?.pricings?.data?.length > 0
             ? {
                 pricing: pack.pricings.data.map((val: any) => ({
                   id: val.id,
                   ...val.attributes,
                 })),
-                inclusions: pack.inclusions.data.map((valInc: any) => ({
-                  id: valInc.id,
-                  ...valInc.attributes,
-                })),
-                regulars: pack.regulars.data.map((valReg: any) => ({
-                  id: valReg.id,
-                  ...valReg.attributes,
-                })),
+                inclusions:
+                  pack?.inclusions?.data &&
+                  pack.inclusions.data.map((valInc: any) => ({
+                    id: valInc.id,
+                    ...valInc.attributes,
+                  })),
+                regulars:
+                  pack?.regulars?.data &&
+                  pack.regulars.data.map((valReg: any) => ({
+                    id: valReg.id,
+                    ...valReg.attributes,
+                  })),
               }
             : [],
       },

@@ -1,4 +1,5 @@
 interface TourPackagesProps {
+  id: number;
   key: string;
   title: string;
   pict: string;
@@ -6,16 +7,28 @@ interface TourPackagesProps {
   status: boolean;
   location: string;
   sequence?: number;
-  category?: CategoryProps[];
-  itineraries?: ItinerariesProps[];
-  package_items?: PackageItemProps[];
-  terms_conditions?: TermsProps[];
-  pricings?: PricingProps[];
-  inclusions?: InclusionsProps[];
-  regulars?: RegularsProps[];
+  category?: { data?: Array<{ id?: number; attributes?: CategoryProps[] }> };
+  itineraries?: {
+    data?: Array<{ id?: number; attributes?: ItinerariesProps[] }>;
+  };
+  package_items?: {
+    data?: Array<{ id?: number; attributes?: PackageItemProps[] }>;
+  };
+  terms_conditions?: {
+    data?: Array<{ id?: number; attributes?: TermsProps[] }>;
+  };
+  pricings?: { data?: Array<{ id?: number; attributes?: PricingProps[] }> };
+  inclusions?: {
+    data?: Array<{ id?: number; attributes?: InclusionsProps[] }>;
+  };
+  regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps[] }> };
 }
 
-interface CategoryProps {}
+interface CategoryProps {
+  title: string;
+  pict: string;
+  description: string;
+}
 
 interface ItinerariesProps {}
 

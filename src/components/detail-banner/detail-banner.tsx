@@ -1,11 +1,10 @@
 "use client";
-import { ITrips } from "@/data";
 import { Button, Collapse, Loading } from "@/modules";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CardItem } from "../card-item";
 import Link from "next/link";
-import { useRequest } from "@/utils";
+import { PackageItemProps, TourPackagesProps, useRequest } from "@/utils";
 import { NotFound } from "../error";
 
 interface DetailBannerProps {
@@ -16,20 +15,30 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
   const initialParams = {
     param: "populate=*",
   };
-  const { data: pack, loading } = useRequest(`tour-packages/${slug}`, {
-    ...initialParams,
-  });
+  const { data: pack, loading } = useRequest<TourPackagesProps>(
+    `tour-packages/${slug}`,
+    {
+      ...initialParams,
+    }
+  );
 
-  const [content, setContent] = useState<ITrips | undefined>(undefined);
+  const [content, setContent] = useState<PackageItemProps | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     getData();
   }, [pack]);
 
   const getData = () => {
-    const response = pack ?? undefined;
+    const response: TourPackagesProps | undefined = pack ?? undefined;
 
-    if (response && response?.package_items?.data[0] && !content) {
+    if (
+      response &&
+      response?.package_items?.data &&
+      response?.package_items?.data[0] &&
+      !content
+    ) {
       handleSetContent({
         id: response?.package_items?.data[0]?.id,
         ...response?.package_items?.data[0]?.attributes,
@@ -37,7 +46,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     }
   };
 
-  const handleSetContent = (content: ITrips) => {
+  const handleSetContent = (content: PackageItemProps) => {
     setContent(content);
   };
 
@@ -78,6 +87,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
 
           <div className="flex justify-center gap-8 align-middle my-12 md:my-20">
             {pack &&
+              pack?.package_items?.data &&
               pack?.package_items?.data?.length > 0 &&
               pack.package_items.data.map((obj: any, idx: number) => (
                 <CardItem

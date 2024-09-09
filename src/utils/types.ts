@@ -1,27 +1,27 @@
 interface TourPackagesProps {
   id: number;
-  key: string;
+  key?: string;
   title: string;
   pict: string;
-  price: number;
-  status: boolean;
-  location: string;
+  price?: number;
+  status?: boolean;
+  location?: string;
   sequence?: number;
-  category?: { data?: Array<{ id?: number; attributes?: CategoryProps[] }> };
+  category?: { data?: Array<{ id?: number; attributes?: CategoryProps }> };
   itineraries?: {
-    data?: Array<{ id?: number; attributes?: ItinerariesProps[] }>;
+    data?: Array<{ id?: number; attributes?: ItinerariesProps }>;
   };
   package_items?: {
-    data?: Array<{ id?: number; attributes?: PackageItemProps[] }>;
+    data?: Array<{ id?: number; attributes?: PackageItemProps }>;
   };
   terms_conditions?: {
-    data?: Array<{ id?: number; attributes?: TermsProps[] }>;
+    data?: Array<{ id?: number; attributes?: TermsProps }>;
   };
-  pricings?: { data?: Array<{ id?: number; attributes?: PricingProps[] }> };
+  pricings?: { data?: Array<{ id?: number; attributes?: PricingProps }> };
   inclusions?: {
-    data?: Array<{ id?: number; attributes?: InclusionsProps[] }>;
+    data?: Array<{ id?: number; attributes?: InclusionsProps }>;
   };
-  regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps[] }> };
+  regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps }> };
 }
 
 interface CategoryProps {
@@ -32,7 +32,14 @@ interface CategoryProps {
 
 interface ItinerariesProps {}
 
-interface PackageItemProps {}
+interface PackageItemProps {
+  id?: number;
+  pict?: string;
+  activity?: string;
+  about?: string;
+  amenities?: string;
+  description?: string;
+}
 
 interface TermsProps {}
 

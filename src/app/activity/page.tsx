@@ -1,30 +1,51 @@
 "use client";
 
 import { Images } from "@/assets";
-import { CardItem, Destinations, Hero } from "@/components";
-import { itemPackages } from "@/data";
-import { Button } from "@/modules";
+import { CardItem, Destinations, Hero, NotFound } from "@/components";
+import { Button, Loading } from "@/modules";
+import { useRequest } from "@/utils";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
-const Activity = () => {
-  const [limit, setLimit] = useState(6);
+// Define the type for the activity data
+interface ActivityData {
+  pict: string;
+  title: string;
+  description: string;
+}
 
-  const loadMore = () => {
-    setLimit((prevLimit) => prevLimit + 3);
+const Activity: React.FC = () => {
+  const initialParams = {
+    page: 1,
+    limit: 6,
+    param: "filters[category][key][$contains]=activity",
   };
 
-  const filteredItems =
-    itemPackages.filter((x) => x.packages.includes("activity")) ?? [];
+  // Define the correct type for `activity`
+  const { data: activity } = useRequest<ActivityData[]>("categories", {
+    param: "filters[key][$eq]=activity",
+  });
 
-  const limitedItems = filteredItems.slice(0, limit);
+  const {
+    data: activities,
+    loading,
+    handleSetPagination,
+    pagination,
+  } = useRequest<ActivityData[]>("tour-packages", { ...initialParams });
+
+  const loadMore = () => {
+    handleSetPagination(
+      1,
+      pagination?.pageSize ? pagination?.pageSize + 3 : 6 + 3
+    );
+  };
 
   return (
     <>
       <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
         <div className="relative h-full">
           <Image
-            src={Images.Rafting}
+            src={activity?.[0]?.pict ?? Images.Rafting} // Safely access `pict`
             fill
             style={{ objectFit: "cover", filter: "brightness(75%)" }}
             priority
@@ -35,17 +56,22 @@ const Activity = () => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center min-h-[275px]">
-        <Hero title="Activity" description="Thrilling experiences await." />
+        <Hero
+          title={activity?.[0]?.title ?? ""} // Safely access `title`
+          description={activity?.[0]?.description ?? ""} // Safely access `description`
+        />
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
-        {limitedItems?.length > 0 &&
-          limitedItems.map((obj, idx) => (
-            <CardItem
-              data={{ ...obj, link: `/details/${obj.key}` }}
-              key={idx}
-            />
-          ))}
+        {loading ? (
+          <Loading />
+        ) : activities && activities?.length > 0 ? (
+          activities.map((obj, idx) => (
+            <CardItem data={obj} key={idx} to="details" useId />
+          ))
+        ) : (
+          <NotFound />
+        )}
       </div>
 
       <div className="text-center">
@@ -54,9 +80,12 @@ const Activity = () => {
           size="large"
           onClick={loadMore}
           className="my-12"
-          disabled={
-            filteredItems?.length === limit || filteredItems?.length < limit
-          }
+          disabled={Boolean(
+            (activities && activities?.length === pagination?.pageSize) ||
+              (activities && pagination && pagination.pageSize)
+              ? activities?.length < pagination?.pageSize
+              : activities && activities?.length < 6
+          )}
         >
           Load More
         </Button>

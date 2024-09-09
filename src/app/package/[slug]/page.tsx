@@ -11,12 +11,4 @@ const PackagePage = async ({ params }: PackagePageProps) => {
   return <PackageComponent slug={slug} />;
 };
 
-export async function generateStaticParams() {
-  const packages = await fetchPackages();
-
-  return packages.map((pack) => ({
-    slug: pack.key,
-  }));
-}
-
 export default PackagePage;

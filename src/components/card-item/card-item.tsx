@@ -1,8 +1,7 @@
 "use client";
 
 import { Button, Card } from "@/modules";
-import { capitalizeFirstLetter, formatCurrency } from "@/utils";
-import moment from "moment";
+import { formatCurrency, TourPackagesProps } from "@/utils";
 import Image from "next/image";
 import React from "react";
 import { ICardItem } from "./utils";
@@ -12,11 +11,13 @@ import Link from "next/link";
 
 interface CardItemProps {
   withSub?: boolean;
-  data: ICardItem;
+  data: ICardItem | TourPackagesProps;
+  to?: string;
+  useId?: boolean;
   onClick?: () => void;
 }
 
-const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
+const CardItem = ({ data, withSub, to, useId, onClick }: CardItemProps) => {
   const router = useRouter();
 
   const handleClickButton = () => {};
@@ -41,27 +42,7 @@ const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
         </div>
       )}
 
-      {withSub && (
-        <div className="flex flex-col md:flex-row align-middle gap-2 justify-between">
-          <div
-            className={`${
-              data.type === "success" ? "bg-success" : "bg-danger"
-            } bg-opacity-20 px-2 py-1 rounded-2xl`}
-          >
-            <p
-              className={`${
-                data.type === "success" ? "text-success" : "text-danger"
-              } my-auto text-center`}
-            >
-              {capitalizeFirstLetter(data?.category ?? "")}
-            </p>
-          </div>
-          <p className="text-secondary">{data.lengthTour}</p>
-          <p className="text-secondary">
-            {moment(data.date).format("DD.M.YYYY")}
-          </p>
-        </div>
-      )}
+      {withSub && "tete"}
 
       {data?.price && (
         <div className="flex flex-col md:flex-row gap-4 align-middle justify-between mt-4">
@@ -70,7 +51,13 @@ const CardItem = ({ data, withSub, onClick }: CardItemProps) => {
             <span className="text-secondary text-sm font-normal">/pax</span>
           </h4>
 
-          <Link href={data?.link ?? ""}>
+          <Link
+            href={
+              to
+                ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
+                : data?.key || ""
+            }
+          >
             <Button
               variant="primary"
               onClick={handleClickButton}

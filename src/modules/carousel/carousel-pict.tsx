@@ -6,10 +6,18 @@ import { ICarouselItems } from "./utils";
 interface CarouselPictProps {
   type: "testi" | "pict" | null | undefined;
   scroll?: boolean;
+  to?: string;
+  useId?: boolean;
   items: Array<ICarouselItems>;
 }
 
-const CarouselPict = ({ scroll, items, type }: CarouselPictProps) => {
+const CarouselPict = ({
+  scroll,
+  useId,
+  to,
+  items,
+  type,
+}: CarouselPictProps) => {
   const carouselRef = useRef<null | HTMLDivElement>(null);
 
   const [scrollEvent, setScrollEvent] = useState(true);
@@ -51,14 +59,21 @@ const CarouselPict = ({ scroll, items, type }: CarouselPictProps) => {
     >
       {items?.length > 0 &&
         items.map((obj, idx) => (
-          <Link href={obj?.link ?? ""} key={idx}>
+          <Link
+            href={
+              to
+                ? `/${to}${useId && obj?.id ? `/${obj.id}` : ""}`
+                : obj?.key || ""
+            }
+            key={idx}
+          >
             <div
               id={`${type}-${idx}`}
               className="carousel-item block cursor-pointer"
             >
               <div className="relative w-[250px] h-[350px] rounded-3xl overflow-hidden shadow-lg">
                 <Image
-                  src={obj?.image ?? ""}
+                  src={obj?.pict ?? ""}
                   alt={`carousel-img-${idx}`}
                   fill
                   style={{ objectFit: "cover", filter: "brightness(75%)" }}

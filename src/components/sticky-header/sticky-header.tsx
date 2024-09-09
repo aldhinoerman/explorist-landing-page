@@ -5,9 +5,10 @@ import { navData } from "../navbar/utils";
 
 interface HeaderProps {
   isParent?: boolean;
+  isParentNav?: boolean;
 }
 
-const StickyHeader: React.FC<HeaderProps> = ({ isParent }) => {
+const StickyHeader: React.FC<HeaderProps> = ({ isParent, isParentNav }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -42,7 +43,11 @@ const StickyHeader: React.FC<HeaderProps> = ({ isParent }) => {
               }`
         }
       >
-        <Navbar isParent={true} smallImg onNavCollapse={handleCollapse} />
+        <Navbar
+          isParent={isParentNav}
+          smallImg
+          onNavCollapse={handleCollapse}
+        />
       </header>
 
       <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>

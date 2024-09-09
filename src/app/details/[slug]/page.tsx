@@ -1,5 +1,4 @@
 import React from "react";
-import { fetchDetails } from "./utils";
 import { DetailBanner } from "@/components";
 
 interface DetailPageProps {
@@ -14,13 +13,5 @@ const Details = ({ params }: DetailPageProps) => {
     </>
   );
 };
-
-export async function generateStaticParams() {
-  const details = await fetchDetails();
-
-  return details.map((pack) => ({
-    slug: pack.key,
-  }));
-}
 
 export default Details;

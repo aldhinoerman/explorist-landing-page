@@ -23,6 +23,7 @@ interface IBookDetails {
 }
 
 interface ITrips {
+  id?: number;
   pict: string;
   title: string;
   activity: string;

@@ -1,22 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../assets/styles/index.scss";
 import { ContactUs } from "@/components";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Explorist Tour Bali",
-  description: "Your best travel mate",
-  creator: "https://github.com/aldhinoerman",
-  openGraph: {
-    title: "Explorist Tour Bali",
-    description: "Your best travel mate",
-    url: "https://www.exploristtourbali.com",
-    siteName: "Explorist Tour Bali",
-    type: "website",
-  },
-};
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export default function RootLayout({
   children,
@@ -29,6 +14,35 @@ export default function RootLayout({
         {children}
         <ContactUs />
       </body>
+      <GoogleAnalytics gaId="G-K48JZYHQ8B" />
+      <GoogleTagManager gtmId="GTM-KJV3CMXB" />
     </html>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    metadataBase: new URL("https://exploristtourbali.com"),
+    title: "Explorist Tour Bali",
+    description: "Explore More Discover More",
+    authors: [
+      {
+        name: "Explorist Tour Bali",
+        url: "https://exploristtourbali.com",
+      },
+    ],
+    robots: "index, follow",
+    keywords: [
+      "explore",
+      "discover",
+      "bali",
+      "travel",
+      "tour",
+      "activity",
+      "culture",
+      "art",
+      "kuta",
+      "uluwatu",
+    ],
+  };
 }

@@ -2,36 +2,48 @@
 
 import { Images } from "@/assets";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { Hero } from "../hero";
-import { itemPackages } from "@/data";
 import { CardItem } from "../card-item";
-import { Button } from "@/modules";
+import { Button, Loading } from "@/modules";
 import { Nusped } from "../nusped";
 import { Destinations } from "../destinations";
+import { CategoryProps, TourPackagesProps, useRequest } from "@/utils";
+import { NotFound } from "../error";
 
 interface PackageComponentProps {
   slug: string;
 }
 
 const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
-  const [limit, setLimit] = useState(6);
-
-  const loadMore = () => {
-    setLimit((prevState) => prevState + 3);
+  const initialParams = {
+    page: 1,
+    limit: 6,
+    param: `filters[category][id][$contains]=${slug}`,
   };
 
-  const filteredItems =
-    itemPackages.filter((x) => x.packages.includes(slug)) ?? [];
+  const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);
 
-  const limitedItems = filteredItems.slice(0, limit);
+  const {
+    data: packages,
+    loading,
+    handleSetPagination,
+    pagination,
+  } = useRequest<TourPackagesProps[]>("tour-packages", { ...initialParams });
+
+  const loadMore = () => {
+    handleSetPagination(
+      1,
+      pagination?.pageSize ? pagination?.pageSize + 3 : 6 + 3
+    );
+  };
 
   return (
     <>
       <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
         <div className="relative h-full">
           <Image
-            src={Images.Mountain}
+            src={category?.pict ?? Images.Mountain}
             fill
             style={{ objectFit: "cover", filter: "brightness(75%)" }}
             priority
@@ -43,19 +55,24 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center min-h-[275px]">
         <Hero
-          title="Package"
-          description="Discover a range of thoughtfully crafted packages that cater to every type of traveler, from adrenaline seekers to those looking for a serene escape."
+          title={category?.title ?? "Package"}
+          description={
+            category?.description ??
+            "Discover a range of thoughtfully crafted packages that cater to every type of traveler, from adrenaline seekers to those looking for a serene escape."
+          }
         />
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
-        {limitedItems?.length > 0 &&
-          limitedItems.map((obj, idx) => (
-            <CardItem
-              data={{ ...obj, link: `/details/${obj.key}` }}
-              key={idx}
-            />
-          ))}
+        {loading ? (
+          <Loading />
+        ) : packages && packages?.length > 0 ? (
+          packages.map((obj, idx) => (
+            <CardItem data={obj} key={idx} to="details" useId />
+          ))
+        ) : (
+          <NotFound />
+        )}
       </div>
 
       <div className="text-center">
@@ -64,9 +81,12 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
           size="large"
           onClick={loadMore}
           className="my-12"
-          disabled={
-            filteredItems?.length === limit || filteredItems?.length < limit
-          }
+          disabled={Boolean(
+            (packages && packages?.length === pagination?.pageSize) ||
+              (packages && pagination && pagination.pageSize)
+              ? packages?.length < pagination?.pageSize
+              : packages && packages?.length < 6
+          )}
         >
           Load More
         </Button>

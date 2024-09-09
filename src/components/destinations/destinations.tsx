@@ -1,15 +1,29 @@
 "use client";
 
-import { Button, Carousel, SectionWrapper } from "@/modules";
+import { Button, Carousel, Loading, SectionWrapper } from "@/modules";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
-import React, { useEffect, useState } from "react";
-import { destinations } from "./utils";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRequest } from "@/utils";
+import { NotFound } from "../error";
+
+interface DestinationsProps {}
 
 const Destinations = () => {
   const [slide, setSlide] = useState<string>(String(0));
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
+
+  const params = {
+    param: "filters[key][$ne]=activity",
+  };
+
+  const { data: destinations, loading } = useRequest<DestinationsProps[]>(
+    `categories`,
+    {
+      ...params,
+    }
+  );
   const router = useRouter();
 
   const handleNextSlide = () => {
@@ -65,13 +79,24 @@ const Destinations = () => {
                 <ChevronRightIcon className="w-4 h-4 m-auto font-semibold" />
               }
               onClick={handleNextSlide}
-              disabled={Boolean(Number(slide) + 1 === destinations.length)}
+              disabled={Boolean(Number(slide) + 1 === destinations?.length)}
               square
             />
           </div>
         </div>
         <div>
-          <Carousel items={destinations} scroll={isScrolling} />
+          {loading ? (
+            <Loading />
+          ) : destinations && destinations?.length > 0 ? (
+            <Carousel
+              items={destinations ?? []}
+              scroll={isScrolling}
+              to="package"
+              useId
+            />
+          ) : (
+            <NotFound />
+          )}
         </div>
       </div>
     </SectionWrapper>

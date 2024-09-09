@@ -1,42 +1,109 @@
 "use client";
-import { bookDetails, IBookDetails } from "@/data";
-import { Button, Loading, TabContent, TabItem, Tabs } from "@/modules";
+import { Button, Loading, Modal, TabContent, TabItem, Tabs } from "@/modules";
+import { TourPackagesProps, useRequest } from "@/utils";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
+import { NotFound } from "../error";
 
 interface BookDetailProps {
   slug: string;
 }
 
 const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
-  const [data, setData] = useState<IBookDetails | undefined>(undefined);
+  const initialParams = {
+    param: "populate=*",
+  };
+  const { data: pack, loading } = useRequest<TourPackagesProps>(
+    `tour-packages/${slug}`,
+    {
+      ...initialParams,
+    }
+  );
   const [activeTab, setActiveTab] = useState("activities");
+  const [modalShow, setModalShow] = useState<boolean>(false);
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    setData(() => {
-      const response = bookDetails?.find((x) => x.key === slug) ?? undefined;
-
-      return response;
-    });
+  const handleShowModal = () => {
+    setModalShow((prevState) => !prevState);
   };
 
   const handleChangeTab = (tab: string) => {
     setActiveTab(tab);
   };
 
+  const contents = useCallback(
+    () => [
+      {
+        value: "activities",
+        txt: "Activities",
+        content:
+          pack?.package_items?.data && pack?.package_items?.data?.length > 0
+            ? pack.package_items.data.map((val: any) => ({
+                id: val.id,
+                ...val.attributes,
+              }))
+            : [],
+      },
+      {
+        value: "terms",
+        txt: "Term & Conditions",
+        content:
+          pack?.terms_conditions?.data &&
+          pack?.terms_conditions?.data?.length > 0
+            ? pack.terms_conditions.data.map((val: any) => ({
+                id: val.id,
+                ...val.attributes,
+              }))
+            : [],
+      },
+      {
+        value: "itinerary",
+        txt: "Itinerary",
+        content:
+          pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
+            ? pack.itineraries.data.map((val: any) => ({
+                id: val.id,
+                ...val.attributes,
+              }))
+            : [],
+      },
+      {
+        value: "pricing",
+        txt: "Pricing",
+        content:
+          pack?.pricings?.data && pack?.pricings?.data?.length > 0
+            ? {
+                pricing: pack.pricings.data.map((val: any) => ({
+                  id: val.id,
+                  ...val.attributes,
+                })),
+                inclusions:
+                  pack?.inclusions?.data &&
+                  pack.inclusions.data.map((valInc: any) => ({
+                    id: valInc.id,
+                    ...valInc.attributes,
+                  })),
+                regulars:
+                  pack?.regulars?.data &&
+                  pack.regulars.data.map((valReg: any) => ({
+                    id: valReg.id,
+                    ...valReg.attributes,
+                  })),
+              }
+            : [],
+      },
+    ],
+    [pack]
+  );
+
   return (
     <>
-      {data ? (
+      {pack ? (
         <>
           <div className="flex flex-col md:flex-row gap-12 justify-center align-middle my-12 md:my-20">
             <div>
               <div className="w-full">
                 <Image
-                  src={data?.pict ?? ""}
+                  src={pack?.pict ?? ""}
                   alt="detail-pict"
                   width={575}
                   height={375}
@@ -45,11 +112,11 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
               </div>
             </div>
             <div className="flex flex-col justify-center">
-              <h3 className="text-primary">{data.title}</h3>
+              <h3 className="text-primary">{pack.title}</h3>
               <h4 className="font-light text-secondary mb-4">
-                {data.location}
+                {pack.location}
               </h4>
-              <Button variant="primary" size="large">
+              <Button variant="primary" size="large" onClick={handleShowModal}>
                 Book Now
               </Button>
             </div>
@@ -57,55 +124,19 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
 
           <div className="max-w-screen-sm">
             <Tabs>
-              {[
-                {
-                  value: "activities",
-                  txt: "Activities",
-                  content: data.activity,
-                },
-                {
-                  value: "terms",
-                  txt: "Term & Conditions",
-                  content: data.terms,
-                },
-                {
-                  value: "itinerary",
-                  txt: "Itinerary",
-                  content: data.itinerary,
-                },
-                { value: "pricing", txt: "Pricing", content: data.pricing },
-              ].map((obj, idx) => (
-                <>
+              {contents().map((obj, idx) => (
+                <React.Fragment key={idx}>
                   <TabItem
                     title={obj.txt}
                     isActive={Boolean(obj.value === activeTab)}
                     onClick={() => handleChangeTab(obj.value)}
-                    key={idx}
                   />
-                  {/* <TabContent type={obj.value} data={obj.content} /> */}
-                </>
+                </React.Fragment>
               ))}
             </Tabs>
           </div>
           <div>
-            {[
-              {
-                value: "activities",
-                txt: "Activities",
-                content: data.activity,
-              },
-              {
-                value: "terms",
-                txt: "Term & Conditions",
-                content: data.terms,
-              },
-              {
-                value: "itinerary",
-                txt: "Itinerary",
-                content: data.itinerary,
-              },
-              { value: "pricing", txt: "Pricing", content: data.pricing },
-            ].map((val, index) => (
+            {contents().map((val, index) => (
               <TabContent
                 isActive={Boolean(val.value === activeTab)}
                 type={val.value}
@@ -115,15 +146,21 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
             ))}
           </div>
 
-          <div className="text-center">
-            <Button variant="primary" size="large">
+          <div className="text-center my-12">
+            <Button variant="primary" size="large" onClick={handleShowModal}>
               Book Now
             </Button>
           </div>
         </>
-      ) : (
+      ) : loading ? (
         <Loading size="large" />
+      ) : (
+        <NotFound />
       )}
+
+      <Modal isOpen={modalShow} title="test" onClose={handleShowModal}>
+        Test
+      </Modal>
     </>
   );
 };

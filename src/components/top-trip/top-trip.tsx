@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { CardItem } from "../card-item";
-import { useRequest } from "@/utils";
+import { TourPackagesProps, useRequest } from "@/utils";
 
 const TopTrip = () => {
   const params = {
@@ -9,7 +9,7 @@ const TopTrip = () => {
     pageSize: 3,
     sortedBy: "sort=sequence",
   };
-  const { data } = useRequest("top-trips", { ...params });
+  const { data } = useRequest<TourPackagesProps[]>("top-trips", { ...params });
 
   return (
     <>

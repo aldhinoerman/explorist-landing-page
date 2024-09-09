@@ -4,7 +4,7 @@ import React from "react";
 import { CardItem } from "../card-item";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useRequest } from "@/utils";
+import { TourPackagesProps, useRequest } from "@/utils";
 import { NotFound } from "../error";
 
 const Activity = () => {
@@ -13,9 +13,12 @@ const Activity = () => {
     limit: 6,
     param: "filters[category][key][$contains]=activity",
   };
-  const { data: activities, loading } = useRequest(`tour-packages`, {
-    ...params,
-  });
+  const { data: activities, loading } = useRequest<TourPackagesProps[]>(
+    `tour-packages`,
+    {
+      ...params,
+    }
+  );
 
   return (
     <SectionWrapper id="activity">
@@ -24,7 +27,7 @@ const Activity = () => {
       <div className="mt-20 flex flex-wrap gap-4 justify-center">
         {loading ? (
           <Loading />
-        ) : activities?.length > 0 ? (
+        ) : activities && activities?.length > 0 ? (
           activities.map((obj, idx) => (
             <CardItem data={obj} key={idx} to="details" useId />
           ))

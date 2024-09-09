@@ -55,7 +55,9 @@ const CardItem = ({ data, withSub, to, useId, onClick }: CardItemProps) => {
                 data.type === "success" ? "text-success" : "text-danger"
               } my-auto text-center`}
             >
-              {capitalizeFirstLetter(data?.category ?? "")}
+              {data && data?.category && data?.category?.length > 0
+                ? "Test"
+                : capitalizeFirstLetter(String(data?.category ?? ""))}
             </p>
           </div>
           <p className="text-secondary">{data.lengthTour}</p>

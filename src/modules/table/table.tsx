@@ -1,6 +1,12 @@
+import { ITableColumns } from "@/utils";
 import React from "react";
 
-const Table = ({ columns, dataSource }) => {
+interface TableProps {
+  columns: ITableColumns<any>[];
+  dataSource: any;
+}
+
+const Table: React.FC<TableProps> = ({ columns, dataSource }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -21,7 +27,7 @@ const Table = ({ columns, dataSource }) => {
         <tbody>
           {/* row 1 */}
           {dataSource && dataSource?.length > 0 ? (
-            dataSource.map((val, index) => (
+            dataSource.map((val: any, index: number) => (
               <tr key={index}>
                 {columns.map((col, colIndex) => (
                   <td

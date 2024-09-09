@@ -2,7 +2,12 @@ import React, { useCallback } from "react";
 import { Table } from "../table";
 import moment from "moment";
 import { Card } from "../card";
-import { formatCurrency } from "@/utils";
+import {
+  formatCurrency,
+  InclusionsProps,
+  PricingProps,
+  RegularsProps,
+} from "@/utils";
 
 interface TabContentProps {
   isActive: boolean;
@@ -78,11 +83,13 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   <Card>
                     <h4 className="text-center">Price</h4>
                     <ol className="my-8">
-                      {groupedItems()?.inclusion.map((inc, indexInc) => (
-                        <li key={indexInc} className="my-2 text-center">
-                          {inc.pax} person(s): {formatCurrency(inc.price)}/pax
-                        </li>
-                      ))}
+                      {groupedItems()?.inclusion.map(
+                        (inc: PricingProps, indexInc: number) => (
+                          <li key={indexInc} className="my-2 text-center">
+                            {inc.pax} person(s): {formatCurrency(inc.price)}/pax
+                          </li>
+                        )
+                      )}
                     </ol>
                   </Card>
                 )}
@@ -90,11 +97,13 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   <Card>
                     <h4 className="text-center">Inclusion</h4>
                     <ol className="my-8">
-                      {data?.inclusions.map((incl, indexIncl) => (
-                        <li key={indexIncl} className="my-2 text-center">
-                          {incl.name}
-                        </li>
-                      ))}
+                      {data?.inclusions.map(
+                        (incl: InclusionsProps, indexIncl: number) => (
+                          <li key={indexIncl} className="my-2 text-center">
+                            {incl.name}
+                          </li>
+                        )
+                      )}
                     </ol>
                   </Card>
                 )}
@@ -102,11 +111,13 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   <Card>
                     <h4 className="text-center">Regular</h4>
                     <ol className="my-8">
-                      {groupedItems()?.regular.map((reg, indexReg) => (
-                        <li key={indexReg} className="my-2 text-center">
-                          Car: {reg.car} - {formatCurrency(reg.price)}
-                        </li>
-                      ))}
+                      {groupedItems()?.regular.map(
+                        (reg: PricingProps, indexReg: number) => (
+                          <li key={indexReg} className="my-2 text-center">
+                            Car: {reg.car} - {formatCurrency(reg.price)}
+                          </li>
+                        )
+                      )}
                     </ol>
                   </Card>
                 )}
@@ -114,11 +125,13 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   <Card>
                     <h4 className="text-center">Exclusion</h4>
                     <ol className="my-8">
-                      {data?.regulars.map((regu, indexRegu) => (
-                        <li key={indexRegu} className="my-2 text-center">
-                          {regu.name}
-                        </li>
-                      ))}
+                      {data?.regulars.map(
+                        (regu: RegularsProps, indexRegu: number) => (
+                          <li key={indexRegu} className="my-2 text-center">
+                            {regu.name}
+                          </li>
+                        )
+                      )}
                     </ol>
                   </Card>
                 )}

@@ -44,11 +44,34 @@ interface PackageItemProps {
 
 interface TermsProps {}
 
-interface PricingProps {}
+interface PricingProps {
+  id: number;
+  type: string;
+  pax?: number;
+  car?: number;
+  price: number;
+  sequence?: number;
+  tour_package: TourPackagesProps;
+}
 
-interface InclusionsProps {}
+interface InclusionsProps {
+  id: number;
+  name: string;
+  tour_package: TourPackagesProps;
+}
 
-interface RegularsProps {}
+interface RegularsProps {
+  id: number;
+  name: string;
+  tour_package: TourPackagesProps;
+}
+
+interface ITableColumns<T> {
+  title: string;
+  dataIndex: string;
+  align?: string;
+  render?: (value?: any, obj?: T, index?: number) => void;
+}
 
 export type {
   TourPackagesProps,
@@ -59,4 +82,5 @@ export type {
   TermsProps,
   PricingProps,
   RegularsProps,
+  ITableColumns,
 };

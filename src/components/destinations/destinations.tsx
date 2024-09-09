@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { useRequest } from "@/utils";
 import { NotFound } from "../error";
 
+interface DestinationsProps {}
+
 const Destinations = () => {
   const [slide, setSlide] = useState<string>(String(0));
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
@@ -16,11 +18,12 @@ const Destinations = () => {
     param: "filters[key][$ne]=activity",
   };
 
-  const {
-    data: destinations,
-    loading,
-    error,
-  } = useRequest(`categories`, { ...params });
+  const { data: destinations, loading } = useRequest<DestinationsProps[]>(
+    `categories`,
+    {
+      ...params,
+    }
+  );
   const router = useRouter();
 
   const handleNextSlide = () => {
@@ -76,7 +79,7 @@ const Destinations = () => {
                 <ChevronRightIcon className="w-4 h-4 m-auto font-semibold" />
               }
               onClick={handleNextSlide}
-              disabled={Boolean(Number(slide) + 1 === destinations.length)}
+              disabled={Boolean(Number(slide) + 1 === destinations?.length)}
               square
             />
           </div>
@@ -84,9 +87,9 @@ const Destinations = () => {
         <div>
           {loading ? (
             <Loading />
-          ) : destinations?.length > 0 ? (
+          ) : destinations && destinations?.length > 0 ? (
             <Carousel
-              items={destinations}
+              items={destinations ?? []}
               scroll={isScrolling}
               to="package"
               useId

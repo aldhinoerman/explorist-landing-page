@@ -28,7 +28,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
   const groupedItems = useCallback(() => {
     if (type === "pricing") {
       const reducedItem = data?.pricing
-        ? data.pricing.reduce((acc, item) => {
+        ? data.pricing.reduce((acc: any, item: any) => {
             // Check if the type already exists in the accumulator
             if (!acc[item.type]) {
               acc[item.type] = []; // Create a new array for this type if it doesn't exist

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { requestWithAbort } from "./request";
 
-const useRequest = (
+// Add generic type `T`
+const useRequest = <T>(
   url: string,
   params?: {
     page?: number;
@@ -9,8 +10,9 @@ const useRequest = (
     param?: string;
   }
 ) => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+  // Change data type to generic `T`
+  const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState(
     params?.page && params?.pageSize
@@ -45,7 +47,7 @@ const useRequest = (
               }))
             : { id: res.data.data.id, ...res?.data?.data?.attributes } || [];
 
-          return response;
+          return response as T; // Use the generic type `T` here
         });
         setLoading(false);
       })

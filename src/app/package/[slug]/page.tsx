@@ -1,5 +1,4 @@
 import { PackageComponent } from "@/components";
-import { fetchPackages } from "./utils";
 
 interface PackagePageProps {
   params: { slug: string };

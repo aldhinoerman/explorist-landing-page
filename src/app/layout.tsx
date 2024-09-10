@@ -14,8 +14,8 @@ export default function RootLayout({
         {children}
         <ContactUs />
       </body>
-      <GoogleAnalytics gaId="G-K48JZYHQ8B" />
-      <GoogleTagManager gtmId="GTM-KJV3CMXB" />
+      <GoogleAnalytics gaId={String(process.env.NEXT_PUBLIC_GAID)} />
+      <GoogleTagManager gtmId={String(process.env.NEXT_PUBLIC_GTMID)} />
     </html>
   );
 }

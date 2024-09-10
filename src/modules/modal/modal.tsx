@@ -6,6 +6,7 @@ interface ModalProps extends React.PropsWithChildren {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  closeText?: string
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -13,12 +14,13 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   children,
+  closeText,
   width,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="modal modal-open">
         <div
           className={`modal-box w-full ${
@@ -42,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
           {/* Modal Footer */}
           <div className="modal-action">
             <Button variant={"primary"} onClick={onClose}>
-              Close
+              {closeText ?? "Close"}
             </Button>
           </div>
         </div>

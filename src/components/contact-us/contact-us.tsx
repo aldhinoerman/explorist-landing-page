@@ -41,7 +41,7 @@ const ContactUs = () => {
     setIsOpen((prevState) => !prevState);
   };
   return (
-    <div className="fixed bottom-0 right-0">
+    <div className="fixed bottom-0 z-30 right-0">
       {isOpen ? (
         <div className="m-10 flex flex-col gap-6">
           {socials.map((obj, idx) => (
@@ -69,7 +69,7 @@ const ContactUs = () => {
           </button>
         </div>
       ) : (
-        <div className="m-10">
+        <div className="m-2 md:m-10">
           <button
             onClick={handleOpen}
             className="bg-primary text-white w-14 h-14 p-2 rounded-full"

@@ -19,6 +19,7 @@ const config: Config = {
       phone: "#03E78B",
       whatsapp: "#49E670",
       mesenger: "#1E88E5",
+      gray: "#898989",
     },
     extend: {
       backgroundImage: {
@@ -43,6 +44,7 @@ const config: Config = {
           phone: "#03E78B",
           whatsapp: "#49E670",
           mesenger: "#1E88E5",
+          gray: "#898989",
         },
       },
       "light",

@@ -1,15 +1,40 @@
 "use client";
-import { Button, Loading, Modal, TabContent, TabItem, Tabs } from "@/modules";
-import { TourPackagesProps, useRequest } from "@/utils";
+import {
+  Button,
+  Icon,
+  Loading,
+  Modal,
+  TabContent,
+  TabItem,
+  Tabs,
+} from "@/modules";
+import {
+  capitalizeFirstLetter,
+  onSubmitEmail,
+  onSubmitWhatsApp,
+  TourPackagesProps,
+  useRequest,
+} from "@/utils";
 import Image from "next/image";
 import React, { useCallback, useState } from "react";
 import { NotFound } from "../error";
+import { useForm } from "react-hook-form";
+import { Destinations } from "../destinations";
+import { Testimoni } from "../testimoni";
 
 interface BookDetailProps {
   slug: string;
 }
 
 const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<any>();
+
   const initialParams = {
     param: "populate=*",
   };
@@ -151,6 +176,9 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
               Book Now
             </Button>
           </div>
+
+          <Destinations />
+          <Testimoni />
         </>
       ) : loading ? (
         <Loading size="large" />
@@ -158,8 +186,194 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         <NotFound />
       )}
 
-      <Modal isOpen={modalShow} title="test" onClose={handleShowModal}>
-        Test
+      <Modal
+        isOpen={modalShow}
+        title="Online Booking"
+        closeText="Cancel"
+        onClose={handleShowModal}
+      >
+        <form className="form flex flex-col gap-8">
+          <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+            Name
+            <input
+              type="text"
+              className="grow text-dark"
+              placeholder="Please Input Your Name"
+              {...register("name", { required: true })}
+              aria-invalid={errors.name ? "true" : "false"}
+            />
+          </label>
+          <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+            E-mail
+            <input
+              type="email"
+              className="grow text-dark"
+              placeholder="ex:exploristbali@gmail.com"
+              {...register("email")}
+            />
+          </label>
+          <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+            Phone Number
+            <input
+              type="tel"
+              className="grow text-dark"
+              placeholder="ex:+62812345678"
+              {...register("phone")}
+            />
+          </label>
+          <div className="flex flex-wrap gap-8">
+            <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+              Adult
+              <input
+                type="number"
+                className="grow text-dark"
+                placeholder="Enter total adult"
+                defaultValue={2}
+                min={1}
+                {...register("adult")}
+              />
+            </label>
+            <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+              Child
+              <input
+                type="number"
+                className="grow text-dark"
+                placeholder="Enter total child"
+                defaultValue={0}
+                min={0}
+                {...register("child")}
+              />
+            </label>
+          </div>
+          <div className="form-control max-w-[100px]">
+            <label className="label cursor-pointer">
+              <span className="text-gray">Inclusion</span>
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox checkbox-primary"
+                {...register("inclusion")}
+              />
+            </label>
+          </div>
+          <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+            Select Date
+            <input
+              type="date"
+              className="grow text-dark"
+              placeholder="Select a date"
+              {...register("date", { required: true })}
+              aria-invalid={errors.date ? "true" : "false"}
+            />
+          </label>
+          <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+            Pick-Up Time
+            <input
+              type="time"
+              className="grow text-dark"
+              placeholder="Select a time"
+              {...register("time", { required: true })}
+              aria-invalid={errors.time ? "true" : "false"}
+            />
+          </label>
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="text-gray">Pick-Up At</span>
+            </div>
+            <select
+              className="select select-bordered text-dark !outline-none"
+              {...register("pick_up_at")}
+            >
+              {...["hotel", "airport"].map((obj, idx) => (
+                <option value={obj} key={idx} defaultValue={"hotel"}>
+                  {capitalizeFirstLetter(obj)}
+                </option>
+              ))}
+            </select>
+          </label>
+          {watch("pick_up_at") === "airport" ? (
+            <>
+              <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+                Station
+                <input
+                  type="text"
+                  className="grow text-dark"
+                  placeholder="eg: International Arrival I Gusti Ngurah Rai Airport"
+                  {...register("station")}
+                />
+              </label>
+              <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+                Flight Number
+                <input
+                  type="text"
+                  className="grow text-dark"
+                  placeholder="eg: GA-222"
+                  {...register("flight_number")}
+                />
+              </label>
+            </>
+          ) : (
+            <>
+              <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+                Hotel Name
+                <input
+                  type="text"
+                  className="grow text-dark"
+                  placeholder="Please input your hotel name"
+                  {...register("hotel_name")}
+                />
+              </label>
+              <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
+                Hotel Address
+                <input
+                  type="text"
+                  className="grow text-dark"
+                  placeholder="Please input your hotel address"
+                  {...register("hotel_address")}
+                />
+              </label>
+            </>
+          )}
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="text-gray">Notes</span>
+            </div>
+            <textarea
+              placeholder="Enter your message..."
+              className="input input-bordered border-secondary !outline-none p-2 text-dark min-h-32"
+              {...register("notes")}
+            />
+          </label>
+
+          <div className="flex flex-wrap justify-center align-middle gap-8">
+            <Button
+              type="submit"
+              variant="primary"
+              icon={<Icon type="mail" />}
+              size="large"
+              onClick={handleSubmit((data) => {
+                onSubmitEmail({ ...data, package_name: pack?.title });
+                reset();
+                handleShowModal();
+              })}
+            >
+              Book by E-mail
+            </Button>
+            <Button
+              type="submit"
+              variant="success"
+              icon={<Icon type="whatsapp" className={"size-6"} />}
+              size="large"
+              onClick={handleSubmit((data) => {
+                onSubmitWhatsApp({ ...data, package_name: pack?.title });
+                reset();
+                handleShowModal();
+              })}
+            >
+              Book by Whatsapp
+            </Button>
+          </div>
+        </form>
       </Modal>
     </>
   );

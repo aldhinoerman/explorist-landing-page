@@ -1,54 +1,50 @@
 "use client";
 import { SectionWrapper } from "@/modules";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
 
 const Testimoni = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure this code only runs on the client-side
   useEffect(() => {
-    setIsClient(true); // Mark that we are on the client side
-    if (
-      typeof window !== "undefined" &&
-      window.TA &&
-      typeof window.TA.init === "function"
-    ) {
-      window.TA.init();
-    }
-  }, []);
+    // Dynamically load the script
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://www.jscache.com/wejs?wtype=selfserveprop&uniq=679&locationId=28155585&lang=in&rating=true&nreviews=5&writereviewlink=true&popIdx=true&iswide=false&border=true&display_version=2";
+    script.setAttribute("data-loadtrk", "onload");
+    script.onload = () => {
+      (window as any).loadtrk = true;
+    };
 
-  if (!isClient) {
-    // Prevent rendering of the widget on the server-side
-    return null;
-  }
+    // Append the script to the document
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup the script
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <SectionWrapper id="testimoni">
-      <div
-        id="TA_cdswritereviewnew438"
-        className="TA_cdswritereviewnew flex justify-center"
-      >
-        <ul id="cqZYPTIAV" className="TA_links RrYpikr">
-          <li id="rorTCKeU582u" className="B989GtPHfZ1">
-            <a target="_blank" href="https://www.tripadvisor.com/">
+      <div id="TA_selfserveprop679" className="TA_selfserveprop">
+        <ul id="Vu5S4lAwwf" className="TA_links uwXVZG">
+          <li id="2ckem1Z" className="hYA3vQupn flex justify-center">
+            <Link
+              target="_blank"
+              href="https://www.tripadvisor.co.id/Attraction_Review-g297694-d28155585-Reviews-Explorist_Tour_Bali-Denpasar_Bali.html"
+              rel="noopener noreferrer"
+            >
               <Image
-                src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg"
+                src="https://www.tripadvisor.co.id/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-11900-2.svg"
                 alt="TripAdvisor"
                 width={250}
                 height={125}
               />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
-
-      {/* Load the widget only on the client side */}
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `<script async src="https://www.jscache.com/wejs?wtype=cdswritereviewnew&uniq=438&locationId=28155585&lang=en_US&display_version=2"></script>`,
-        }}
-      />
     </SectionWrapper>
   );
 };

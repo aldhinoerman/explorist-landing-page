@@ -17,8 +17,8 @@ interface ActivityData {
 const Activity: React.FC = () => {
   const initialParams = {
     page: 1,
-    limit: 6,
-    param: "filters[category][key][$contains]=activity",
+    pageSize: 6,
+    param: "filters[category][key][$contains]=activity&sort=sequence",
   };
 
   // Define the correct type for `activity`
@@ -63,32 +63,34 @@ const Activity: React.FC = () => {
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
-        {loading ? (
-          <Loading />
-        ) : activities && activities?.length > 0 ? (
+        {activities &&
+          activities?.length > 0 &&
           activities.map((obj, idx) => (
             <CardItem data={obj} key={idx} to="details" useId />
-          ))
-        ) : (
-          <NotFound />
-        )}
+          ))}
       </div>
 
       <div className="text-center">
-        <Button
-          variant="primary"
-          size="large"
-          onClick={loadMore}
-          className="my-12"
-          disabled={Boolean(
-            (activities && activities?.length === pagination?.pageSize) ||
-              (activities && pagination && pagination.pageSize)
-              ? activities?.length < pagination?.pageSize
-              : activities && activities?.length < 6
-          )}
-        >
-          Load More
-        </Button>
+        {loading ? (
+          <Loading />
+        ) : activities && activities?.length > 0 ? (
+          <Button
+            variant="primary"
+            size="large"
+            onClick={loadMore}
+            className="my-12"
+            disabled={Boolean(
+              (activities && activities?.length === pagination?.pageSize) ||
+                (activities && pagination && pagination.pageSize)
+                ? activities?.length < pagination?.pageSize
+                : activities && activities?.length < 6
+            )}
+          >
+            Load More
+          </Button>
+        ) : (
+          <NotFound />
+        )}
       </div>
 
       <Destinations />

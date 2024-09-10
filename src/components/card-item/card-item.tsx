@@ -22,7 +22,7 @@ const CardItem = ({ data, withSub, to, useId, onClick }: CardItemProps) => {
 
   const handleClickButton = () => {};
   return (
-    <Card bodyClass="flex flex-col justify-between">
+    <Card bodyClass={`flex flex-col ${data?.price ? "justify-between" : ''}`}>
       <h4 className="text-center">{data.title}</h4>
       {data?.pict && (
         <div

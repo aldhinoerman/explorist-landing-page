@@ -56,7 +56,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
             <ul>
               {data?.length > 0 &&
                 data.map((obj: any, idx: number) => (
-                  <li key={idx}>
+                  <li key={idx} className="my-4">
                     <p className="font-bold">{obj?.title ?? ""}</p>
                     <p>
                       {type === "activities"

@@ -33,6 +33,11 @@ interface CategoryProps {
 
 interface ItinerariesProps {}
 
+interface IPackageItem {
+  id?: number | undefined;
+  attributes?: PackageItemProps;
+}
+
 interface PackageItemProps {
   id?: number;
   pict?: string;
@@ -83,4 +88,5 @@ export type {
   PricingProps,
   RegularsProps,
   ITableColumns,
+  IPackageItem,
 };

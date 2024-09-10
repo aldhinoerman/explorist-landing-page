@@ -4,7 +4,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CardItem } from "../card-item";
 import Link from "next/link";
-import { PackageItemProps, TourPackagesProps, useRequest } from "@/utils";
+import {
+  IPackageItem,
+  PackageItemProps,
+  TourPackagesProps,
+  useRequest,
+} from "@/utils";
 import { NotFound } from "../error";
 
 interface DetailBannerProps {
@@ -46,8 +51,8 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     }
   };
 
-  const handleSetContent = (content: PackageItemProps) => {
-    setContent(content);
+  const handleSetContent = (content: IPackageItem) => {
+    setContent({ id: content?.id, ...content?.attributes });
   };
 
   return (

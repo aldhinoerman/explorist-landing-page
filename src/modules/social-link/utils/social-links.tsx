@@ -13,7 +13,7 @@ const socialLinks = [
   },
   {
     title: "Whatsapp",
-    link: "https://wa.me/6282145500117",
+    link: `https://wa.me/6282145500117`,
     icon: "whatsapp",
   },
   {

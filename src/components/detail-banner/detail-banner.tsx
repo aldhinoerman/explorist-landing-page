@@ -55,8 +55,6 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     setContent({ id: content?.id, ...content?.attributes });
   };
 
-  console.log(content);
-
   return (
     <>
       {pack && content ? (

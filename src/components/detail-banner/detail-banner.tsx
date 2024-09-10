@@ -1,7 +1,7 @@
 "use client";
 import { Button, Collapse, Loading } from "@/modules";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CardItem } from "../card-item";
 import Link from "next/link";
 import {
@@ -31,11 +31,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     undefined
   );
 
-  useEffect(() => {
-    getData();
-  }, [pack]);
-
-  const getData = () => {
+  const getData = useCallback(() => {
     const response: TourPackagesProps | undefined = pack ?? undefined;
 
     if (
@@ -46,7 +42,11 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     ) {
       handleSetContent(response?.package_items?.data[0]);
     }
-  };
+  }, [content, pack]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const handleSetContent = (content: IPackageItem) => {
     setContent({ id: content?.id, ...content?.attributes });
@@ -87,7 +87,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8 align-middle my-12 md:my-20">
+          <div className="flex flex-wrap justify-center gap-4 align-middle my-12 md:my-20">
             {pack &&
               pack?.package_items?.data &&
               pack?.package_items?.data?.length > 0 &&

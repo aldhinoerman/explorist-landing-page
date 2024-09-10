@@ -18,7 +18,7 @@ const Card = ({
   const maxWidth = width ? `md:max-w-[${width}px]` : "md:max-w-[325px]";
   const maxMobileWidth = mobileWidth
     ? `max-w-[${mobileWidth}px]`
-    : "max-w-[125px]";
+    : "max-w-[165px]";
   return (
     <div
       className={classNames(

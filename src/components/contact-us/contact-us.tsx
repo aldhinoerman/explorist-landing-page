@@ -43,7 +43,7 @@ const ContactUs = () => {
   return (
     <div className="fixed bottom-0 z-30 right-0">
       {isOpen ? (
-        <div className="m-10 flex flex-col gap-6">
+        <div className="m-2 md:m-10 flex flex-col gap-6">
           {socials.map((obj, idx) => (
             <Link
               href={obj.link}

@@ -44,10 +44,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
       response?.package_items?.data[0] &&
       !content
     ) {
-      handleSetContent({
-        id: response?.package_items?.data[0]?.id,
-        ...response?.package_items?.data[0]?.attributes,
-      });
+      handleSetContent(response?.package_items?.data[0]);
     }
   };
 
@@ -90,7 +87,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
             </div>
           </div>
 
-          <div className="flex justify-center gap-8 align-middle my-12 md:my-20">
+          <div className="flex flex-wrap justify-center gap-8 align-middle my-12 md:my-20">
             {pack &&
               pack?.package_items?.data &&
               pack?.package_items?.data?.length > 0 &&

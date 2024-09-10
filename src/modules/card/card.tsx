@@ -18,18 +18,18 @@ const Card = ({
   const maxWidth = width ? `md:max-w-[${width}px]` : "md:max-w-[325px]";
   const maxMobileWidth = mobileWidth
     ? `max-w-[${mobileWidth}px]`
-    : "max-w-[165px]";
+    : "max-w-[125px]";
   return (
     <div
       className={classNames(
-        "w-full h-full rounded-3xl min-w-[75px] min-h-[300px] shadow-xl",
+        "w-full rounded-3xl min-w-[75px] shadow-xl",
         maxMobileWidth,
         maxWidth
       )}
       style={{ background: "white" }}
       {...rest}
     >
-      <div className={`px-6 py-8 min-h-[300px] ${bodyClass ?? ""}`}>
+      <div className={`px-6 py-8 min-h-full ${bodyClass ?? ""}`}>
         {children}
       </div>
     </div>

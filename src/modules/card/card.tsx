@@ -22,14 +22,14 @@ const Card = ({
   return (
     <div
       className={classNames(
-        "w-full h-full rounded-3xl min-w-[75px] min-h-[150px] shadow-xl",
+        "w-full h-full rounded-3xl min-w-[75px] min-h-[300px] shadow-xl",
         maxMobileWidth,
         maxWidth
       )}
       style={{ background: "white" }}
       {...rest}
     >
-      <div className={`px-6 py-8 min-h-[150px] ${bodyClass ?? ""}`}>
+      <div className={`px-6 py-8 min-h-[300px] ${bodyClass ?? ""}`}>
         {children}
       </div>
     </div>

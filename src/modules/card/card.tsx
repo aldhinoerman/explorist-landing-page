@@ -15,10 +15,10 @@ const Card = ({
   bodyClass,
   ...rest
 }: CardProps) => {
-  const maxWidth = width ? `md:max-w-[${width}px]` : "md:max-w-[325px]";
+  const maxWidth = width ? `md:max-w-[${width}px]` : "md:max-w-[285px] lg:max-w-[325px]";
   const maxMobileWidth = mobileWidth
     ? `max-w-[${mobileWidth}px]`
-    : "max-w-[165px]";
+    : "max-w-[165px] sm:max-w-[175px]";
   return (
     <div
       className={classNames(

@@ -10,8 +10,8 @@ import { NotFound } from "../error";
 const Activity = () => {
   const params = {
     page: 1,
-    limit: 6,
-    param: "filters[category][key][$contains]=activity",
+    pageSize: 6,
+    param: "filters[category][key][$contains]=activity&sort=sequence",
   };
   const { data: activities, loading } = useRequest<TourPackagesProps[]>(
     `tour-packages`,

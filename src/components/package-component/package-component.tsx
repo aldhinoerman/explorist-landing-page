@@ -18,8 +18,8 @@ interface PackageComponentProps {
 const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
   const initialParams = {
     page: 1,
-    limit: 6,
-    param: `filters[category][id][$contains]=${slug}`,
+    pageSize: 6,
+    param: `filters[category][id][$contains]=${slug}&sort=sequence`,
   };
 
   const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);
@@ -64,32 +64,34 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center mt-40 md:mt-52">
-        {loading ? (
-          <Loading />
-        ) : packages && packages?.length > 0 ? (
+        {packages &&
+          packages?.length > 0 &&
           packages.map((obj, idx) => (
             <CardItem data={obj} key={idx} to="details" useId />
-          ))
-        ) : (
-          <NotFound />
-        )}
+          ))}
       </div>
 
       <div className="text-center">
-        <Button
-          variant="primary"
-          size="large"
-          onClick={loadMore}
-          className="my-12"
-          disabled={Boolean(
-            (packages && packages?.length === pagination?.pageSize) ||
-              (packages && pagination && pagination.pageSize)
-              ? packages?.length < pagination?.pageSize
-              : packages && packages?.length < 6
-          )}
-        >
-          Load More
-        </Button>
+        {loading ? (
+          <Loading />
+        ) : packages && packages?.length > 0 ? (
+          <Button
+            variant="primary"
+            size="large"
+            onClick={loadMore}
+            className="my-12"
+            disabled={Boolean(
+              (packages && packages?.length === pagination?.pageSize) ||
+                (packages && pagination && pagination.pageSize)
+                ? packages?.length < pagination?.pageSize
+                : packages && packages?.length < 6
+            )}
+          >
+            Load More
+          </Button>
+        ) : (
+          <NotFound />
+        )}
       </div>
 
       {slug !== "nusa-penida" && <Nusped />}

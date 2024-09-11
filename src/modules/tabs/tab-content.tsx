@@ -86,7 +86,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     <ol className="my-8 list-none">
                       {groupedItems()?.inclusion.map(
                         (inc: PricingProps, indexInc: number) => (
-                          <li key={indexInc} className="my-2 text-center">
+                          <li key={indexInc} className="my-2">
                             {inc.pax} person(s): {formatCurrency(inc.price)}/pax
                           </li>
                         )
@@ -100,7 +100,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     <ol className="my-8 list-none">
                       {data?.inclusions.map(
                         (incl: InclusionsProps, indexIncl: number) => (
-                          <li key={indexIncl} className="my-2 text-center">
+                          <li key={indexIncl} className="my-2">
                             {incl.name}
                           </li>
                         )
@@ -114,7 +114,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     <ol className="my-8 list-none">
                       {groupedItems()?.regular.map(
                         (reg: PricingProps, indexReg: number) => (
-                          <li key={indexReg} className="my-2 text-center">
+                          <li key={indexReg} className="my-2">
                             Car: {reg.car} - {formatCurrency(reg.price)}
                           </li>
                         )
@@ -128,7 +128,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     <ol className="my-8 list-none">
                       {data?.regulars.map(
                         (regu: RegularsProps, indexRegu: number) => (
-                          <li key={indexRegu} className="my-2 text-center">
+                          <li key={indexRegu} className="my-2">
                             {regu.name}
                           </li>
                         )

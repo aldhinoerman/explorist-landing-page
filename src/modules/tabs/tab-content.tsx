@@ -83,7 +83,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 {groupedItems() && groupedItems()?.inclusion && (
                   <Card mobileWidth={250}>
                     <h4 className="text-center">Price</h4>
-                    <ol className="my-8">
+                    <ol className="my-8 list-none">
                       {groupedItems()?.inclusion.map(
                         (inc: PricingProps, indexInc: number) => (
                           <li key={indexInc} className="my-2 text-center">
@@ -97,7 +97,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 {data?.inclusions && data?.inclusions?.length > 0 && (
                   <Card mobileWidth={250}>
                     <h4 className="text-center">Inclusion</h4>
-                    <ol className="my-8">
+                    <ol className="my-8 list-none">
                       {data?.inclusions.map(
                         (incl: InclusionsProps, indexIncl: number) => (
                           <li key={indexIncl} className="my-2 text-center">
@@ -111,7 +111,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 {groupedItems() && groupedItems()?.regular && (
                   <Card mobileWidth={250}>
                     <h4 className="text-center">Regular</h4>
-                    <ol className="my-8">
+                    <ol className="my-8 list-none">
                       {groupedItems()?.regular.map(
                         (reg: PricingProps, indexReg: number) => (
                           <li key={indexReg} className="my-2 text-center">
@@ -125,7 +125,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 {data?.regulars && data?.regulars?.length > 0 && (
                   <Card mobileWidth={250}>
                     <h4 className="text-center">Exclusion</h4>
-                    <ol className="my-8">
+                    <ol className="my-8 list-none">
                       {data?.regulars.map(
                         (regu: RegularsProps, indexRegu: number) => (
                           <li key={indexRegu} className="my-2 text-center">

@@ -102,32 +102,43 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
           </div>
 
           <div className="my-12 md:my-20">
-            <div>
-              <Collapse title="Activities" isOpen={Boolean(content?.activity)}>
-                <ReactMarkdown>{content?.activity}</ReactMarkdown>
-              </Collapse>
-            </div>
-            <div className="my-4">
-              <Collapse title="About" isOpen={Boolean(content?.about)}>
-                <ReactMarkdown>{content?.about}</ReactMarkdown>
-              </Collapse>
-            </div>
-            <div className="my-4">
-              <Collapse
-                title="Description"
-                isOpen={Boolean(content?.description)}
-              >
-                <ReactMarkdown>{content?.description}</ReactMarkdown>
-              </Collapse>
-            </div>
-            <div className="my-4">
-              <Collapse
-                title="Nearest Amenities"
-                isOpen={Boolean(content?.amenities)}
-              >
-                <ReactMarkdown>{content?.amenities}</ReactMarkdown>
-              </Collapse>
-            </div>
+            {content?.activity && (
+              <div>
+                <Collapse
+                  title="Activities"
+                  isOpen={Boolean(content?.activity)}
+                >
+                  <ReactMarkdown>{content?.activity}</ReactMarkdown>
+                </Collapse>
+              </div>
+            )}
+            {content?.about && (
+              <div className="my-4">
+                <Collapse title="About" isOpen={Boolean(content?.about)}>
+                  <ReactMarkdown>{content?.about}</ReactMarkdown>
+                </Collapse>
+              </div>
+            )}
+            {content?.description && (
+              <div className="my-4">
+                <Collapse
+                  title="Description"
+                  isOpen={Boolean(content?.description)}
+                >
+                  <ReactMarkdown>{content?.description}</ReactMarkdown>
+                </Collapse>
+              </div>
+            )}
+            {content?.amenities && (
+              <div className="my-4">
+                <Collapse
+                  title="Nearest Amenities"
+                  isOpen={Boolean(content?.amenities)}
+                >
+                  <ReactMarkdown>{content?.amenities}</ReactMarkdown>
+                </Collapse>
+              </div>
+            )}
           </div>
 
           <div className="text-center my-12">

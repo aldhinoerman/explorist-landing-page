@@ -96,7 +96,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 )}
                 {data?.inclusions && data?.inclusions?.length > 0 && (
                   <Card mobileWidth={250}>
-                    <h4 className="text-center">Inclusion</h4>
+                    <h4 className="text-center">Inclusive Incl. & Excl.</h4>
                     <ol className="my-8 list-none">
                       {data?.inclusions.map(
                         (incl: InclusionsProps, indexIncl: number) => (
@@ -124,7 +124,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 )}
                 {data?.regulars && data?.regulars?.length > 0 && (
                   <Card mobileWidth={250}>
-                    <h4 className="text-center">Exclusion</h4>
+                    <h4 className="text-center">Regular Incl. & Excl.</h4>
                     <ol className="my-8 list-none">
                       {data?.regulars.map(
                         (regu: RegularsProps, indexRegu: number) => (

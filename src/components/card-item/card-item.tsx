@@ -14,15 +14,29 @@ interface CardItemProps {
   data: ICardItem | TourPackagesProps;
   to?: string;
   useId?: boolean;
+  mobileWidth?: number;
+  width?: number;
   onClick?: () => void;
 }
 
-const CardItem = ({ data, withSub, to, useId, onClick }: CardItemProps) => {
+const CardItem = ({
+  data,
+  withSub,
+  to,
+  mobileWidth,
+  width,
+  useId,
+  onClick,
+}: CardItemProps) => {
   const router = useRouter();
 
   const handleClickButton = () => {};
   return (
-    <Card bodyClass={`flex flex-col ${data?.price ? "justify-between" : ''}`}>
+    <Card
+      bodyClass={`flex flex-col ${data?.price ? "justify-between" : ""}`}
+      width={width}
+      mobileWidth={mobileWidth}
+    >
       <h4 className="text-center">{data.title}</h4>
       {data?.pict && (
         <div

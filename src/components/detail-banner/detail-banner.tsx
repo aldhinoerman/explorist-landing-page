@@ -11,6 +11,7 @@ import {
   useRequest,
 } from "@/utils";
 import { NotFound } from "../error";
+import ReactMarkdown from "react-markdown";
 
 interface DetailBannerProps {
   slug: string;
@@ -103,12 +104,12 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
           <div className="my-12 md:my-20">
             <div>
               <Collapse title="Activities" isOpen={Boolean(content?.activity)}>
-                {content?.activity}
+                <ReactMarkdown>{content?.activity}</ReactMarkdown>
               </Collapse>
             </div>
             <div className="my-4">
               <Collapse title="About" isOpen={Boolean(content?.about)}>
-                {content?.about}
+                <ReactMarkdown>{content?.about}</ReactMarkdown>
               </Collapse>
             </div>
             <div className="my-4">
@@ -116,7 +117,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
                 title="Description"
                 isOpen={Boolean(content?.description)}
               >
-                {content?.description}
+                <ReactMarkdown>{content?.description}</ReactMarkdown>
               </Collapse>
             </div>
             <div className="my-4">
@@ -124,7 +125,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
                 title="Nearest Amenities"
                 isOpen={Boolean(content?.amenities)}
               >
-                {content?.amenities}
+                <ReactMarkdown>{content?.amenities}</ReactMarkdown>
               </Collapse>
             </div>
           </div>

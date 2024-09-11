@@ -8,6 +8,7 @@ import {
   PricingProps,
   RegularsProps,
 } from "@/utils";
+import ReactMarkdown from "react-markdown";
 
 interface TabContentProps {
   isActive: boolean;
@@ -46,7 +47,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
 
       return reducedItem;
     }
-  }, [data]);
+  }, [data.pricing, type]);
 
   return (
     isActive && (
@@ -58,11 +59,11 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 data.map((obj: any, idx: number) => (
                   <li key={idx} className="my-4">
                     <p className="font-bold">{obj?.title ?? ""}</p>
-                    <p>
+                    <ReactMarkdown>
                       {type === "activities"
                         ? obj?.activity
                         : obj?.description || ""}
-                    </p>
+                    </ReactMarkdown>
                   </li>
                 ))}
             </ul>
@@ -80,7 +81,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
             <>
               <div className="flex flex-wrap gap-8 justify-center">
                 {groupedItems() && groupedItems()?.inclusion && (
-                  <Card>
+                  <Card mobileWidth={250}>
                     <h4 className="text-center">Price</h4>
                     <ol className="my-8">
                       {groupedItems()?.inclusion.map(
@@ -94,7 +95,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   </Card>
                 )}
                 {data?.inclusions && data?.inclusions?.length > 0 && (
-                  <Card>
+                  <Card mobileWidth={250}>
                     <h4 className="text-center">Inclusion</h4>
                     <ol className="my-8">
                       {data?.inclusions.map(
@@ -108,7 +109,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   </Card>
                 )}
                 {groupedItems() && groupedItems()?.regular && (
-                  <Card>
+                  <Card mobileWidth={250}>
                     <h4 className="text-center">Regular</h4>
                     <ol className="my-8">
                       {groupedItems()?.regular.map(
@@ -122,7 +123,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   </Card>
                 )}
                 {data?.regulars && data?.regulars?.length > 0 && (
-                  <Card>
+                  <Card mobileWidth={250}>
                     <h4 className="text-center">Exclusion</h4>
                     <ol className="my-8">
                       {data?.regulars.map(

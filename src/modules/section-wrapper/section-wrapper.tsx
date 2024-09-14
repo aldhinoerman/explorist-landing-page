@@ -8,7 +8,7 @@ const SectionWrapper = ({ children, id, ...props }: WrapperProps) => {
   return (
     <section
       id={id ?? "#"}
-      className="my-28 max-w-[1440px] md:px-12"
+      className="my-12 md:my-28 max-w-[1440px] md:px-12"
       {...props}
     >
       {children}

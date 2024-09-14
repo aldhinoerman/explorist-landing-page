@@ -18,7 +18,7 @@ const Activity: React.FC = () => {
   const initialParams = {
     page: 1,
     pageSize: 6,
-    param: "filters[categories][key][$contains]=activity&sort=sequence",
+    param: "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
   };
 
   // Define the correct type for `activity`

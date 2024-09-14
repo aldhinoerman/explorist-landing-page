@@ -69,18 +69,6 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
             : [],
       },
       {
-        value: "terms",
-        txt: "Term & Conditions",
-        content:
-          pack?.terms_conditions?.data &&
-          pack?.terms_conditions?.data?.length > 0
-            ? pack.terms_conditions.data.map((val: any) => ({
-                id: val.id,
-                ...val.attributes,
-              }))
-            : [],
-      },
-      {
         value: "itinerary",
         txt: "Itinerary",
         content:
@@ -93,7 +81,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
       },
       {
         value: "pricing",
-        txt: "Pricing",
+        txt: "Pricelist",
         content:
           pack?.pricings?.data && pack?.pricings?.data?.length > 0
             ? {
@@ -101,19 +89,43 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
                   id: val.id,
                   ...val.attributes,
                 })),
-                inclusions:
-                  pack?.inclusions?.data &&
-                  pack.inclusions.data.map((valInc: any) => ({
+                price_inclusions:
+                  pack?.price_inclusions?.data &&
+                  pack.price_inclusions.data.map((valInc: any) => ({
                     id: valInc.id,
                     ...valInc.attributes,
                   })),
-                regulars:
-                  pack?.regulars?.data &&
-                  pack.regulars.data.map((valReg: any) => ({
+                price_exclusions:
+                  pack?.price_exclusions?.data &&
+                  pack.price_exclusions.data.map((valExc: any) => ({
+                    id: valExc.id,
+                    ...valExc.attributes,
+                  })),
+                regular_inclusions:
+                  pack?.regular_inclusions?.data &&
+                  pack.regular_inclusions.data.map((valReg: any) => ({
                     id: valReg.id,
                     ...valReg.attributes,
                   })),
+                regular_exclusions:
+                  pack?.regular_exclusions?.data &&
+                  pack.regular_exclusions.data.map((valRegEx: any) => ({
+                    id: valRegEx.id,
+                    ...valRegEx.attributes,
+                  })),
               }
+            : [],
+      },
+      {
+        value: "terms",
+        txt: "T & C",
+        content:
+          pack?.terms_conditions?.data &&
+          pack?.terms_conditions?.data?.length > 0
+            ? pack.terms_conditions.data.map((val: any) => ({
+                id: val.id,
+                ...val.attributes,
+              }))
             : [],
       },
     ],

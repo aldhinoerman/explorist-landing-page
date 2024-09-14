@@ -2,7 +2,7 @@
 
 import { Images } from "@/assets";
 import { CardItem, Destinations, Hero, NotFound } from "@/components";
-import { Button, Loading } from "@/modules";
+import { Loading } from "@/modules";
 import { useRequest } from "@/utils";
 import Image from "next/image";
 import React from "react";
@@ -16,9 +16,8 @@ interface ActivityData {
 
 const Activity: React.FC = () => {
   const initialParams = {
-    page: 1,
-    pageSize: 6,
-    param: "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
+    param:
+      "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
   };
 
   // Define the correct type for `activity`
@@ -29,16 +28,8 @@ const Activity: React.FC = () => {
   const {
     data: activities,
     loading,
-    handleSetPagination,
     pagination,
   } = useRequest<ActivityData[]>("tour-packages", { ...initialParams });
-
-  const loadMore = () => {
-    handleSetPagination(
-      1,
-      pagination?.pageSize ? pagination?.pageSize + 3 : 6 + 3
-    );
-  };
 
   return (
     <>
@@ -70,28 +61,7 @@ const Activity: React.FC = () => {
           ))}
       </div>
 
-      <div className="text-center">
-        {loading ? (
-          <Loading />
-        ) : activities && activities?.length > 0 ? (
-          <Button
-            variant="primary"
-            size="large"
-            onClick={loadMore}
-            className="my-12"
-            disabled={Boolean(
-              (activities && activities?.length === pagination?.pageSize) ||
-                (activities && pagination && pagination.pageSize)
-                ? activities?.length < pagination?.pageSize
-                : activities && activities?.length < 6
-            )}
-          >
-            Load More
-          </Button>
-        ) : (
-          <NotFound />
-        )}
-      </div>
+      <div className="text-center">{loading ? <Loading /> : <NotFound />}</div>
 
       <Destinations />
     </>

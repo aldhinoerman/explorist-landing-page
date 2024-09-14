@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { Hero } from "../hero";
 import { CardItem } from "../card-item";
-import { Button, Loading } from "@/modules";
+import { Loading } from "@/modules";
 import { Nusped } from "../nusped";
 import { Destinations } from "../destinations";
 import { CategoryProps, TourPackagesProps, useRequest } from "@/utils";
@@ -17,8 +17,6 @@ interface PackageComponentProps {
 
 const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
   const initialParams = {
-    page: 1,
-    pageSize: 6,
     param: `filters[categories][id][$contains]=${slug}&sort=sequence&populate=*`,
   };
 
@@ -27,16 +25,8 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
   const {
     data: packages,
     loading,
-    handleSetPagination,
     pagination,
   } = useRequest<TourPackagesProps[]>("tour-packages", { ...initialParams });
-
-  const loadMore = () => {
-    handleSetPagination(
-      1,
-      pagination?.pageSize ? pagination?.pageSize + 3 : 6 + 3
-    );
-  };
 
   return (
     <>
@@ -71,28 +61,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
           ))}
       </div>
 
-      <div className="text-center">
-        {loading ? (
-          <Loading />
-        ) : packages && packages?.length > 0 ? (
-          <Button
-            variant="primary"
-            size="large"
-            onClick={loadMore}
-            className="my-12"
-            disabled={Boolean(
-              (packages && packages?.length === pagination?.pageSize) ||
-                (packages && pagination && pagination.pageSize)
-                ? packages?.length < pagination?.pageSize
-                : packages && packages?.length < 6
-            )}
-          >
-            Load More
-          </Button>
-        ) : (
-          <NotFound />
-        )}
-      </div>
+      <div className="text-center">{loading ? <Loading /> : <NotFound />}</div>
 
       {slug !== "nusa-penida" && <Nusped />}
       <Destinations />

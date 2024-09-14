@@ -12,9 +12,9 @@ const TabItem: React.FC<TabItemProps> = ({ isActive, title, onClick }) => {
       <label
         onClick={onClick}
         role="tab"
-        className={`tab tab-bordered cursor-pointer ${
+        className={`tab tab-bordered cursor-pointer text-lg md:text-2xl pb-12 ${
           isActive
-            ? "border-primary text-primary"
+            ? "border-primary text-primary font-bold"
             : "border-transparent text-secondary"
         }`}
         aria-label={title}

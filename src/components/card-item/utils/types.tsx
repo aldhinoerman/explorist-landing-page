@@ -1,10 +1,9 @@
-import { CategoryProps } from "@/utils";
-import { Moment } from "moment";
+import { PackageItemProps } from "@/utils";
 
 interface ICardItem {
   id?: number;
-  title: string;
-  pict: string;
+  title?: string;
+  pict?: string | undefined;
   type?: string;
   category?: string;
   lengthTour?: string;
@@ -12,6 +11,9 @@ interface ICardItem {
   price?: number;
   link?: string;
   key?: string;
+  package_items?: {
+    data?: Array<{ id?: number; attributes?: PackageItemProps }>;
+  };
 }
 
 export type { ICardItem };

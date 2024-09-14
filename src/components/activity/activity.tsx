@@ -11,7 +11,7 @@ const Activity = () => {
   const params = {
     page: 1,
     pageSize: 6,
-    param: "filters[categories][key][$contains]=activity&sort=sequence",
+    param: "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
   };
   const { data: activities, loading } = useRequest<TourPackagesProps[]>(
     `tour-packages`,

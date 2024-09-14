@@ -19,7 +19,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
   const initialParams = {
     page: 1,
     pageSize: 6,
-    param: `filters[categories][id][$contains]=${slug}&sort=sequence`,
+    param: `filters[categories][id][$contains]=${slug}&sort=sequence&populate=*`,
   };
 
   const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);

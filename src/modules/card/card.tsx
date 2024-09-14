@@ -26,8 +26,8 @@ const Card = ({
       className={classNames(
         "w-full rounded-3xl min-w-[75px] shadow-xl",
         `${
-          !mobileWidth ? "max-w-[165px]" : ""
-        } sm:max-w-[175px] md:max-w-[285px] lg:max-w-[325px]`
+          !mobileWidth ? "max-w-[185px]" : ""
+        } sm:max-w-[200px] md:max-w-[285px] lg:max-w-[325px]`
       )}
       style={{
         ...styles,
@@ -35,7 +35,7 @@ const Card = ({
       }}
       {...rest}
     >
-      <div className={`px-6 py-8 min-h-full ${bodyClass ?? ""}`}>
+      <div className={`min-h-full ${bodyClass ?? ""}`}>
         {children}
       </div>
     </div>

@@ -12,7 +12,7 @@ interface TourPackagesProps {
     data?: Array<{ id?: number; attributes?: ItinerariesProps }>;
   };
   package_items?: {
-    data?: Array<{ id?: number; attributes?: PackageItemProps }>;
+    data?: Array<{ id?: number | undefined; attributes?: PackageItemProps }>;
   };
   terms_conditions?: {
     data?: Array<{ id?: number; attributes?: TermsProps }>;
@@ -21,7 +21,24 @@ interface TourPackagesProps {
   inclusions?: {
     data?: Array<{ id?: number; attributes?: InclusionsProps }>;
   };
+  price_inclusions?: {
+    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+  };
+  price_exclusions?: {
+    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+  };
+  regular_inclusions?: {
+    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+  };
+  regular_exclusions?: {
+    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+  };
   regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps }> };
+}
+
+interface PriceItemProps {
+  inclusion?: string;
+  exclusion?: string;
 }
 
 interface CategoryProps {
@@ -34,16 +51,29 @@ interface CategoryProps {
 interface ItinerariesProps {}
 
 interface IPackageItem {
-  id?: number | undefined;
+  id?: number;
   attributes?: PackageItemProps;
 }
 
 interface PackageItemProps {
   id?: number;
+  title?: string;
+  caption?: string;
   pict?: string;
   activity?: string;
   about?: string;
   amenities?: string;
+  description?: string;
+  stories?: {
+    data?: Array<{ id?: number; attributes?: StoriesProps }>;
+  };
+  tour_packages?: {
+    data?: Array<{ id?: number; attributes?: TourPackagesProps }>;
+  };
+}
+
+interface StoriesProps {
+  title?: string;
   description?: string;
 }
 
@@ -89,4 +119,5 @@ export type {
   RegularsProps,
   ITableColumns,
   IPackageItem,
+  PriceItemProps,
 };

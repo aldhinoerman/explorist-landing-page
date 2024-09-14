@@ -1,5 +1,5 @@
 "use client";
-import { Button, Collapse, Loading } from "@/modules";
+import { Button, Loading } from "@/modules";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { CardItem } from "../card-item";
@@ -11,7 +11,7 @@ import {
   useRequest,
 } from "@/utils";
 import { NotFound } from "../error";
-import ReactMarkdown from "react-markdown";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
 interface DetailBannerProps {
   slug: string;
@@ -81,8 +81,13 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
                 {pack?.location}
               </h4>
               <Link href={`/book-now/${slug}`}>
-                <Button variant="primary" size="large">
-                  Book Now
+                <Button
+                  variant="primary"
+                  size="large"
+                  icon={<ChevronRightIcon className="w-4 h-4 m-auto" />}
+                  iconPosition="right"
+                >
+                  Get The Best Deal
                 </Button>
               </Link>
             </div>
@@ -94,57 +99,23 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
               pack?.package_items?.data?.length > 0 &&
               pack.package_items.data.map((obj: any, idx: number) => (
                 <CardItem
-                  data={obj.attributes}
+                  data={{ id: obj.id, ...obj.attributes }}
                   key={idx}
-                  onClick={() => handleSetContent(obj)}
+                  useId
+                  to="story"
                 />
               ))}
           </div>
 
-          <div className="my-12 md:my-20">
-            {content?.activity && (
-              <div>
-                <Collapse
-                  title="Activities"
-                  isOpen={Boolean(content?.activity)}
-                >
-                  <ReactMarkdown>{content?.activity}</ReactMarkdown>
-                </Collapse>
-              </div>
-            )}
-            {content?.about && (
-              <div className="my-4">
-                <Collapse title="About" isOpen={Boolean(content?.about)}>
-                  <ReactMarkdown>{content?.about}</ReactMarkdown>
-                </Collapse>
-              </div>
-            )}
-            {content?.description && (
-              <div className="my-4">
-                <Collapse
-                  title="Description"
-                  isOpen={Boolean(content?.description)}
-                >
-                  <ReactMarkdown>{content?.description}</ReactMarkdown>
-                </Collapse>
-              </div>
-            )}
-            {content?.amenities && (
-              <div className="my-4">
-                <Collapse
-                  title="Nearest Amenities"
-                  isOpen={Boolean(content?.amenities)}
-                >
-                  <ReactMarkdown>{content?.amenities}</ReactMarkdown>
-                </Collapse>
-              </div>
-            )}
-          </div>
-
           <div className="text-center my-12">
-            <Link href={`/book-now/${slug}`}>
-              <Button variant="primary" size="large">
-                Book Now
+            <Link href={`/book-now/${slug}`} className="flex justify-center">
+              <Button
+                variant="primary"
+                size="large"
+                icon={<ChevronRightIcon className="w-4 h-4 m-auto" />}
+                iconPosition="right"
+              >
+                Get The Best Deal
               </Button>
             </Link>
           </div>

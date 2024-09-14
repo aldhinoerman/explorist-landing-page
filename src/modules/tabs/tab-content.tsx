@@ -2,12 +2,7 @@ import React, { useCallback } from "react";
 import { Table } from "../table";
 import moment from "moment";
 import { Card } from "../card";
-import {
-  formatCurrency,
-  InclusionsProps,
-  PricingProps,
-  RegularsProps,
-} from "@/utils";
+import { formatCurrency, PriceItemProps, PricingProps } from "@/utils";
 import ReactMarkdown from "react-markdown";
 
 interface TabContentProps {
@@ -81,7 +76,7 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
             <>
               <div className="flex flex-wrap gap-8 justify-center">
                 {groupedItems() && groupedItems()?.inclusion && (
-                  <Card mobileWidth={250}>
+                  <Card mobileWidth={250} bodyClass="p-4">
                     <h4 className="text-center">Price</h4>
                     <ol className="my-8 list-none">
                       {groupedItems()?.inclusion.map(
@@ -94,22 +89,35 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     </ol>
                   </Card>
                 )}
-                {data?.inclusions && data?.inclusions?.length > 0 && (
-                  <Card mobileWidth={250}>
-                    <h4 className="text-center">Inclusive Incl. & Excl.</h4>
+                {(data?.price_inclusions &&
+                  data?.price_inclusions?.length > 0) ||
+                (data?.price_exclusions &&
+                  data?.price_exclusions?.length > 0) ? (
+                  <Card mobileWidth={250} bodyClass="p-4">
+                    <h4 className="text-center text-success">Inclusions</h4>
                     <ol className="my-8 list-none">
-                      {data?.inclusions.map(
-                        (incl: InclusionsProps, indexIncl: number) => (
-                          <li key={indexIncl} className="my-2">
-                            {incl.name}
+                      {data?.price_inclusions?.map(
+                        (valInc: PriceItemProps, idxInc: number) => (
+                          <li key={idxInc} className="my-2">
+                            {valInc.inclusion}
+                          </li>
+                        )
+                      )}
+                    </ol>
+                    <h4 className="text-center text-danger">Exclusions</h4>
+                    <ol className="my-8 list-none">
+                      {data?.price_exclusions?.map(
+                        (valExc: PriceItemProps, idxExc: number) => (
+                          <li key={idxExc} className="my-2">
+                            {valExc.exclusion}
                           </li>
                         )
                       )}
                     </ol>
                   </Card>
-                )}
+                ) : null}
                 {groupedItems() && groupedItems()?.regular && (
-                  <Card mobileWidth={250}>
+                  <Card mobileWidth={250} bodyClass="p-4">
                     <h4 className="text-center">Regular</h4>
                     <ol className="my-8 list-none">
                       {groupedItems()?.regular.map(
@@ -122,20 +130,33 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                     </ol>
                   </Card>
                 )}
-                {data?.regulars && data?.regulars?.length > 0 && (
-                  <Card mobileWidth={250}>
-                    <h4 className="text-center">Regular Incl. & Excl.</h4>
+                {(data?.regular_inclusions &&
+                  data?.regular_inclusions?.length > 0) ||
+                (data?.regular_exclusions &&
+                  data?.regular_exclusions?.length > 0) ? (
+                  <Card mobileWidth={250} bodyClass="p-4">
+                    <h4 className="text-center text-success">Regular Inclusions</h4>
                     <ol className="my-8 list-none">
-                      {data?.regulars.map(
-                        (regu: RegularsProps, indexRegu: number) => (
-                          <li key={indexRegu} className="my-2">
-                            {regu.name}
+                      {data?.regular_inclusions?.map(
+                        (valRegInc: PriceItemProps, idxRegInc: number) => (
+                          <li key={idxRegInc} className="my-2">
+                            {valRegInc.inclusion}
+                          </li>
+                        )
+                      )}
+                    </ol>
+                    <h4 className="text-center text-danger">Regular Exclusions</h4>
+                    <ol className="my-8 list-none">
+                      {data?.regular_exclusions?.map(
+                        (valRegExc: PriceItemProps, idxRegExc: number) => (
+                          <li key={idxRegExc} className="my-2">
+                            {valRegExc.exclusion}
                           </li>
                         )
                       )}
                     </ol>
                   </Card>
-                )}
+                ) : null}
               </div>
             </>
           )}

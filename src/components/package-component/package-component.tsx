@@ -61,7 +61,9 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
           ))}
       </div>
 
-      <div className="text-center">{loading ? <Loading /> : <NotFound />}</div>
+      <div className="text-center">
+        {loading ? <Loading /> : packages?.length === 0 && <NotFound />}
+      </div>
 
       {slug !== "nusa-penida" && <Nusped />}
       <Destinations />

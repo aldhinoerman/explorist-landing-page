@@ -61,7 +61,9 @@ const Activity: React.FC = () => {
           ))}
       </div>
 
-      <div className="text-center">{loading ? <Loading /> : <NotFound />}</div>
+      <div className="text-center">
+        {loading ? <Loading /> : activities?.length === 0 && <NotFound />}
+      </div>
 
       <Destinations />
     </>

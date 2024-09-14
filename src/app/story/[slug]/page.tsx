@@ -39,7 +39,7 @@ const Story: React.FC<StoryProps> = ({ params }) => {
 
   return (
     <>
-      <SectionWrapper id={`pack-header-${slug}`}>
+      <SectionWrapper id={`pack-details-${slug}`}>
         <div>
           <Button
             variant="primary"
@@ -50,7 +50,7 @@ const Story: React.FC<StoryProps> = ({ params }) => {
             Back
           </Button>
 
-          <div className="flex flex-col md:flex-row gap-12 justify-center align-middle my-12 md:my-20">
+          <div className="flex flex-col md:flex-row gap-12 justify-center align-middle mt-8 mb-4 md:mt-12">
             <div>
               {packItem?.pict ? (
                 <div className="w-full">
@@ -68,32 +68,30 @@ const Story: React.FC<StoryProps> = ({ params }) => {
             </div>
             <div className="flex flex-col justify-center md:max-w-[425px]">
               <h3 className="text-primary">{packItem?.title}</h3>
-              <h4 className="font-light text-secondary mb-4">
+              <p className="font-light text-secondary mb-4">
                 {packItem?.caption}
-              </h4>
+              </p>
             </div>
           </div>
         </div>
-      </SectionWrapper>
-
-      <SectionWrapper id={`pack-description-${slug}`}>
-        <ReactMarkdown>{packItem?.description ?? ""}</ReactMarkdown>
-      </SectionWrapper>
-
-      {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (
-        <div className="my-12 md:my-20">
-          {packItem?.stories?.data?.map((obj, idx) => (
-            <div key={idx}>
-              <Collapse
-                title={obj?.attributes?.title ?? ""}
-                isOpen={Boolean(obj?.attributes?.title)}
-              >
-                <ReactMarkdown>{obj?.attributes?.description}</ReactMarkdown>
-              </Collapse>
-            </div>
-          ))}
+        <div>
+          <ReactMarkdown>{packItem?.description ?? ""}</ReactMarkdown>
         </div>
-      )}
+        {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (
+          <div className="mt-4 md:mt-8">
+            {packItem?.stories?.data?.map((obj, idx) => (
+              <div key={idx}>
+                <Collapse
+                  title={obj?.attributes?.title ?? ""}
+                  isOpen={Boolean(obj?.attributes?.title)}
+                >
+                  <ReactMarkdown>{obj?.attributes?.description}</ReactMarkdown>
+                </Collapse>
+              </div>
+            ))}
+          </div>
+        )}
+      </SectionWrapper>
 
       <div className="flex justify-center my-12">
         <Button

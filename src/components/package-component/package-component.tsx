@@ -65,7 +65,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
         {loading ? <Loading /> : packages?.length === 0 && <NotFound />}
       </div>
 
-      {slug !== "nusa-penida" && <Nusped />}
+      {category && category?.key !== "package/nusa-penida" && <Nusped />}
       <Destinations />
     </>
   );

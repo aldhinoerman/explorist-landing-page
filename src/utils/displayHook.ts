@@ -1,3 +1,4 @@
+"use client"
 import { useCallback, useEffect, useState } from "react";
 import { requestWithAbort } from "./request";
 
@@ -61,6 +62,7 @@ const useRequest = <T>(
       });
 
     return () => controller.abort();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, pagination]);
 
   useEffect(() => {

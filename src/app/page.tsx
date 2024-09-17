@@ -9,6 +9,7 @@ import {
   StickyHeader,
   Testimoni,
   TopTrip,
+  WelcomeMessage,
 } from "@/components";
 import Image from "next/image";
 
@@ -37,6 +38,7 @@ export default function Home() {
         </div>
 
         <TopTrip />
+        <WelcomeMessage />
         <Activity />
         <Destinations />
         <Nusped />

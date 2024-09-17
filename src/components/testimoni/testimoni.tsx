@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 const Testimoni = () => {
   useEffect(() => {
-    // Dynamically load the script
     const script = document.createElement("script");
     script.async = true;
     script.src =
@@ -16,11 +15,9 @@ const Testimoni = () => {
       (window as any).loadtrk = true;
     };
 
-    // Append the script to the document
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup the script
       document.body.removeChild(script);
     };
   }, []);
@@ -28,7 +25,10 @@ const Testimoni = () => {
   return (
     <SectionWrapper id="testimoni">
       <div id="TA_selfserveprop679" className="TA_selfserveprop">
-        <ul id="Vu5S4lAwwf" className="TA_links uwXVZG">
+        <ul
+          id="Vu5S4lAwwf"
+          className="TA_links uwXVZG list-none flex justify-center"
+        >
           <li id="2ckem1Z" className="hYA3vQupn flex justify-center">
             <Link
               target="_blank"

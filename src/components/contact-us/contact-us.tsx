@@ -30,7 +30,7 @@ const socials = [
   {
     icon: <Icon type="mesenger" />,
     bg: "bg-mesenger",
-    link: "https://m.me/Explorist-Tour-Bali",
+    link: "https://m.me/418237498033254",
   },
 ];
 

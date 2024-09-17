@@ -68,13 +68,13 @@ const Story: React.FC<StoryProps> = ({ params }) => {
             </div>
             <div className="flex flex-col justify-center md:max-w-[425px]">
               <h3 className="text-primary">{packItem?.title}</h3>
-              <p className="font-light text-secondary mb-4">
+              <p className="font-light text-secondary">
                 {packItem?.caption}
               </p>
             </div>
           </div>
         </div>
-        <div>
+        <div className="my-8 max-w-6xl mx-auto">
           <ReactMarkdown>{packItem?.description ?? ""}</ReactMarkdown>
         </div>
         {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (

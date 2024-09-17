@@ -42,6 +42,7 @@ interface PriceItemProps {
 }
 
 interface CategoryProps {
+  key: string
   id: number;
   title: string;
   pict: string;

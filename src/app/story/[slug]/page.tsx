@@ -78,7 +78,7 @@ const Story: React.FC<StoryProps> = ({ params }) => {
         {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (
           <div className="mt-4 md:mt-8">
             {packItem?.stories?.data?.map((obj, idx) => (
-              <div key={idx}>
+              <div key={idx} className="mb-4 md:mb-8">
                 <Collapse
                   title={obj?.attributes?.title ?? ""}
                   isOpen={Boolean(obj?.attributes?.title)}

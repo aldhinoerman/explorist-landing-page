@@ -68,13 +68,11 @@ const Story: React.FC<StoryProps> = ({ params }) => {
             </div>
             <div className="flex flex-col justify-center md:max-w-[425px]">
               <h3 className="text-primary">{packItem?.title}</h3>
-              <p className="font-light text-secondary">
-                {packItem?.caption}
-              </p>
+              <p className="font-light text-secondary">{packItem?.caption}</p>
             </div>
           </div>
         </div>
-        <div className="my-8 max-w-6xl mx-auto">
+        <div className="my-8 max-w-6xl mx-auto flex flex-col gap-4">
           <ReactMarkdown>{packItem?.description ?? ""}</ReactMarkdown>
         </div>
         {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (
@@ -85,7 +83,11 @@ const Story: React.FC<StoryProps> = ({ params }) => {
                   title={obj?.attributes?.title ?? ""}
                   isOpen={Boolean(obj?.attributes?.title)}
                 >
-                  <ReactMarkdown>{obj?.attributes?.description}</ReactMarkdown>
+                  <div className="flex flex-col gap-4">
+                    <ReactMarkdown>
+                      {obj?.attributes?.description}
+                    </ReactMarkdown>
+                  </div>
                 </Collapse>
               </div>
             ))}

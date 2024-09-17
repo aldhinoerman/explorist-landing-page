@@ -54,11 +54,13 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 data.map((obj: any, idx: number) => (
                   <li key={idx} className="my-4">
                     <p className="font-bold">{obj?.title ?? ""}</p>
-                    <ReactMarkdown>
-                      {type === "activities"
-                        ? obj?.activity
-                        : obj?.description || ""}
-                    </ReactMarkdown>
+                    <div className="flex flex-col gap-4">
+                      <ReactMarkdown>
+                        {type === "activities"
+                          ? obj?.activity
+                          : obj?.description || ""}
+                      </ReactMarkdown>
+                    </div>
                   </li>
                 ))}
             </ul>
@@ -135,7 +137,9 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                 (data?.regular_exclusions &&
                   data?.regular_exclusions?.length > 0) ? (
                   <Card mobileWidth={250} bodyClass="p-4">
-                    <h4 className="text-center text-success">Regular Inclusions</h4>
+                    <h4 className="text-center text-success">
+                      Regular Inclusions
+                    </h4>
                     <ol className="list-none">
                       {data?.regular_inclusions?.map(
                         (valRegInc: PriceItemProps, idxRegInc: number) => (
@@ -145,7 +149,9 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                         )
                       )}
                     </ol>
-                    <h4 className="text-center text-danger">Regular Exclusions</h4>
+                    <h4 className="text-center text-danger">
+                      Regular Exclusions
+                    </h4>
                     <ol className="list-none">
                       {data?.regular_exclusions?.map(
                         (valRegExc: PriceItemProps, idxRegExc: number) => (

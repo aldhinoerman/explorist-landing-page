@@ -8,11 +8,11 @@ const WelcomeMessage = () => {
     <>
       <SectionWrapper id="about">
         <div className="mx-auto max-w-[860px]">
-          <h2 className="md:text-center">
-            The Best Way to Explore Bali With Affordable and Fair Price.
-          </h2>
+          <h3 className="md:text-center">
+            Welcome, Explorers! Warm greetings from Bali!
+          </h3>
 
-          <div className="flex flex-col gap-4 md:text-center my-12">
+          <div className="flex flex-col gap-4 text-xl font-light md:text-center mt-6 md:mt-12 welcome">
             <ReactMarkdown>{textMarkdown}</ReactMarkdown>
           </div>
         </div>

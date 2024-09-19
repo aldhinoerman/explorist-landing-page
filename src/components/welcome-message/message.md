@@ -1,11 +1,13 @@
-Hi explorer from all over the world, warm greeting from Bali
+Explorist Tour Bali is a locally-owned tour company, proudly run by experienced Balinese drivers and guides with over 10 years in the industry. Our friendly team is here to ensure you have an unforgettable time with flexible, reliable, and personalized service.
 
-Explorist Tour Bali is Bali Based Tour company run by a group of experience Balinese local driver and tour guides who have been in the industry for more that 10 years. The friendly team will ensure you have enjoyable moment with flexible and trustworthy services.
+#### Why explore Bali with us?
 
-Why you should explore Bali with us?, our team are genuine local Balinese who know well about the local cultural value, all top tourism destination, as well as hidden gem on the island. Observe its unique Culture, stunning Nature and experience the amazing adventure.
+We’re not just any tour company – we’re a team of genuine local Balinese who deeply understand the island’s rich cultural values, top tourist spots, and hidden gems that most visitors miss. Whether you’re here to immerse yourself in Bali’s unique culture, witness its breathtaking nature, or embark on an exciting adventure, we’ll guide you to the heart of it all.
 
-We are over you fair pricing as per your choices starting from full day car and driver hire and we will drive you wherever you want or save your time and let us tailor the best tour activities for you, or simply choose our tour package. 
-Our Exploration not only limited on the listed destination but also, we will invite you to uncover the hidden secret beauty of Bali Island.
+#### What we offer:
 
-Feel free to contact us via what’s up or email, 
-Our goal is to ensure you have a great time and unforgettable experience.
+- Fair pricing: Choose from full-day car and driver hire or save time by letting us tailor an itinerary just for you.
+- Custom tours: Want to explore beyond the usual destinations? We’ll take you to Bali’s hidden secrets, far from the crowds.
+- Tour packages: Opt for one of our pre-planned packages for a seamless experience.
+
+We’re committed to making your Bali exploration a memorable journey. Feel free to reach out to us via WhatsApp or email – we’re here to help you create lasting memories on this magical island.

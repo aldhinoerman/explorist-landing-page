@@ -12,7 +12,7 @@ interface TabContentProps {
 }
 
 const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
-  const columnsItineraries = [
+  const columnsItineraries: any = [
     {
       title: "Time",
       dataIndex: "time",

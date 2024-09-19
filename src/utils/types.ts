@@ -42,7 +42,7 @@ interface PriceItemProps {
 }
 
 interface CategoryProps {
-  key: string
+  key: string;
   id: number;
   title: string;
   pict: string;
@@ -106,7 +106,7 @@ interface ITableColumns<T> {
   title: string;
   dataIndex: string;
   align?: string;
-  render?: (value?: any, obj?: T, index?: number) => void;
+  render?: (value?: any, obj?: T, index?: number) => void | null;
 }
 
 export type {

@@ -1,8 +1,8 @@
-"use client"
+"use client";
+
 import { useCallback, useEffect, useState } from "react";
 import { requestWithAbort } from "./request";
 
-// Add generic type `T`
 const useRequest = <T>(
   url: string,
   params?: {
@@ -11,7 +11,6 @@ const useRequest = <T>(
     param?: string;
   }
 ) => {
-  // Change data type to generic `T`
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
@@ -46,9 +45,11 @@ const useRequest = <T>(
                 id: val.id,
                 ...val.attributes,
               }))
-            : { id: res.data.data.id, ...res?.data?.data?.attributes } || [];
+            : res?.data?.data
+            ? { id: res.data.data.id, ...res?.data?.data?.attributes }
+            : [];
 
-          return response as T; // Use the generic type `T` here
+          return response as T;
         });
         setLoading(false);
       })
@@ -62,7 +63,7 @@ const useRequest = <T>(
       });
 
     return () => controller.abort();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, pagination]);
 
   useEffect(() => {

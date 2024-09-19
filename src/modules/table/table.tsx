@@ -1,5 +1,6 @@
 import { ITableColumns } from "@/utils";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 interface TableProps {
   columns: ITableColumns<any>[];
@@ -34,9 +35,11 @@ const Table: React.FC<TableProps> = ({ columns, dataSource }) => {
                     className={col?.align ? `text-${col.align}` : ""}
                     key={colIndex}
                   >
-                    {col.render
-                      ? col.render(val[col.dataIndex], val, index)
-                      : val[col.dataIndex]}
+                    {col.render ? (
+                      col.render(val[col.dataIndex], val, index) || null
+                    ) : (
+                      <ReactMarkdown>{val[col.dataIndex] || ""}</ReactMarkdown>
+                    )}
                   </td>
                 ))}
               </tr>

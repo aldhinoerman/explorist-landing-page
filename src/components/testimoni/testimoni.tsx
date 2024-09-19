@@ -24,7 +24,7 @@ const Testimoni = () => {
 
   return (
     <SectionWrapper id="testimoni">
-      <div id="TA_selfserveprop679" className="TA_selfserveprop">
+      <div id="TA_selfserveprop679" className="TA_selfserveprop flex justify-center">
         <ul
           id="Vu5S4lAwwf"
           className="TA_links uwXVZG list-none flex justify-center"

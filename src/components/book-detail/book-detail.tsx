@@ -16,7 +16,7 @@ import {
   useRequest,
 } from "@/utils";
 import Image from "next/image";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NotFound } from "../error";
 import { useForm } from "react-hook-form";
 import { Destinations } from "../destinations";
@@ -131,6 +131,12 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
     ],
     [pack]
   );
+
+  useEffect(() => {
+    if (pack && pack?.title) {
+      document.title = `Explorist Tour Bali - Book - ${pack.title}`;
+    }
+  }, [pack]);
 
   return (
     <>

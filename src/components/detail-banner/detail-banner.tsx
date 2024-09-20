@@ -53,6 +53,12 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     setContent({ id: content?.id, ...content?.attributes });
   };
 
+  useEffect(() => {
+    if (pack && pack?.title) {
+      document.title = `Explorist Tour Bali - ${pack.title}`;
+    }
+  }, [pack]);
+
   return (
     <>
       {pack && content ? (

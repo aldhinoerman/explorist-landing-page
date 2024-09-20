@@ -2,7 +2,7 @@
 
 import { Images } from "@/assets";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { Hero } from "../hero";
 import { CardItem } from "../card-item";
 import { Loading } from "@/modules";
@@ -22,11 +22,16 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
 
   const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);
 
-  const {
-    data: packages,
-    loading,
-    pagination,
-  } = useRequest<TourPackagesProps[]>("tour-packages", { ...initialParams });
+  const { data: packages, loading } = useRequest<TourPackagesProps[]>(
+    "tour-packages",
+    { ...initialParams }
+  );
+
+  useEffect(() => {
+    if (category && category?.title) {
+      document.title = `Explorist Tour Bali - ${category.title}`;
+    }
+  }, [category]);
 
   return (
     <>

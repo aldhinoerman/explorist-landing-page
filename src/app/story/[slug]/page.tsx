@@ -10,7 +10,7 @@ import {
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
 interface StoryProps {
@@ -36,6 +36,12 @@ const Story: React.FC<StoryProps> = ({ params }) => {
   const handleBack = () => {
     router.back();
   };
+
+  useEffect(() => {
+    if (packItem && packItem?.title) {
+      document.title = `Explorist Tour Bali - ${packItem.title}`;
+    }
+  }, [packItem]);
 
   return (
     <>

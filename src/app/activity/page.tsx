@@ -5,7 +5,7 @@ import { CardItem, Destinations, Hero, NotFound } from "@/components";
 import { Loading } from "@/modules";
 import { useRequest } from "@/utils";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 // Define the type for the activity data
 interface ActivityData {
@@ -30,6 +30,12 @@ const Activity: React.FC = () => {
     loading,
     pagination,
   } = useRequest<ActivityData[]>("tour-packages", { ...initialParams });
+
+  useEffect(() => {
+    if (activity && activity[0]?.title) {
+      document.title = `Explorist Tour Bali - ${activity[0].title}`;
+    }
+  }, [activity]);
 
   return (
     <>

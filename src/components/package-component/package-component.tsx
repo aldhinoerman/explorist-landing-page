@@ -62,7 +62,13 @@ const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
         {packages &&
           packages?.length > 0 &&
           packages.map((obj, idx) => (
-            <CardItem data={obj} key={idx} to="details" useId />
+            <CardItem
+              data={obj}
+              key={idx}
+              to="details"
+              useId
+              isCar={Boolean(category?.key === "car")}
+            />
           ))}
       </div>
 

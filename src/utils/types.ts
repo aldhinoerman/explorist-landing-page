@@ -7,7 +7,7 @@ interface TourPackagesProps {
   status?: boolean;
   location?: string;
   sequence?: number;
-  category?: { data?: Array<{ id?: number; attributes?: CategoryProps }> };
+  categories?: { data?: Array<{ id?: number; attributes?: CategoryProps }> };
   itineraries?: {
     data?: Array<{ id?: number; attributes?: ItinerariesProps }>;
   };

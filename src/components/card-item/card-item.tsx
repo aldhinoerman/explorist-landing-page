@@ -16,6 +16,7 @@ interface CardItemProps {
   mobileWidth?: number;
   btnText?: string;
   width?: number;
+  isCar?: boolean;
 }
 
 const CardItem = ({
@@ -26,6 +27,7 @@ const CardItem = ({
   btnText,
   width,
   useId,
+  isCar,
 }: CardItemProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(false);
@@ -35,7 +37,7 @@ const CardItem = ({
   };
 
   const getRandomPict = useCallback(() => {
-    if (data?.package_items?.data) {
+    if (data?.package_items?.data && data?.package_items?.data?.length > 1) {
       const interval = setInterval(() => {
         setFade(true);
 
@@ -117,7 +119,9 @@ const CardItem = ({
             {data?.price && (
               <h4 className="text-center md:text-left text-success">
                 {formatCurrency(data?.price)}
-                <span className="text-secondary text-sm font-normal">/pax</span>
+                <span className="text-secondary text-sm font-normal">
+                  /{isCar ? "car" : "pax"}
+                </span>
               </h4>
             )}
           </div>

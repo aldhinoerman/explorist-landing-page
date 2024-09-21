@@ -35,9 +35,7 @@ const Card = ({
       }}
       {...rest}
     >
-      <div className={`min-h-full ${bodyClass ?? ""}`}>
-        {children}
-      </div>
+      <div className={`md:min-h-full ${bodyClass ?? ""}`}>{children}</div>
     </div>
   );
 };

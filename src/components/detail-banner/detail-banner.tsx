@@ -1,5 +1,5 @@
 "use client";
-import { Button, Loading } from "@/modules";
+import { Button, Collapse, Loading } from "@/modules";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { CardItem } from "../card-item";
@@ -12,6 +12,7 @@ import {
 } from "@/utils";
 import { NotFound } from "../error";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import ReactMarkdown from "react-markdown";
 
 interface DetailBannerProps {
   slug: string;
@@ -99,19 +100,52 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 align-middle my-12 md:my-20">
-            {pack &&
-              pack?.package_items?.data &&
-              pack?.package_items?.data?.length > 0 &&
-              pack.package_items.data.map((obj: any, idx: number) => (
-                <CardItem
-                  data={{ id: obj.id, ...obj.attributes }}
-                  key={idx}
-                  useId
-                  to="story"
-                />
-              ))}
-          </div>
+          {pack &&
+            pack?.package_items?.data &&
+            pack?.package_items?.data?.length === 1 &&
+            pack.package_items.data.map((val, index) => (
+              <React.Fragment key={index}>
+                <div className="my-8 max-w-6xl mx-auto flex flex-col gap-4">
+                  <ReactMarkdown>
+                    {val?.attributes?.description ?? ""}
+                  </ReactMarkdown>
+                </div>
+                {val?.attributes?.stories?.data &&
+                  val?.attributes?.stories?.data?.length > 0 && (
+                    <div className="mt-4 md:mt-8">
+                      {val?.attributes?.stories?.data?.map((obj, idx) => (
+                        <div key={idx} className="mb-4 md:mb-8">
+                          <Collapse
+                            title={obj?.attributes?.title ?? ""}
+                            isOpen={Boolean(obj?.attributes?.title)}
+                          >
+                            <div className="flex flex-col gap-4">
+                              <ReactMarkdown>
+                                {obj?.attributes?.description}
+                              </ReactMarkdown>
+                            </div>
+                          </Collapse>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+              </React.Fragment>
+            ))}
+
+          {pack &&
+            pack?.package_items?.data &&
+            pack?.package_items?.data?.length > 1 && (
+              <div className="flex flex-wrap justify-center gap-4 align-middle my-12 md:my-20">
+                {pack.package_items.data.map((obj: any, idx: number) => (
+                  <CardItem
+                    data={{ id: obj.id, ...obj.attributes }}
+                    key={idx}
+                    useId
+                    to="story"
+                  />
+                ))}
+              </div>
+            )}
 
           <div className="text-center my-12">
             <Link href={`/book-now/${slug}`} className="flex justify-center">

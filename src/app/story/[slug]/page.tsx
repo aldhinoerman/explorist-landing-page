@@ -4,7 +4,6 @@ import { Button, Collapse, Loading, SectionWrapper } from "@/modules";
 import {
   IPackageItem,
   PackageItemProps,
-  TourPackagesProps,
   useRequest,
 } from "@/utils";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";

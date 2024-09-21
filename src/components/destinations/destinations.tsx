@@ -15,7 +15,7 @@ const Destinations = () => {
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
 
   const params = {
-    param: "filters[key][$ne]=activity",
+    param: "filters[$and][0][key][$ne]=activity&filters[$and][1][key][$ne]=car",
   };
 
   const { data: destinations, loading } = useRequest<DestinationsProps[]>(

@@ -55,86 +55,153 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
     setActiveTab(tab);
   };
 
-  const contents = useCallback(
-    () => [
-      {
-        value: "activities",
-        txt: "Activities",
-        content:
-          pack?.package_items?.data && pack?.package_items?.data?.length > 0
-            ? pack.package_items.data.map((val: any) => ({
-                id: val.id,
-                ...val.attributes,
-              }))
-            : [],
-      },
-      {
-        value: "itinerary",
-        txt: "Itinerary",
-        content:
-          pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
-            ? pack.itineraries.data.map((val: any) => ({
-                id: val.id,
-                ...val.attributes,
-              }))
-            : [],
-      },
-      {
-        value: "pricing",
-        txt: "Pricelist",
-        content:
-          pack?.pricings?.data && pack?.pricings?.data?.length > 0
-            ? {
-                pricing: pack.pricings.data.map((val: any) => ({
+  const contents = useCallback(() => {
+    const tabs = [];
+
+    if (
+      pack &&
+      pack?.categories?.data?.find((x) => x?.attributes?.key === "car")
+    ) {
+      tabs.push(
+        {
+          value: "pricing",
+          txt: "Pricelist",
+          content:
+            pack?.pricings?.data && pack?.pricings?.data?.length > 0
+              ? {
+                  pricing: pack.pricings.data.map((val: any) => ({
+                    id: val.id,
+                    ...val.attributes,
+                  })),
+                  price_inclusions:
+                    pack?.price_inclusions?.data &&
+                    pack.price_inclusions.data.map((valInc: any) => ({
+                      id: valInc.id,
+                      ...valInc.attributes,
+                    })),
+                  price_exclusions:
+                    pack?.price_exclusions?.data &&
+                    pack.price_exclusions.data.map((valExc: any) => ({
+                      id: valExc.id,
+                      ...valExc.attributes,
+                    })),
+                  regular_inclusions:
+                    pack?.regular_inclusions?.data &&
+                    pack.regular_inclusions.data.map((valReg: any) => ({
+                      id: valReg.id,
+                      ...valReg.attributes,
+                    })),
+                  regular_exclusions:
+                    pack?.regular_exclusions?.data &&
+                    pack.regular_exclusions.data.map((valRegEx: any) => ({
+                      id: valRegEx.id,
+                      ...valRegEx.attributes,
+                    })),
+                }
+              : [],
+        },
+        {
+          value: "terms",
+          txt: "T & C",
+          content:
+            pack?.terms_conditions?.data &&
+            pack?.terms_conditions?.data?.length > 0
+              ? pack.terms_conditions.data.map((val: any) => ({
                   id: val.id,
                   ...val.attributes,
-                })),
-                price_inclusions:
-                  pack?.price_inclusions?.data &&
-                  pack.price_inclusions.data.map((valInc: any) => ({
-                    id: valInc.id,
-                    ...valInc.attributes,
+                }))
+              : [],
+        }
+      );
+    } else {
+      tabs.push(
+        {
+          value: "activities",
+          txt: "Activities",
+          content:
+            pack?.package_items?.data && pack?.package_items?.data?.length > 0
+              ? pack.package_items.data.map((val: any) => ({
+                  id: val.id,
+                  ...val.attributes,
+                }))
+              : [],
+        },
+        {
+          value: "itinerary",
+          txt: "Itinerary",
+          content:
+            pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
+              ? pack.itineraries.data.map((val: any) => ({
+                  id: val.id,
+                  ...val.attributes,
+                }))
+              : [],
+        },
+        {
+          value: "pricing",
+          txt: "Pricelist",
+          content:
+            pack?.pricings?.data && pack?.pricings?.data?.length > 0
+              ? {
+                  pricing: pack.pricings.data.map((val: any) => ({
+                    id: val.id,
+                    ...val.attributes,
                   })),
-                price_exclusions:
-                  pack?.price_exclusions?.data &&
-                  pack.price_exclusions.data.map((valExc: any) => ({
-                    id: valExc.id,
-                    ...valExc.attributes,
-                  })),
-                regular_inclusions:
-                  pack?.regular_inclusions?.data &&
-                  pack.regular_inclusions.data.map((valReg: any) => ({
-                    id: valReg.id,
-                    ...valReg.attributes,
-                  })),
-                regular_exclusions:
-                  pack?.regular_exclusions?.data &&
-                  pack.regular_exclusions.data.map((valRegEx: any) => ({
-                    id: valRegEx.id,
-                    ...valRegEx.attributes,
-                  })),
-              }
-            : [],
-      },
-      {
-        value: "terms",
-        txt: "T & C",
-        content:
-          pack?.terms_conditions?.data &&
-          pack?.terms_conditions?.data?.length > 0
-            ? pack.terms_conditions.data.map((val: any) => ({
-                id: val.id,
-                ...val.attributes,
-              }))
-            : [],
-      },
-    ],
-    [pack]
-  );
+                  price_inclusions:
+                    pack?.price_inclusions?.data &&
+                    pack.price_inclusions.data.map((valInc: any) => ({
+                      id: valInc.id,
+                      ...valInc.attributes,
+                    })),
+                  price_exclusions:
+                    pack?.price_exclusions?.data &&
+                    pack.price_exclusions.data.map((valExc: any) => ({
+                      id: valExc.id,
+                      ...valExc.attributes,
+                    })),
+                  regular_inclusions:
+                    pack?.regular_inclusions?.data &&
+                    pack.regular_inclusions.data.map((valReg: any) => ({
+                      id: valReg.id,
+                      ...valReg.attributes,
+                    })),
+                  regular_exclusions:
+                    pack?.regular_exclusions?.data &&
+                    pack.regular_exclusions.data.map((valRegEx: any) => ({
+                      id: valRegEx.id,
+                      ...valRegEx.attributes,
+                    })),
+                }
+              : [],
+        },
+        {
+          value: "terms",
+          txt: "T & C",
+          content:
+            pack?.terms_conditions?.data &&
+            pack?.terms_conditions?.data?.length > 0
+              ? pack.terms_conditions.data.map((val: any) => ({
+                  id: val.id,
+                  ...val.attributes,
+                }))
+              : [],
+        }
+      );
+    }
+
+    return tabs;
+  }, [pack]);
 
   useEffect(() => {
     if (pack && pack?.title) {
       document.title = `Explorist Tour Bali - Book - ${pack.title}`;
+    }
+
+    if (
+      pack &&
+      pack?.categories?.data?.find((x) => x?.attributes?.key === "car")
+    ) {
+      setActiveTab("pricing");
     }
   }, [pack]);
 
@@ -370,7 +437,15 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
               icon={<Icon type="mail" />}
               size="large"
               onClick={handleSubmit((data) => {
-                onSubmitEmail({ ...data, package_name: pack?.title });
+                onSubmitEmail(
+                  { ...data, package_name: pack?.title },
+                  Boolean(
+                    pack &&
+                      pack?.categories?.data?.find(
+                        (x) => x?.attributes?.key === "car"
+                      )
+                  )
+                );
                 reset();
                 handleShowModal();
               })}
@@ -383,7 +458,15 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
               icon={<Icon type="whatsapp" className={"size-6"} />}
               size="large"
               onClick={handleSubmit((data) => {
-                onSubmitWhatsApp({ ...data, package_name: pack?.title });
+                onSubmitWhatsApp(
+                  { ...data, package_name: pack?.title },
+                  Boolean(
+                    pack &&
+                      pack?.categories?.data?.find(
+                        (x) => x?.attributes?.key === "car"
+                      )
+                  )
+                );
                 reset();
                 handleShowModal();
               })}

@@ -1,11 +1,13 @@
 import moment from "moment";
 import { capitalizeFirstLetter } from "./wording";
 
-const message = (data: any) => {
+const message = (data: any, isCar?: boolean) => {
   const body =
-    `Hi Explorist, I want to discover ${encodeURIComponent(
-      data.package_name
-    )} for ${encodeURIComponent(data.adult)} adult(s) and ${encodeURIComponent(
+    `Hi Explorist, I want to ${encodeURIComponent(
+      !isCar ? "discover" : "rent"
+    )} ${encodeURIComponent(data.package_name)} for ${encodeURIComponent(
+      data.adult
+    )} adult(s) and ${encodeURIComponent(
       data.child
     )} children(s). Here are the booking details:%0A%0A` +
     `Name: ${encodeURIComponent(data.name)}%0A` +
@@ -32,21 +34,23 @@ const message = (data: any) => {
   return finalMessage;
 };
 
-const onSubmitWhatsApp = (data: any) => {
+const onSubmitWhatsApp = (data: any, isCar?: boolean) => {
   if (!data) return;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=6282145500117&text=${message(
-    data
+    data,
+    isCar
   )}`;
 
   window.open(whatsappUrl, "_blank");
 };
 
-const onSubmitEmail = (data: any) => {
+const onSubmitEmail = (data: any, isCar?: boolean) => {
   if (!data) return;
   const subject = encodeURIComponent("Booking Request");
 
   const mailtoUrl = `mailto:exploristbali@gmail.com?subject=${subject}&body=${message(
-    data
+    data,
+    isCar
   )}`;
 
   window.open(mailtoUrl, "_blank");

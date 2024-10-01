@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer className="bg-whiteblue" id="contact">
       <div className="max-w-[1440px] mx-auto p-4 md:p-12 flex flex-col gap-4 md:flex-row md:justify-between">
-        <div className="w-full md:max-w-[300px]">
+        <div className="w-full">
           <div>
             <h4 className="mb-4">Stay Connected</h4>
             <p className="font-light mt-2">
@@ -33,17 +33,19 @@ const Footer = () => {
             <p className="font-light mt-2">E-Mail: exploristbali@gmail.com</p>
           </div>
           <div className="mt-4">
-            <h4 className="mb-4">Follow us on social media</h4>
+            <h4 className="mb-4">
+              Follow us on social media to win tour giveaway for two
+            </h4>
             <SocialLink />
           </div>
         </div>
-        <div className="w-full md:max-w-[300px]">
+        <div className="w-full max-w-[300px]">
           <h4 className="mb-4">Explorist</h4>
           <Link href={"#package"}>
             <p className="font-light">Destinations</p>
           </Link>
         </div>
-        <div className="w-full md:max-w-[300px]">
+        <div className="w-full max-w-[300px]">
           <h4>Newsletter</h4>
 
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -24,7 +24,11 @@ const Testimoni = () => {
 
   return (
     <SectionWrapper id="testimoni">
-      <div id="TA_selfserveprop679" className="TA_selfserveprop flex justify-center">
+      <h2 className="text-center mb-12">Review Us On</h2>
+      <div
+        id="TA_selfserveprop679"
+        className="TA_selfserveprop flex justify-center"
+      >
         <ul
           id="Vu5S4lAwwf"
           className="TA_links uwXVZG list-none flex justify-center"

@@ -3,9 +3,10 @@ import React from "react";
 
 interface CardProps
   extends React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>> {
-  mobileWidth?: number;
+  mobileWidth?: number | string;
   width?: number;
   bodyClass?: string;
+  className?: any;
 }
 
 const Card = ({
@@ -13,6 +14,7 @@ const Card = ({
   width,
   mobileWidth,
   bodyClass,
+  className,
   ...rest
 }: CardProps) => {
   const styles = {
@@ -27,7 +29,8 @@ const Card = ({
         "w-full rounded-3xl min-w-[75px] shadow-xl",
         `${
           !mobileWidth ? "max-w-[185px]" : ""
-        } sm:max-w-[200px] md:max-w-[285px] lg:max-w-[325px]`
+        } sm:max-w-[200px] md:max-w-[285px] lg:max-w-[325px]`,
+        className
       )}
       style={{
         ...styles,

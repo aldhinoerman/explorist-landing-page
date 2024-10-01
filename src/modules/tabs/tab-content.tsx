@@ -78,9 +78,12 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
             <>
               <div className="flex flex-wrap gap-8 justify-center">
                 {groupedItems() && groupedItems()?.inclusion && (
-                  <Card mobileWidth={250} bodyClass="p-4">
-                    <h4 className="text-center">Price</h4>
-                    <ol className="list-none">
+                  <Card
+                    bodyClass="p-4"
+                    className="max-w-full md:!max-w-[200px] lg:!max-w-[300px]"
+                  >
+                    <h4>Price</h4>
+                    <ol className="list-none my-4">
                       {groupedItems()?.inclusion.map(
                         (inc: PricingProps, indexInc: number) => (
                           <li key={indexInc} className="my-2">
@@ -95,9 +98,12 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   data?.price_inclusions?.length > 0) ||
                 (data?.price_exclusions &&
                   data?.price_exclusions?.length > 0) ? (
-                  <Card mobileWidth={250} bodyClass="p-4">
-                    <h4 className="text-center text-success">Inclusions</h4>
-                    <ol className="list-none">
+                  <Card
+                    bodyClass="p-4"
+                    className="max-w-full md:!max-w-[200px] lg:!max-w-[300px]"
+                  >
+                    <h4 className="text-success">Inclusions</h4>
+                    <ol className="list-none my-4">
                       {data?.price_inclusions?.map(
                         (valInc: PriceItemProps, idxInc: number) => (
                           <li key={idxInc} className="my-2">
@@ -106,8 +112,8 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                         )
                       )}
                     </ol>
-                    <h4 className="text-center text-danger">Exclusions</h4>
-                    <ol className="list-none">
+                    <h4 className="text-danger">Exclusions</h4>
+                    <ol className="list-none my-4">
                       {data?.price_exclusions?.map(
                         (valExc: PriceItemProps, idxExc: number) => (
                           <li key={idxExc} className="my-2">
@@ -119,9 +125,12 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   </Card>
                 ) : null}
                 {groupedItems() && groupedItems()?.regular && (
-                  <Card mobileWidth={250} bodyClass="p-4">
-                    <h4 className="text-center">Regular</h4>
-                    <ol className="list-none">
+                  <Card
+                    bodyClass="p-4"
+                    className="max-w-full md:!max-w-[200px] lg:!max-w-[300px]"
+                  >
+                    <h4>Regular</h4>
+                    <ol className="list-none my-4">
                       {groupedItems()?.regular.map(
                         (reg: PricingProps, indexReg: number) => (
                           <li key={indexReg} className="my-2">
@@ -136,11 +145,12 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                   data?.regular_inclusions?.length > 0) ||
                 (data?.regular_exclusions &&
                   data?.regular_exclusions?.length > 0) ? (
-                  <Card mobileWidth={250} bodyClass="p-4">
-                    <h4 className="text-center text-success">
-                      Regular Inclusions
-                    </h4>
-                    <ol className="list-none">
+                  <Card
+                    bodyClass="p-4"
+                    className="max-w-full md:!max-w-[200px] lg:!max-w-[300px]"
+                  >
+                    <h4 className="text-success">Regular Inclusions</h4>
+                    <ol className="list-none my-4">
                       {data?.regular_inclusions?.map(
                         (valRegInc: PriceItemProps, idxRegInc: number) => (
                           <li key={idxRegInc} className="my-2">
@@ -149,10 +159,8 @@ const TabContent: React.FC<TabContentProps> = ({ type, isActive, data }) => {
                         )
                       )}
                     </ol>
-                    <h4 className="text-center text-danger">
-                      Regular Exclusions
-                    </h4>
-                    <ol className="list-none">
+                    <h4 className="text-danger">Regular Exclusions</h4>
+                    <ol className="list-none my-4">
                       {data?.regular_exclusions?.map(
                         (valRegExc: PriceItemProps, idxRegExc: number) => (
                           <li key={idxRegExc} className="my-2">

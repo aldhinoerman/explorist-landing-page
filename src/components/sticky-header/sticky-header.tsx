@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface HeaderProps {
   isParent?: boolean;
@@ -9,6 +11,8 @@ interface HeaderProps {
 }
 
 const StickyHeader: React.FC<HeaderProps> = ({ isParent, isParentNav }) => {
+  const params = useParams();
+  const { locale } = params;
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -71,9 +75,9 @@ const StickyHeader: React.FC<HeaderProps> = ({ isParent, isParentNav }) => {
         <ul className="flex flex-col items-center list-none justify-between min-h-[250px]">
           {navData.map((val, index) => (
             <li key={index} className="border-b border-gray-400 my-8 uppercase">
-              <a href={`/${val.link}`} onClick={handleCollapse}>
+              <Link href={`/${locale}/${val.link}`} onClick={handleCollapse}>
                 {val.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

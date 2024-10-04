@@ -13,12 +13,15 @@ import {
 import { NotFound } from "../error";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import ReactMarkdown from "react-markdown";
+import { useParams } from "next/navigation";
 
 interface DetailBannerProps {
   slug: string;
 }
 
 const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
+  const params = useParams();
+  const { locale } = params;
   const initialParams = {
     param: "populate=*",
   };
@@ -87,7 +90,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
               <h4 className="font-light text-secondary mb-4">
                 {pack?.location}
               </h4>
-              <Link href={`/book-now/${slug}`}>
+              <Link href={`/${locale}/book-now/${slug}`}>
                 <Button
                   variant="primary"
                   size="large"
@@ -148,7 +151,10 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
             )}
 
           <div className="text-center my-12">
-            <Link href={`/book-now/${slug}`} className="flex justify-center">
+            <Link
+              href={`/${locale}/book-now/${slug}`}
+              className="flex justify-center"
+            >
               <Button
                 variant="primary"
                 size="large"

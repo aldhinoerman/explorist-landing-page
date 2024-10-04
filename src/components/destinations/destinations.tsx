@@ -4,24 +4,26 @@ import { Button, Carousel, Loading, SectionWrapper } from "@/modules";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useRequest } from "@/utils";
 import { NotFound } from "../error";
 
 interface DestinationsProps {}
 
 const Destinations = () => {
+  const params = useParams();
+  const { locale } = params;
   const [slide, setSlide] = useState<string>(String(0));
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
 
-  const params = {
+  const paramsFetch = {
     param: "filters[$and][0][key][$ne]=activity&filters[$and][1][key][$ne]=car",
   };
 
   const { data: destinations, loading } = useRequest<DestinationsProps[]>(
     `categories`,
     {
-      ...params,
+      ...paramsFetch,
     }
   );
   const router = useRouter();
@@ -91,7 +93,7 @@ const Destinations = () => {
             <Carousel
               items={destinations ?? []}
               scroll={isScrolling}
-              to="package"
+              to={`${locale}/package`}
               useId
             />
           ) : (

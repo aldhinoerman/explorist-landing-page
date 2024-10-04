@@ -2,7 +2,7 @@ Explorist Tour Bali is a locally-owned tour company, proudly run by experienced 
 
 #### Why explore Bali with us?
 
-We’re not just any tour company – we’re a team of genuine local Balinese who deeply understand the island’s rich cultural values, top tourist spots, and hidden gems that most visitors miss. Whether you’re here to immerse yourself in Bali’s unique culture, witness its breathtaking nature, or embark on an exciting adventure, we’ll guide you to the heart of it all.
+We’re not just any tour company – We're licensed tour company, we’re a team of genuine local Balinese who deeply understand the island’s rich cultural values, top tourist spots, and hidden gems that most visitors miss. Whether you’re here to immerse yourself in Bali’s unique culture, witness its breathtaking nature, or embark on an exciting adventure, we’ll guide you to the heart of it all.
 
 #### What we offer:
 

@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ICardItem } from "./utils";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface CardItemProps {
   withSub?: boolean;
@@ -29,6 +30,8 @@ const CardItem = ({
   useId,
   isCar,
 }: CardItemProps) => {
+  const params = useParams();
+  const { locale } = params;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
@@ -70,8 +73,8 @@ const CardItem = ({
         <Link
           href={
             to
-              ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
-              : data?.key || ""
+              ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
+              : (data?.key && locale + data?.key) || ""
           }
           className="w-full"
         >
@@ -130,8 +133,8 @@ const CardItem = ({
             <Link
               href={
                 to
-                  ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
-                  : data?.key || ""
+                  ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
+                  : (data?.key && locale + data?.key) || ""
               }
               className="mx-auto my-auto md:mr-0 md:ml-auto"
             >

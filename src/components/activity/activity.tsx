@@ -6,17 +6,21 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { TourPackagesProps, useRequest } from "@/utils";
 import { NotFound } from "../error";
+import { useParams } from "next/navigation";
 
 const Activity = () => {
-  const params = {
+  const params = useParams();
+  const { locale } = params;
+  const paramsFetch = {
     page: 1,
     pageSize: 6,
-    param: "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
+    param:
+      "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
   };
   const { data: activities, loading } = useRequest<TourPackagesProps[]>(
     `tour-packages`,
     {
-      ...params,
+      ...paramsFetch,
     }
   );
 
@@ -37,7 +41,7 @@ const Activity = () => {
       </div>
 
       <div className="flex justify-center mt-12">
-        <Link href={"activity"}>
+        <Link href={`${locale}/activity`}>
           <Button
             variant="primary"
             size="large"

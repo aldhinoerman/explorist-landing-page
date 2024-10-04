@@ -4,13 +4,18 @@ import { CategoryProps, useRequest } from "@/utils";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 
 const Nusped = () => {
-  const params = {
+  const params = useParams();
+  const { locale } = params;
+  const paramsFetch = {
     param: "filters[key][$eq]=package/nusa-penida",
   };
-  const { data: nusped } = useRequest<CategoryProps[]>("categories", { ...params });
+  const { data: nusped } = useRequest<CategoryProps[]>("categories", {
+    ...paramsFetch,
+  });
   return (
     <>
       <SectionWrapper id="nusped">
@@ -34,8 +39,10 @@ const Nusped = () => {
             </p>
 
             <Link
-              href={`/package/${
-                nusped && nusped?.length > 0 && nusped[0]?.id ? String(nusped[0].id) : ""
+              href={`/${locale}/package/${
+                nusped && nusped?.length > 0 && nusped[0]?.id
+                  ? String(nusped[0].id)
+                  : ""
               }`}
             >
               <Button

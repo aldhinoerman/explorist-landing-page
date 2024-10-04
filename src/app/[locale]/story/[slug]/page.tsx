@@ -1,11 +1,7 @@
 "use client";
 import { CardItem, Destinations, Nusped, Testimoni } from "@/components";
 import { Button, Collapse, Loading, SectionWrapper } from "@/modules";
-import {
-  IPackageItem,
-  PackageItemProps,
-  useRequest,
-} from "@/utils";
+import { IPackageItem, PackageItemProps, useRequest } from "@/utils";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

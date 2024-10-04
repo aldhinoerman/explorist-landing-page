@@ -1,14 +1,16 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.module.rules.push(
-      {
-        test: /\.md$/,
-        type: 'asset/source',
-      }
-    )
-    return config
+    config.module.rules.push({
+      test: /\.md$/,
+      type: "asset/source",
+    });
+    return config;
   },
   images: {
     remotePatterns: [
@@ -26,10 +28,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "strapi.engkensoft.cloud"
-      }
+        hostname: "strapi.engkensoft.cloud",
+      },
     ],
   },
+    
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

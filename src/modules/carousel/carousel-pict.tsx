@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { ICarouselItems } from "./utils";
+import { useParams } from "next/navigation";
 
 interface CarouselPictProps {
   type: "testi" | "pict" | null | undefined;
@@ -18,6 +19,8 @@ const CarouselPict = ({
   items,
   type,
 }: CarouselPictProps) => {
+  const params = useParams();
+  const { locale } = params;
   const carouselRef = useRef<null | HTMLDivElement>(null);
 
   const [scrollEvent, setScrollEvent] = useState(true);
@@ -62,8 +65,8 @@ const CarouselPict = ({
           <Link
             href={
               to
-                ? `/${to}${useId && obj?.id ? `/${obj.id}` : ""}`
-                : obj?.key || ""
+                ? `/${locale}/${to}${useId && obj?.id ? `/${obj.id}` : ""}`
+                : (obj?.key && locale + obj?.key) || ""
             }
             key={idx}
           >

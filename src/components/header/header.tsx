@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface HeaderProps {
   isParent?: boolean;
 }
 
 const Header = ({ isParent }: HeaderProps) => {
+  const params = useParams();
+  const { locale } = params;
   const [isNavOpen, setIsNavOpen] = useState(false);
   const handleCollapse = () => {
     setIsNavOpen((prevState) => !prevState);
@@ -40,12 +44,14 @@ const Header = ({ isParent }: HeaderProps) => {
         <ul className="flex flex-col items-center list-none justify-between min-h-[250px]">
           {navData.map((val, index) => (
             <li key={index} className="border-b border-gray-400 my-8 uppercase">
-              <a
-                href={!isParent ? `/${val.link}` : val.link}
+              <Link
+                href={
+                  !isParent ? `/${locale}/${val.link}` : `${locale}/${val.link}`
+                }
                 onClick={handleCollapse}
               >
                 {val.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

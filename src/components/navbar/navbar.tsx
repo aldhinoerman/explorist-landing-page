@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { navData } from "./utils";
 import { Hamburger } from "@/modules";
+import { useParams } from "next/navigation";
 
 interface NavbarProps {
   isParent?: boolean;
@@ -18,12 +19,14 @@ const Navbar: React.FC<NavbarProps> = ({
   smallImg,
   onNavCollapse,
 }) => {
+  const params = useParams();
+  const { locale } = params;
   return (
     <>
       <nav className="flex align-middle justify-between max-w-[1440px] mx-auto">
         {/* Logo */}
         <div className={`w-16 ${!smallImg && "md:w-44"}`}>
-          <Link href={"/"}>
+          <Link href={`/${locale}`}>
             <Image src={Images.Logo} alt="logo" sizes="100%" />
           </Link>
         </div>
@@ -38,7 +41,9 @@ const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <Link
-                href={!isParent ? `/${obj.link}` : obj.link}
+                href={
+                  !isParent ? `/${locale}/${obj.link}` : `${locale}/${obj.link}`
+                }
                 className="my-auto"
               >
                 {obj.title}

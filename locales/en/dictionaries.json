@@ -1,0 +1,44 @@
+{
+  "welcome": {
+    "title": "Welcome, Explorers! Warm greetings from Bali!"
+  },
+  "home": {
+    "activity": {
+      "title": "Best Adventure",
+      "more": "More Activities"
+    },
+    "destinations": {
+      "title": "Destinations You Shouldn't Miss",
+      "description": "Choose Your Destination and Contact Our Experts for the Best Deals!"
+    },
+    "nusped": {
+      "title": "NUSA PENIDA ISLAND GUIDE",
+      "description": "The beautiful, exotic Nusa Penida island lies just 25 kilometers from Bali, the most famous tourist destination in Indonesia."
+    },
+    "testimoni": {
+      "title": "Review Us On"
+    }
+  },
+  "footer": {
+    "title": "Stay Connected",
+    "cta": "Follow us on social media to win tour giveaway for two",
+    "newsletter": "Newsletter",
+    "contact": {
+      "address": "Address: Denpasar, Bali, Indonesia",
+      "phone": "Phone: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "Enter Your Email Address"
+    },
+    "button": {
+      "offers": "Get the Hottest offers"
+    }
+  },
+  "common": {
+    "more": "Read more",
+    "destinations": "Destinations"
+  }
+}

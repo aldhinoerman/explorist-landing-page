@@ -1,0 +1,44 @@
+{
+  "welcome": {
+    "title": "欢迎，探险者们！来自巴厘岛的热情问候！"
+  },
+  "home": {
+    "activity": {
+      "title": "最佳活动",
+      "more": "更多活动"
+    },
+    "destinations": {
+      "title": "不可错过的目的地",
+      "description": "选择您的目的地，并联系我们的专家以获取最优惠的价格！"
+    },
+    "nusped": {
+      "title": "努沙佩尼达岛指南",
+      "description": "美丽而异国情调的努沙佩尼达岛距离印度尼西亚最著名的旅游目的地巴厘岛仅25公里。"
+    },
+    "testimoni": {
+      "title": "在上评论我们"
+    }
+  },
+  "footer": {
+    "title": "保持联系",
+    "cta": "关注我们的社交媒体，赢取双人旅游大奖",
+    "newsletter": "简讯",
+    "contact": {
+      "address": "地址: 印度尼西亚, 巴厘岛, 登巴萨",
+      "phone": "电话: (+62) 82 145 500 117",
+      "email": "电子邮件: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "输入您的电子邮件地址"
+    },
+    "button": {
+      "offers": "获取最热门的优惠"
+    }
+  },
+  "common": {
+    "more": "阅读更多",
+    "destinations": "目的地"
+  }
+}

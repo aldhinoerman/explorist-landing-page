@@ -1,0 +1,44 @@
+{
+  "welcome": {
+    "title": "탐험가 여러분, 환영합니다! 발리에서 따뜻한 인사를 전해요!"
+  },
+  "home": {
+    "activity": {
+      "title": "최고의 활동",
+      "more": "더 많은 활동"
+    },
+    "destinations": {
+      "title": "놓치면 안 될 여행지",
+      "description": "목적지를 선택하고 최고의 혜택을 위해 저희 전문가에게 연락하세요!"
+    },
+    "nusped": {
+      "title": "누사 페니다 섬 가이드",
+      "description": "아름답고 이국적인 누사 페니다 섬은 인도네시아에서 가장 유명한 관광지인 발리에서 불과 25킬로미터 떨어져 있습니다."
+    },
+    "testimoni": {
+      "title": "리뷰를 남겨주세요"
+    }
+  },
+  "footer": {
+    "title": "연결 유지하기",
+    "cta": "두 명에게 투어 경품을 받을 기회를 얻기 위해 소셜 미디어에서 우리를 팔로우하세요",
+    "newsletter": "뉴스레터",
+    "contact": {
+      "address": "주소: 덴파사르, 발리, 인도네시아",
+      "phone": "전화번호: (+62) 82 145 500 117",
+      "email": "이메일: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "이메일 주소를 입력하세요"
+    },
+    "button": {
+      "offers": "최고의 혜택 받기"
+    }
+  },
+  "common": {
+    "more": "더 읽기",
+    "destinations": "목적지"
+  }
+}

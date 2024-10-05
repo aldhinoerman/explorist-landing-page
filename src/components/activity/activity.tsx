@@ -7,10 +7,12 @@ import Link from "next/link";
 import { TourPackagesProps, useRequest } from "@/utils";
 import { NotFound } from "../error";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const Activity = () => {
   const params = useParams();
   const { locale } = params;
+  const t = useTranslations();
   const paramsFetch = {
     page: 1,
     pageSize: 6,
@@ -26,7 +28,7 @@ const Activity = () => {
 
   return (
     <SectionWrapper id="activity">
-      <h2 className="text-center">Best Adventure</h2>
+      <h2 className="text-center">{t("home.activity.title")}</h2>
 
       <div className="mt-20 flex flex-wrap gap-4 justify-center">
         {loading ? (
@@ -48,7 +50,7 @@ const Activity = () => {
             icon={<ChevronRightIcon className="w-4 h-4 my-auto" />}
             iconPosition="right"
           >
-            More Activities
+            {t("home.activity.more")}
           </Button>
         </Link>
       </div>

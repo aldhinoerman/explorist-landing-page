@@ -7,12 +7,14 @@ import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useRequest } from "@/utils";
 import { NotFound } from "../error";
+import { useTranslations } from "next-intl";
 
 interface DestinationsProps {}
 
 const Destinations = () => {
   const params = useParams();
   const { locale } = params;
+  const t = useTranslations();
   const [slide, setSlide] = useState<string>(String(0));
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
 
@@ -58,9 +60,9 @@ const Destinations = () => {
     <SectionWrapper id="package">
       <div className="flex flex-wrap align-middle justify-center gap-4">
         <div className="flex flex-col justify-center w-full md:min-w-[350px] max-w-[500px]">
-          <h2 className="mb-8">Destinations You Shouldn&apos;t Miss</h2>
+          <h2 className="mb-8">{t("home.destinations.title")}</h2>
           <p className="text-xl font-light">
-            Choose Your Destination and Contact Our Experts for the Best Deals!
+            {t("home.destinations.description")}
           </p>
 
           <div className="flex align-middle justify-end gap-2 mt-4">

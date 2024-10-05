@@ -2,6 +2,7 @@
 import { Button, SectionWrapper } from "@/modules";
 import { CategoryProps, useRequest } from "@/utils";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -10,6 +11,7 @@ import React from "react";
 const Nusped = () => {
   const params = useParams();
   const { locale } = params;
+  const t = useTranslations();
   const paramsFetch = {
     param: "filters[key][$eq]=package/nusa-penida",
   };
@@ -32,10 +34,9 @@ const Nusped = () => {
             />
           </div>
           <div className="w-full md:min-w-[350px] max-w-[675px] my-auto">
-            <h2 className="mb-8">NUSA PENIDA ISLAND GUIDE</h2>
+            <h2 className="mb-8">{t("home.nusped.title")}</h2>
             <p className="text-xl font-light mb-8">
-              The beautiful, exotic Nusa Penida island lies just 25 kilometers
-              from Bali, the most famous tourist destination in Indonesia.
+              {t("home.nusped.description")}
             </p>
 
             <Link
@@ -48,7 +49,7 @@ const Nusped = () => {
               <Button
                 icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}
               >
-                Read More
+                {t("common.more")}
               </Button>
             </Link>
           </div>

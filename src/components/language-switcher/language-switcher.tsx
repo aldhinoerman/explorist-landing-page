@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
         >
           <label
             tabIndex={0}
-            className="btn bg-white"
+            className="btn bg-white hover:bg-white"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             {isDropdownOpen ? (

@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "title": "Willkommen, Entdecker! Herzliche Grüße aus Bali!"
+  },
+  "home": {
+    "activity": {
+      "title": "Beste Aktivität",
+      "more": "Mehr Aktivitäten"
+    },
+    "nusped": {
+      "title": "NUSA PENIDA INSEL GUIDE",
+      "description": "Die schöne, exotische Insel Nusa Penida liegt nur 25 Kilometer von Bali entfernt, dem berühmtesten Touristenziel Indonesiens."
+    },
+    "testimoni": {
+      "title": "Bewerten Sie uns auf"
+    }
+  },
+  "footer": {
+    "title": "Bleiben Sie verbunden",
+    "cta": "Folgen Sie uns in den sozialen Medien, um eine Tour für zwei zu gewinnen",
+    "newsletter": "Newsletter",
+    "contact": {
+      "address": "Adresse: Denpasar, Bali, Indonesien",
+      "phone": "Telefon: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "Geben Sie Ihre E-Mail-Adresse ein"
+    },
+    "button": {
+      "offers": "Erhalten Sie die heißesten Angebote"
+    }
+  },
+  "common": {
+    "more": "Mehr lesen",
+    "destinations": "Reiseziele"
+  }
+}

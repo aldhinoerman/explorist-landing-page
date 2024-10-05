@@ -11,11 +11,9 @@ import {
   TopTrip,
   WelcomeMessage,
 } from "@/components";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function Home() {
-  const t = useTranslations();
   return (
     <>
       <StickyHeader isParent isParentNav />

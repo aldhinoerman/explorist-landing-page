@@ -1,0 +1,44 @@
+{
+  "welcome": {
+    "title": "Welkom, ontdekkers! Warme groeten uit Bali!"
+  },
+  "home": {
+    "activity": {
+      "title": "Beste Activiteit",
+      "more": "Meer Activiteiten"
+    },
+    "destinations": {
+      "title": "Bestemmingen die je niet mag missen",
+      "description": "Kies je bestemming en neem contact op met onze experts voor de beste deals!"
+    },
+    "nusped": {
+      "title": "NUSA PENIDA EILAND GIDS",
+      "description": "Het prachtige, exotische eiland Nusa Penida ligt op slechts 25 kilometer van Bali, de bekendste toeristische bestemming van Indonesië."
+    },
+    "testimoni": {
+      "title": "Beoordeel ons op"
+    }
+  },
+  "footer": {
+    "title": "Blijf verbonden",
+    "cta": "Volg ons op sociale media om kans te maken op een tour voor twee personen",
+    "newsletter": "Nieuwsbrief",
+    "contact": {
+      "address": "Adres: Denpasar, Bali, Indonesië",
+      "phone": "Telefoon: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "Vul uw e-mailadres in"
+    },
+    "button": {
+      "offers": "Ontvang de heetste aanbiedingen"
+    }
+  },
+  "common": {
+    "more": "Lees meer",
+    "destinations": "Bestemmingen"
+  }
+}

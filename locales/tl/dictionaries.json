@@ -1,0 +1,44 @@
+{
+  "welcome": {
+    "title": "Maligayang pagdating, mga manlalakbay! Mainit na pagbati mula sa Bali!"
+  },
+  "home": {
+    "activity": {
+      "title": "Pinakamahusay na Aktibidad",
+      "more": "Higit pang Aktibidad"
+    },
+    "destinations": {
+      "title": "Mga Destinasyong Hindi Mo Dapat Palampasin",
+      "description": "Piliin ang iyong destinasyon at makipag-ugnayan sa aming mga eksperto para sa pinakamahusay na mga deal!"
+    },
+    "nusped": {
+      "title": "GABAY SA PULO NG NUSA PENIDA",
+      "description": "Ang maganda at kakaibang isla ng Nusa Penida ay matatagpuan lamang ng 25 kilometro mula sa Bali, ang pinakatanyag na destinasyon ng mga turista sa Indonesia."
+    },
+    "testimoni": {
+      "title": "I-review kami sa"
+    }
+  },
+  "footer": {
+    "title": "Manatiling konektado",
+    "cta": "Sundan kami sa social media para manalo ng tour giveaway para sa dalawa",
+    "newsletter": "Newsletter",
+    "contact": {
+      "address": "Address: Denpasar, Bali, Indonesia",
+      "phone": "Telepono: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "form": {
+    "placeholder": {
+      "input": "Ilagay ang Iyong Email Address"
+    },
+    "button": {
+      "offers": "Kunin ang Pinakamainit na Alok"
+    }
+  },
+  "common": {
+    "more": "Magbasa Pa",
+    "destinations": "Mga Destinasyon"
+  }
+}

@@ -1,7 +1,15 @@
 import { Footer, Header, StickyHeader } from "@/components";
+import { unstable_setRequestLocale } from "next-intl/server";
 import React, { PropsWithChildren } from "react";
 
-const ActivityLayout: React.FC<PropsWithChildren> = ({ children }) => {
+const ActivityLayout = ({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) => {
+  unstable_setRequestLocale(params.locale);
   return (
     <div>
       <StickyHeader isParent />

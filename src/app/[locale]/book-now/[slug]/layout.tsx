@@ -1,9 +1,20 @@
 import { Footer, StickyHeader } from "@/components";
+import { routing } from "@/i18n/routing";
+import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
-interface BookLayoutProps extends React.PropsWithChildren {}
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
-const BookLayout = ({ children }: BookLayoutProps) => {
+interface BookLayoutProps extends React.PropsWithChildren {
+  params: {
+    locale: string;
+  };
+}
+
+const BookLayout = ({ children, params }: BookLayoutProps) => {
+  unstable_setRequestLocale(params.locale);
   return (
     <>
       <StickyHeader />

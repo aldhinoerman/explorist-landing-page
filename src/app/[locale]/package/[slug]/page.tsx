@@ -1,4 +1,5 @@
 import { PackageComponent } from "@/components";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 interface PackagePageProps {
   params: { slug: string };

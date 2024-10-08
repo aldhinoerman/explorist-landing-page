@@ -1,5 +1,6 @@
 import React from "react";
 import { DetailBanner } from "@/components";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 interface DetailPageProps {
   params: { slug: string };

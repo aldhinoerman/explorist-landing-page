@@ -11,9 +11,11 @@ import {
   TopTrip,
   WelcomeMessage,
 } from "@/components";
+import { unstable_setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 
-export default function Home() {
+export default function Home({ params }: { params: { locale: string } }) {
+  unstable_setRequestLocale(params.locale);
   return (
     <>
       <StickyHeader isParent isParentNav />

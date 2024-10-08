@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import "../assets/styles/index.scss";
-import { ContactUs, CookieConfirm, HTML, LanguageSwitcher } from "@/components";
+import "../../assets/styles/index.scss";
+import { ContactUs, CookieConfirm, LanguageSwitcher } from "@/components";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
+  params: any;
   children: React.ReactNode;
 }>) {
   const messages = await getMessages();
-
+  unstable_setRequestLocale(params.locale);
   return (
-    <HTML>
+    <html lang={String(params?.locale ?? "en")} data-theme="mytheme">
       <body className="bg-white">
         <NextIntlClientProvider messages={messages}>
           {children}
@@ -28,8 +31,12 @@ export default async function RootLayout({
           <GoogleTagManager gtmId={String(process.env.NEXT_PUBLIC_GTMID)} />
         </>
       )}
-    </HTML>
+    </html>
   );
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
@@ -38,6 +45,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const { locale } = params;
+  unstable_setRequestLocale(locale);
   return {
     metadataBase: new URL("https://exploristtourbali.com"),
     title: "Explorist Tour Bali",

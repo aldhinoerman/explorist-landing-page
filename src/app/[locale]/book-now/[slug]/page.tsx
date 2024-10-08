@@ -1,5 +1,6 @@
 import React from "react";
 import { BookDetail } from "@/components";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 interface BookNowProps {
   params: { slug: string };

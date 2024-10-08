@@ -16,5 +16,4 @@ export * from "./contact-us";
 export * from "./error";
 export * from "./welcome-message";
 export * from "./cookie-confirm";
-export * from "./html";
 export * from "./language-switcher";

@@ -5,6 +5,7 @@ import { CardItem, Destinations, Hero, NotFound } from "@/components";
 import { Loading } from "@/modules";
 import { useRequest } from "@/utils";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 // Define the type for the activity data
@@ -15,21 +16,31 @@ interface ActivityData {
 }
 
 const Activity: React.FC = () => {
+  const params = useParams();
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
   const initialParams = {
     param:
       "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
   };
 
   // Define the correct type for `activity`
-  const { data: activity } = useRequest<ActivityData[]>("categories", {
-    param: "filters[key][$eq]=activity",
-  });
+  const { data: activity } = useRequest<ActivityData[]>(
+    "categories",
+    {
+      param: "filters[key][$eq]=activity",
+    },
+    locale
+  );
 
   const {
     data: activities,
     loading,
     pagination,
-  } = useRequest<ActivityData[]>("tour-packages", { ...initialParams });
+  } = useRequest<ActivityData[]>("tour-packages", { ...initialParams }, locale);
 
   useEffect(() => {
     if (activity && activity[0]?.title) {

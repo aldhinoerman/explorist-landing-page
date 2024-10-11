@@ -15,5 +15,5 @@ export default function middleware(request: any) {
 }
 
 export const config = {
-  matcher: ["/", "/(en|zh|fr|de|ru|ja|hi|tl|nl|ko)/:path*"],
+  matcher: ["/", "/(de|en|fr|hi|ja|ko|nl|ru|tl|zh)/:path*"],
 };

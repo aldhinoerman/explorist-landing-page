@@ -109,6 +109,11 @@ interface ITableColumns<T> {
   render?: (value?: any, obj?: T, index?: number) => void | null;
 }
 
+interface IWelcomeMessage {
+  title: string;
+  Description: string;
+}
+
 export type {
   TourPackagesProps,
   CategoryProps,
@@ -121,4 +126,5 @@ export type {
   ITableColumns,
   IPackageItem,
   PriceItemProps,
+  IWelcomeMessage,
 };

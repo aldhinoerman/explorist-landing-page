@@ -7,6 +7,7 @@ import React from "react";
 import { navData } from "./utils";
 import { Hamburger } from "@/modules";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface NavbarProps {
   isParent?: boolean;
@@ -19,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({
   smallImg,
   onNavCollapse,
 }) => {
+  const t = useTranslations();
   const params = useParams();
   const { locale } = params;
   return (
@@ -46,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 }
                 className="my-auto"
               >
-                {obj.title}
+                {t(obj.title)}
               </Link>
             </li>
           ))}

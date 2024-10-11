@@ -14,6 +14,7 @@ import { NotFound } from "../error";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface DetailBannerProps {
   slug: string;
@@ -21,7 +22,13 @@ interface DetailBannerProps {
 
 const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
   const params = useParams();
-  const { locale } = params;
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
+
+  const t = useTranslations();
   const initialParams = {
     param: "populate=*",
   };
@@ -29,7 +36,8 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     `tour-packages/${slug}`,
     {
       ...initialParams,
-    }
+    },
+    locale
   );
 
   const [content, setContent] = useState<PackageItemProps | undefined>(
@@ -97,7 +105,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
                   icon={<ChevronRightIcon className="w-4 h-4 m-auto" />}
                   iconPosition="right"
                 >
-                  Get The Best Deal
+                  {t("banner-detail.get-best-deal")}
                 </Button>
               </Link>
             </div>
@@ -161,7 +169,7 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
                 icon={<ChevronRightIcon className="w-4 h-4 m-auto" />}
                 iconPosition="right"
               >
-                Get The Best Deal
+                {t("banner-detail.get-best-deal")}
               </Button>
             </Link>
           </div>

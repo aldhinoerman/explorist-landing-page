@@ -1,9 +1,11 @@
 "use client";
+import { useTranslations } from "next-intl";
 import Script from "next/script";
 import React from "react";
 import CookieConsent from "react-cookie-consent";
 
 const CookieConfirm = () => {
+  const t = useTranslations();
   return (
     <>
       <Script id="google-consent-mode" strategy="afterInteractive">
@@ -18,8 +20,8 @@ const CookieConfirm = () => {
       </Script>
       <CookieConsent
         location="bottom"
-        buttonText="Accept"
-        declineButtonText="Decline"
+        buttonText={t("common.accept")}
+        declineButtonText={t("common.decline")}
         cookieName="explorist-cookie"
         style={{ background: "#2B373B" }}
         buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
@@ -47,8 +49,7 @@ const CookieConfirm = () => {
           }
         }}
       >
-        We use cookies to improve your experience. By continuing, you agree to
-        our privacy policy.
+        {t("cookie.confirm")}
       </CookieConsent>
     </>
   );

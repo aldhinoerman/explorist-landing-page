@@ -1,6 +1,10 @@
 {
-  "welcome": {
-    "title": "Добро пожаловать, исследователи! Тёплые приветствия с Бали!"
+  "nav": {
+    "home": "Главная",
+    "activity": "Деятельность",
+    "package": "Пакет",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "Свяжитесь с нами"
   },
   "home": {
     "activity": {
@@ -29,16 +33,63 @@
       "email": "E-Mail: exploristbali@gmail.com"
     }
   },
+  "book-detail": {
+    "activities": "Мероприятия",
+    "itinerary": "Маршрут",
+    "pricelist": "Прайс-лист",
+    "online-booking": "Онлайн-бронирование"
+  },
+  "banner-detail": {
+    "get-best-deal": "Получите лучшее предложение"
+  },
   "form": {
     "placeholder": {
-      "input": "Введите ваш адрес электронной почты"
+      "input": "Введите ваш адрес электронной почты",
+      "input-name": "Введите ваше имя",
+      "input-adult": "Введите количество взрослых",
+      "input-child": "Введите количество детей",
+      "select-date": "Выберите дату",
+      "select-time": "Выберите время",
+      "input-hotel-name": "Введите название вашего отеля",
+      "input-hotel-address": "Введите адрес вашего отеля",
+      "input-message": "Введите ваше сообщение..."
     },
     "button": {
-      "offers": "Получите самые горячие предложения"
+      "offers": "Получите самые горячие предложения",
+      "book-by-email": "Забронировать по E-mail",
+      "book-by-whatsapp": "Забронировать через WhatsApp"
+    },
+    "label": {
+      "name": "Имя",
+      "email": "Электронная почта",
+      "phone-number": "Номер телефона",
+      "adult": "Взрослый",
+      "child": "Ребенок",
+      "inclusion": "Включение",
+      "select-date": "Выбрать дату",
+      "pick-up-time": "Время встречи",
+      "pick-up-at": "Место встречи",
+      "station": "Станция",
+      "flight-number": "Номер рейса",
+      "hotel-name": "Название отеля",
+      "hotel-address": "Адрес отеля",
+      "notes": "Заметки"
     }
   },
   "common": {
     "more": "Читать далее",
-    "destinations": "Направления"
+    "destinations": "Направления",
+    "back": "Назад",
+    "book-now": "Забронировать сейчас",
+    "package": "Пакет",
+    "cancel": "Отменить",
+    "detail": "Деталь",
+    "car": "Машина",
+    "pax": "Пассажиры",
+    "accept": "Принять",
+    "decline": "Отклонить"
+  },
+  "cookie": {
+    "confirm": "Мы используем файлы cookie для улучшения вашего опыта. Продолжая, вы соглашаетесь с нашей политикой конфиденциальности."
   }
 }

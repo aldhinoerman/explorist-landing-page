@@ -1,6 +1,10 @@
 {
-  "welcome": {
-    "title": "Bienvenue, explorateurs ! Chaleureuses salutations de Bali !"
+  "nav": {
+    "home": "Accueil",
+    "activity": "Activité",
+    "package": "Forfait",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "Contactez-nous"
   },
   "home": {
     "activity": {
@@ -29,16 +33,63 @@
       "email": "E-Mail: exploristbali@gmail.com"
     }
   },
+  "book-detail": {
+    "activities": "Activités",
+    "itinerary": "Itinéraire",
+    "pricelist": "Liste de prix",
+    "online-booking": "Réservation en ligne"
+  },
+  "banner-detail": {
+    "get-best-deal": "Obtenez la meilleure offre"
+  },
   "form": {
     "placeholder": {
-      "input": "Entrez votre adresse e-mail"
+      "input": "Entrez votre adresse e-mail",
+      "input-name": "Veuillez entrer votre nom",
+      "input-adult": "Entrez le nombre d'adultes",
+      "input-child": "Entrez le nombre d'enfants",
+      "select-date": "Sélectionnez une date",
+      "select-time": "Sélectionnez une heure",
+      "input-hotel-name": "Veuillez entrer le nom de votre hôtel",
+      "input-hotel-address": "Veuillez entrer l'adresse de votre hôtel",
+      "input-message": "Entrez votre message..."
     },
     "button": {
-      "offers": "Obtenez les meilleures offres"
+      "offers": "Obtenez les meilleures offres",
+      "book-by-email": "Réserver par e-mail",
+      "book-by-whatsapp": "Réserver par WhatsApp"
+    },
+    "label": {
+      "name": "Nom",
+      "email": "E-Mail",
+      "phone-number": "Numéro de téléphone",
+      "adult": "Adulte",
+      "child": "Enfant",
+      "inclusion": "Inclusion",
+      "select-date": "Sélectionner une date",
+      "pick-up-time": "Heure de prise en charge",
+      "pick-up-at": "Prise en charge à",
+      "station": "Gare",
+      "flight-number": "Numéro de vol",
+      "hotel-name": "Nom de l'hôtel",
+      "hotel-address": "Adresse de l'hôtel",
+      "notes": "Remarques"
     }
   },
   "common": {
     "more": "Lire la suite",
-    "destinations": "Destinations"
+    "destinations": "Destinations",
+    "back": "Retour",
+    "book-now": "Réservez maintenant",
+    "package": "Forfait",
+    "cancel": "Annuler",
+    "detail": "Detail",
+    "car": "Voiture",
+    "pax": "Passagers",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "cookie": {
+    "confirm": "Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre politique de confidentialité."
   }
 }

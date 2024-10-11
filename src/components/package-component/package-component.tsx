@@ -13,18 +13,27 @@ import { NotFound } from "../error";
 
 interface PackageComponentProps {
   slug: string;
+  locale: string;
 }
 
-const PackageComponent: React.FC<PackageComponentProps> = ({ slug }) => {
+const PackageComponent: React.FC<PackageComponentProps> = ({
+  slug,
+  locale,
+}) => {
   const initialParams = {
     param: `filters[categories][id][$contains]=${slug}&sort=sequence&populate=*`,
   };
 
-  const { data: category } = useRequest<CategoryProps>(`categories/${slug}`);
+  const { data: category } = useRequest<CategoryProps>(
+    `categories/${slug}`,
+    undefined,
+    locale
+  );
 
   const { data: packages, loading } = useRequest<TourPackagesProps[]>(
     "tour-packages",
-    { ...initialParams }
+    { ...initialParams },
+    locale
   );
 
   useEffect(() => {

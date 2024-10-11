@@ -13,7 +13,11 @@ interface DestinationsProps {}
 
 const Destinations = () => {
   const params = useParams();
-  const { locale } = params;
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
   const t = useTranslations();
   const [slide, setSlide] = useState<string>(String(0));
   const [isScrolling, setIsScrolling] = useState<boolean>(true);
@@ -26,7 +30,8 @@ const Destinations = () => {
     `categories`,
     {
       ...paramsFetch,
-    }
+    },
+    locale
   );
   const router = useRouter();
 

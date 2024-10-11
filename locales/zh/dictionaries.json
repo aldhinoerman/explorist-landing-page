@@ -1,6 +1,10 @@
 {
-  "welcome": {
-    "title": "欢迎，探险者们！来自巴厘岛的热情问候！"
+  "nav": {
+    "home": "首页",
+    "activity": "活动",
+    "package": "包裹",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "联系我们"
   },
   "home": {
     "activity": {
@@ -29,16 +33,63 @@
       "email": "电子邮件: exploristbali@gmail.com"
     }
   },
+  "book-detail": {
+    "activities": "活动",
+    "itinerary": "行程",
+    "pricelist": "价目表",
+    "online-booking": "在线预订"
+  },
+  "banner-detail": {
+    "get-best-deal": "获取最佳优惠"
+  },
   "form": {
     "placeholder": {
-      "input": "输入您的电子邮件地址"
+      "input": "输入您的电子邮件地址",
+      "input-name": "请输入您的姓名",
+      "input-adult": "输入成人总数",
+      "input-child": "输入儿童总数",
+      "select-date": "选择一个日期",
+      "select-time": "选择一个时间",
+      "input-hotel-name": "请输入您的酒店名称",
+      "input-hotel-address": "请输入您的酒店地址",
+      "input-message": "输入您的消息..."
     },
     "button": {
-      "offers": "获取最热门的优惠"
+      "offers": "获取最热门的优惠",
+      "book-by-email": "通过电子邮件预订",
+      "book-by-whatsapp": "通过WhatsApp预订"
+    },
+    "label": {
+      "name": "名字",
+      "email": "电子邮件",
+      "phone-number": "电话号码",
+      "adult": "成人",
+      "child": "儿童",
+      "inclusion": "包含",
+      "select-date": "选择日期",
+      "pick-up-time": "接送时间",
+      "pick-up-at": "接送地点",
+      "station": "车站",
+      "flight-number": "航班号",
+      "hotel-name": "酒店名称",
+      "hotel-address": "酒店地址",
+      "notes": "备注"
     }
   },
   "common": {
     "more": "阅读更多",
-    "destinations": "目的地"
+    "destinations": "目的地",
+    "back": "返回",
+    "book-now": "立即预订",
+    "package": "包裹",
+    "cancel": "取消",
+    "detail": "详情",
+    "car": "汽车",
+    "pax": "乘客",
+    "accept": "接受",
+    "decline": "拒绝"
+  },
+  "cookie": {
+    "confirm": "我们使用Cookie来改善您的体验。继续使用即表示您同意我们的隐私政策。"
   }
 }

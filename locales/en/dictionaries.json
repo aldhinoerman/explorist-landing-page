@@ -1,6 +1,10 @@
 {
-  "welcome": {
-    "title": "Welcome, Explorers! Warm greetings from Bali!"
+  "nav": {
+    "home": "Home",
+    "activity": "Activity",
+    "package": "Package",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "Contact Us"
   },
   "home": {
     "activity": {
@@ -29,16 +33,63 @@
       "email": "E-Mail: exploristbali@gmail.com"
     }
   },
+  "book-detail": {
+    "activities": "Activities",
+    "itinerary": "Itinerary",
+    "pricelist": "Pricelist",
+    "online-booking": "Online Booking"
+  },
+  "banner-detail": {
+    "get-best-deal": "Get The Best Deal"
+  },
   "form": {
     "placeholder": {
-      "input": "Enter Your Email Address"
+      "input": "Enter your email address",
+      "input-name": "Please input your name",
+      "input-adult": "Enter total adult",
+      "input-child": "Enter total child",
+      "select-date": "Select a date",
+      "select-time": "Select a time",
+      "input-hotel-name": "Please input your hotel name",
+      "input-hotel-address": "Please input your hotel address",
+      "input-message": "Enter your message..."
     },
     "button": {
-      "offers": "Get the Hottest offers"
+      "offers": "Get the Hottest offers",
+      "book-by-email": "Book by E-Mail",
+      "book-by-whatsapp": "Book by Whatsapp"
+    },
+    "label": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone-number": "Phone Number",
+      "adult": "Adult",
+      "child": "Child",
+      "inclusion": "Inclusion",
+      "select-date": "Select Date",
+      "pick-up-time": "Pick-Up Time",
+      "pick-up-at": "Pick-Up At",
+      "station": "Station",
+      "flight-number": "Flight Number",
+      "hotel-name": "Hotel Name",
+      "hotel-address": "Hotel Address",
+      "notes": "Notes"
     }
   },
   "common": {
     "more": "Read more",
-    "destinations": "Destinations"
+    "destinations": "Destinations",
+    "back": "Back",
+    "book-now": "Book Now",
+    "package": "Package",
+    "cancel": "Cancel",
+    "detail": "Detail",
+    "car": "Car",
+    "pax": "Pax",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "cookie": {
+    "confirm": "We use cookies to improve your experience. By continuing, you agree to our privacy policy."
   }
 }

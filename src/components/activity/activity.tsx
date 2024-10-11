@@ -11,7 +11,12 @@ import { useTranslations } from "next-intl";
 
 const Activity = () => {
   const params = useParams();
-  const { locale } = params;
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
+
   const t = useTranslations();
   const paramsFetch = {
     page: 1,
@@ -23,7 +28,8 @@ const Activity = () => {
     `tour-packages`,
     {
       ...paramsFetch,
-    }
+    },
+    locale
   );
 
   return (

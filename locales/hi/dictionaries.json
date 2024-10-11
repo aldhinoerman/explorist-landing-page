@@ -1,6 +1,10 @@
 {
-  "welcome": {
-    "title": "स्वागत है, खोजकर्ताओं! बाली से गर्मजोशी भरे अभिवादन!"
+  "nav": {
+    "home": "होम",
+    "activity": "गतिविधि",
+    "package": "पैकेज",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "हमसे संपर्क करें"
   },
   "home": {
     "activity": {
@@ -29,16 +33,63 @@
       "email": "ई-मेल: exploristbali@gmail.com"
     }
   },
+  "book-detail": {
+    "activities": "गतिविधियाँ",
+    "itinerary": "यात्रा कार्यक्रम",
+    "pricelist": "मूल्य सूची",
+    "online-booking": "ऑनलाइन बुकिंग"
+  },
+  "banner-detail": {
+    "get-best-deal": "सबसे अच्छा सौदा प्राप्त करें"
+  },
   "form": {
     "placeholder": {
-      "input": "अपना ईमेल पता दर्ज करें"
+      "input": "अपना ईमेल पता दर्ज करें",
+      "input-name": "कृपया अपना नाम दर्ज करें",
+      "input-adult": "कुल वयस्क दर्ज करें",
+      "input-child": "कुल बच्चे दर्ज करें",
+      "select-date": "एक तारीख़ चुनें",
+      "select-time": "एक समय चुनें",
+      "input-hotel-name": "कृपया अपने होटल का नाम दर्ज करें",
+      "input-hotel-address": "कृपया अपने होटल का पता दर्ज करें",
+      "input-message": "अपना संदेश दर्ज करें..."
     },
     "button": {
-      "offers": "सबसे हॉट ऑफ़र प्राप्त करें"
+      "offers": "सबसे हॉट ऑफ़र प्राप्त करें",
+      "book-by-email": "ई-मेल द्वारा बुक करें",
+      "book-by-whatsapp": "व्हाट्सएप द्वारा बुक करें"
+    },
+    "label": {
+      "name": "नाम",
+      "email": "ई-मेल",
+      "phone-number": "फोन नंबर",
+      "adult": "वयस्क",
+      "child": "बच्चा",
+      "inclusion": "समावेशन",
+      "select-date": "तारीख़ चुनें",
+      "pick-up-time": "पिक-अप समय",
+      "pick-up-at": "पिक-अप स्थान",
+      "station": "स्टेशन",
+      "flight-number": "उड़ान संख्या",
+      "hotel-name": "होटल का नाम",
+      "hotel-address": "होटल का पता",
+      "notes": "नोट्स"
     }
   },
   "common": {
     "more": "और पढ़ें",
-    "destinations": "गंतव्य"
+    "destinations": "गंतव्य",
+    "back": "वापस",
+    "book-now": "अभी बुक करें",
+    "package": "पैकेज",
+    "cancel": "रद्द करें",
+    "detail": "विवरण",
+    "car": "कार",
+    "pax": "यात्री",
+    "accept": "स्वीकार करें",
+    "decline": "अस्वीकार करें"
+  },
+  "cookie": {
+    "confirm": "हम आपके अनुभव को बेहतर बनाने के लिए कुकीज़ का उपयोग करते हैं। जारी रखते हुए, आप हमारी गोपनीयता नीति से सहमत हैं।"
   }
 }

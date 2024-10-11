@@ -2,16 +2,27 @@
 import React from "react";
 import { CardItem } from "../card-item";
 import { TourPackagesProps, useRequest } from "@/utils";
+import { useParams } from "next/navigation";
 
 const TopTrip = () => {
-  const params = {
+  const params = useParams();
+  let { locale } = params;
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
+
+  const paramsFetch = {
     page: 1,
     pageSize: 4,
     param: "sort=sequence",
   };
-  const { data, loading } = useRequest<TourPackagesProps[]>("top-trips", {
-    ...params,
-  });
+  const { data, loading } = useRequest<TourPackagesProps[]>(
+    "top-trips",
+    {
+      ...paramsFetch,
+    },
+    locale
+  );
   const mockArr = new Array(4).fill(null);
 
   return (

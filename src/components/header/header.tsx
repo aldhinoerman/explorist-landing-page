@@ -5,6 +5,7 @@ import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface HeaderProps {
   isParent?: boolean;
@@ -12,6 +13,7 @@ interface HeaderProps {
 
 const Header = ({ isParent }: HeaderProps) => {
   const params = useParams();
+  const t = useTranslations();
   const { locale } = params;
   const [isNavOpen, setIsNavOpen] = useState(false);
   const handleCollapse = () => {
@@ -50,7 +52,7 @@ const Header = ({ isParent }: HeaderProps) => {
                 }
                 onClick={handleCollapse}
               >
-                {val.title}
+                {t(val.title)}
               </Link>
             </li>
           ))}

@@ -9,7 +9,8 @@ const useRequest = <T>(
     page?: number;
     pageSize?: number;
     param?: string;
-  }
+  },
+  locale: string = "en"
 ) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -21,16 +22,18 @@ const useRequest = <T>(
   );
 
   const fetchData = useCallback(() => {
-    let urls = url;
+    let urls = url + `?locale=${locale}`;
 
     if (pagination) {
-      urls = `${url}?pagination[page]=${pagination.page}&pagination[pageSize]=${
-        pagination.pageSize
-      }${params?.param ? `&${params.param}` : ""}`;
+      urls = `${url}?locale=${locale}&pagination[page]=${
+        pagination.page
+      }&pagination[pageSize]=${pagination.pageSize}${
+        params?.param ? `&${params.param}` : ""
+      }`;
     }
 
     if (params && params?.param && !pagination) {
-      urls = `${url}?${params.param}`;
+      urls = `${url}?locale=${locale}&${params.param}`;
     }
 
     const { request, controller } = requestWithAbort(urls);

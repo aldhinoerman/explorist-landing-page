@@ -3,6 +3,7 @@ import { CardItem, Destinations, Nusped, Testimoni } from "@/components";
 import { Button, Collapse, Loading, SectionWrapper } from "@/modules";
 import { IPackageItem, PackageItemProps, useRequest } from "@/utils";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -11,12 +12,14 @@ import ReactMarkdown from "react-markdown";
 interface StoryProps {
   params: {
     slug: string;
+    locale: string;
   };
 }
 
 const Story: React.FC<StoryProps> = ({ params }) => {
   const { slug } = params;
   const router = useRouter();
+  const t = useTranslations();
 
   const initialParams = {
     param: "populate=*",
@@ -25,7 +28,8 @@ const Story: React.FC<StoryProps> = ({ params }) => {
     `package-items/${slug}`,
     {
       ...initialParams,
-    }
+    },
+    params.locale
   );
 
   const handleBack = () => {
@@ -48,7 +52,7 @@ const Story: React.FC<StoryProps> = ({ params }) => {
             size="large"
             onClick={handleBack}
           >
-            Back
+            {t("common.back")}
           </Button>
 
           <div className="flex flex-col md:flex-row gap-12 justify-center align-middle mt-8 mb-4 md:mt-12">
@@ -103,12 +107,12 @@ const Story: React.FC<StoryProps> = ({ params }) => {
           size="large"
           onClick={handleBack}
         >
-          Back
+          {t("common.back")}
         </Button>
       </div>
 
       <SectionWrapper id={`pack-package-${slug}`}>
-        <h2 className="text-center">Package</h2>
+        <h2 className="text-center">{t("common.package")}</h2>
 
         {packItem?.tour_packages?.data &&
           packItem?.tour_packages?.data?.length > 0 && (
@@ -119,7 +123,7 @@ const Story: React.FC<StoryProps> = ({ params }) => {
                     data={{ id: obj?.id, ...obj.attributes }}
                     key={idx}
                     to="book-now"
-                    btnText="Book Now"
+                    btnText={t("common.book-now")}
                     useId
                   />
                 )

@@ -3,12 +3,12 @@ import { BookDetail } from "@/components";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface BookNowProps {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }
 
 const BookNow = ({ params }: BookNowProps) => {
-  const { slug } = params;
-  return <BookDetail slug={slug} />;
+  const { slug, locale } = params;
+  return <BookDetail slug={slug} locale={locale} />;
 };
 
 export default BookNow;

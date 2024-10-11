@@ -10,14 +10,23 @@ import React from "react";
 
 const Nusped = () => {
   const params = useParams();
-  const { locale } = params;
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
+
   const t = useTranslations();
   const paramsFetch = {
     param: "filters[key][$eq]=package/nusa-penida",
   };
-  const { data: nusped } = useRequest<CategoryProps[]>("categories", {
-    ...paramsFetch,
-  });
+  const { data: nusped } = useRequest<CategoryProps[]>(
+    "categories",
+    {
+      ...paramsFetch,
+    },
+    locale
+  );
   return (
     <>
       <SectionWrapper id="nusped">

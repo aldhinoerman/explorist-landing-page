@@ -4,6 +4,7 @@ import { Navbar } from "../navbar";
 import { navData } from "../navbar/utils";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface HeaderProps {
   isParent?: boolean;
@@ -11,6 +12,7 @@ interface HeaderProps {
 }
 
 const StickyHeader: React.FC<HeaderProps> = ({ isParent, isParentNav }) => {
+  const t = useTranslations();
   const params = useParams();
   const { locale } = params;
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -76,7 +78,7 @@ const StickyHeader: React.FC<HeaderProps> = ({ isParent, isParentNav }) => {
           {navData.map((val, index) => (
             <li key={index} className="border-b border-gray-400 my-8 uppercase">
               <Link href={`/${locale}/${val.link}`} onClick={handleCollapse}>
-                {val.title}
+                {t(val.title)}
               </Link>
             </li>
           ))}

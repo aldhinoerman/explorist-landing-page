@@ -7,6 +7,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ICardItem } from "./utils";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface CardItemProps {
   withSub?: boolean;
@@ -29,6 +31,9 @@ const CardItem = ({
   useId,
   isCar,
 }: CardItemProps) => {
+  const params = useParams();
+  const { locale } = params;
+  const t = useTranslations();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
@@ -70,8 +75,8 @@ const CardItem = ({
         <Link
           href={
             to
-              ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
-              : data?.key || ""
+              ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
+              : (data?.key && locale + data?.key) || ""
           }
           className="w-full"
         >
@@ -120,7 +125,10 @@ const CardItem = ({
               <h4 className="text-center md:text-left text-success">
                 {formatCurrency(data?.price)}
                 <span className="text-secondary text-sm font-normal">
-                  /{isCar ? "car" : "pax"}
+                  /
+                  {isCar
+                    ? t("common.car").toLocaleLowerCase()
+                    : t("common.pax").toLocaleLowerCase()}
                 </span>
               </h4>
             )}
@@ -130,8 +138,8 @@ const CardItem = ({
             <Link
               href={
                 to
-                  ? `/${to}${useId && data?.id ? `/${data.id}` : ""}`
-                  : data?.key || ""
+                  ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
+                  : (data?.key && locale + data?.key) || ""
               }
               className="mx-auto my-auto md:mr-0 md:ml-auto"
             >
@@ -139,7 +147,7 @@ const CardItem = ({
                 variant="primary"
                 icon={<MagnifyingGlassIcon className="w-5 h-5 my-auto" />}
               >
-                {!btnText ? "Detail" : btnText}
+                {!btnText ? t("common.detail") : btnText}
               </Button>
             </Link>
           )}

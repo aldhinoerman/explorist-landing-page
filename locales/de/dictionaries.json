@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "activity": "Aktivität",
+    "package": "Paket",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "Kontaktieren Sie uns"
+  },
+  "home": {
+    "activity": {
+      "title": "Beste Aktivität",
+      "more": "Mehr Aktivitäten"
+    },
+    "destinations": {
+      "title": "Ziele, die Sie nicht verpassen sollten",
+      "description": "Wählen Sie Ihr Reiseziel und kontaktieren Sie unsere Experten für die besten Angebote!"
+    },
+    "nusped": {
+      "title": "NUSA PENIDA INSEL GUIDE",
+      "description": "Die schöne, exotische Insel Nusa Penida liegt nur 25 Kilometer von Bali entfernt, dem berühmtesten Touristenziel Indonesiens."
+    },
+    "testimoni": {
+      "title": "Bewerten Sie uns auf"
+    }
+  },
+  "footer": {
+    "title": "Bleiben Sie verbunden",
+    "cta": "Folgen Sie uns in den sozialen Medien, um eine Tour für zwei zu gewinnen",
+    "newsletter": "Newsletter",
+    "contact": {
+      "address": "Adresse: Denpasar, Bali, Indonesien",
+      "phone": "Telefon: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "book-detail": {
+    "activities": "Aktivitäten",
+    "itinerary": "Reiseroute",
+    "pricelist": "Preisliste",
+    "online-booking": "Online-Buchung"
+  },
+  "banner-detail": {
+    "get-best-deal": "Holen Sie sich das beste Angebot"
+  },
+  "form": {
+    "placeholder": {
+      "input": "Geben Sie Ihre E-Mail-Adresse ein",
+      "input-name": "Bitte geben Sie Ihren Namen ein",
+      "input-adult": "Geben Sie die Anzahl der Erwachsenen ein",
+      "input-child": "Geben Sie die Anzahl der Kinder ein",
+      "select-date": "Wählen Sie ein Datum aus",
+      "select-time": "Wählen Sie eine Zeit aus",
+      "input-hotel-name": "Bitte geben Sie den Hotelnamen ein",
+      "input-hotel-address": "Bitte geben Sie die Hoteladresse ein",
+      "input-message": "Geben Sie Ihre Nachricht ein..."
+    },
+    "button": {
+      "offers": "Erhalten Sie die heißesten Angebote",
+      "book-by-email": "Per E-Mail buchen",
+      "book-by-whatsapp": "Per WhatsApp buchen"
+    },
+    "label": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone-number": "Telefonnummer",
+      "adult": "Erwachsener",
+      "child": "Kind",
+      "inclusion": "Inklusivleistung",
+      "select-date": "Datum auswählen",
+      "pick-up-time": "Abholzeit",
+      "pick-up-at": "Abholen an",
+      "station": "Bahnhof",
+      "flight-number": "Flugnummer",
+      "hotel-name": "Hotelname",
+      "hotel-address": "Hoteladresse",
+      "notes": "Notizen"
+    }
+  },
+  "common": {
+    "more": "Mehr lesen",
+    "destinations": "Reiseziele",
+    "back": "Zurück",
+    "book-now": "Jetzt buchen",
+    "package": "Paket",
+    "cancel": "Abbrechen",
+    "detail": "Detail",
+    "car": "Auto",
+    "pax": "Personen",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
+  },
+  "cookie": {
+    "confirm": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Indem Sie fortfahren, stimmen Sie unserer Datenschutzrichtlinie zu."
+  }
+}

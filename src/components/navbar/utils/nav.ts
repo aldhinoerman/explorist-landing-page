@@ -1,22 +1,22 @@
 const navData = [
   {
-    title: "Home",
+    title: "nav.home",
     link: "#hero",
   },
   {
-    title: "Activity",
+    title: "nav.activity",
     link: "#activity",
   },
   {
-    title: "Package",
+    title: "nav.package",
     link: "#package",
   },
   {
-    title: "Nusa Penida",
+    title: "nav.nusa-penida",
     link: "#nusped",
   },
   {
-    title: "Contact Us",
+    title: "nav.contact-us",
     link: "#contact",
   },
 ];

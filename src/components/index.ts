@@ -15,3 +15,5 @@ export * from "./book-detail";
 export * from "./contact-us";
 export * from "./error";
 export * from "./welcome-message";
+export * from "./cookie-confirm";
+export * from "./language-switcher";

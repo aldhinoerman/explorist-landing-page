@@ -1,10 +1,12 @@
 "use client";
 import { SectionWrapper } from "@/modules";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
 const Testimoni = () => {
+  const t = useTranslations()
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -24,7 +26,7 @@ const Testimoni = () => {
 
   return (
     <SectionWrapper id="testimoni">
-      <h2 className="text-center mb-12">Review Us On</h2>
+      <h2 className="text-center mb-12">{t('home.testimoni.title')}</h2>
       <div
         id="TA_selfserveprop679"
         className="TA_selfserveprop flex justify-center"

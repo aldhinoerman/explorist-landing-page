@@ -2,15 +2,31 @@
 import { Button, SectionWrapper } from "@/modules";
 import { CategoryProps, useRequest } from "@/utils";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 
 const Nusped = () => {
-  const params = {
+  const params = useParams();
+  let { locale } = params;
+
+  if (Array.isArray(locale)) {
+    locale = locale[0];
+  }
+
+  const t = useTranslations();
+  const paramsFetch = {
     param: "filters[key][$eq]=package/nusa-penida",
   };
-  const { data: nusped } = useRequest<CategoryProps[]>("categories", { ...params });
+  const { data: nusped } = useRequest<CategoryProps[]>(
+    "categories",
+    {
+      ...paramsFetch,
+    },
+    locale
+  );
   return (
     <>
       <SectionWrapper id="nusped">
@@ -27,21 +43,22 @@ const Nusped = () => {
             />
           </div>
           <div className="w-full md:min-w-[350px] max-w-[675px] my-auto">
-            <h2 className="mb-8">NUSA PENIDA ISLAND GUIDE</h2>
+            <h2 className="mb-8">{t("home.nusped.title")}</h2>
             <p className="text-xl font-light mb-8">
-              The beautiful, exotic Nusa Penida island lies just 25 kilometers
-              from Bali, the most famous tourist destination in Indonesia.
+              {t("home.nusped.description")}
             </p>
 
             <Link
-              href={`/package/${
-                nusped && nusped?.length > 0 && nusped[0]?.id ? String(nusped[0].id) : ""
+              href={`/${locale}/package/${
+                nusped && nusped?.length > 0 && nusped[0]?.id
+                  ? String(nusped[0].id)
+                  : ""
               }`}
             >
               <Button
                 icon={<ArrowRightCircleIcon className="w-4 h-4 my-auto" />}
               >
-                Read More
+                {t("common.more")}
               </Button>
             </Link>
           </div>

@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "홈",
+    "activity": "활동",
+    "package": "패키지",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "문의하기"
+  },
+  "home": {
+    "activity": {
+      "title": "최고의 활동",
+      "more": "더 많은 활동"
+    },
+    "destinations": {
+      "title": "놓치면 안 될 여행지",
+      "description": "목적지를 선택하고 최고의 혜택을 위해 저희 전문가에게 연락하세요!"
+    },
+    "nusped": {
+      "title": "누사 페니다 섬 가이드",
+      "description": "아름답고 이국적인 누사 페니다 섬은 인도네시아에서 가장 유명한 관광지인 발리에서 불과 25킬로미터 떨어져 있습니다."
+    },
+    "testimoni": {
+      "title": "리뷰를 남겨주세요"
+    }
+  },
+  "footer": {
+    "title": "연결 유지하기",
+    "cta": "두 명에게 투어 경품을 받을 기회를 얻기 위해 소셜 미디어에서 우리를 팔로우하세요",
+    "newsletter": "뉴스레터",
+    "contact": {
+      "address": "주소: 덴파사르, 발리, 인도네시아",
+      "phone": "전화번호: (+62) 82 145 500 117",
+      "email": "이메일: exploristbali@gmail.com"
+    }
+  },
+  "book-detail": {
+    "activities": "활동",
+    "itinerary": "여행 일정",
+    "pricelist": "가격표",
+    "online-booking": "온라인 예약"
+  },
+  "banner-detail": {
+    "get-best-deal": "최고의 거래를 얻으세요"
+  },
+  "form": {
+    "placeholder": {
+      "input": "이메일 주소를 입력하세요",
+      "input-name": "이름을 입력하세요",
+      "input-adult": "성인 수를 입력하세요",
+      "input-child": "어린이 수를 입력하세요",
+      "select-date": "날짜를 선택하세요",
+      "select-time": "시간을 선택하세요",
+      "input-hotel-name": "호텔 이름을 입력하세요",
+      "input-hotel-address": "호텔 주소를 입력하세요",
+      "input-message": "메시지를 입력하세요..."
+    },
+    "button": {
+      "offers": "최고의 혜택 받기",
+      "book-by-email": "이메일로 예약",
+      "book-by-whatsapp": "WhatsApp으로 예약"
+    },
+    "label": {
+      "name": "이름",
+      "email": "이메일",
+      "phone-number": "전화번호",
+      "adult": "성인",
+      "child": "어린이",
+      "inclusion": "포함 사항",
+      "select-date": "날짜 선택",
+      "pick-up-time": "픽업 시간",
+      "pick-up-at": "픽업 장소",
+      "station": "역",
+      "flight-number": "항공편 번호",
+      "hotel-name": "호텔 이름",
+      "hotel-address": "호텔 주소",
+      "notes": "비고"
+    }
+  },
+  "common": {
+    "more": "더 읽기",
+    "destinations": "목적지",
+    "back": "뒤로",
+    "book-now": "지금 예약",
+    "package": "패키지",
+    "cancel": "취소",
+    "detail": "세부사항",
+    "car": "차",
+    "pax": "승객",
+    "accept": "수락",
+    "decline": "거부"
+  },
+  "cookie": {
+    "confirm": "귀하의 경험을 개선하기 위해 쿠키를 사용합니다. 계속 진행함으로써 귀하는 당사의 개인정보 보호정책에 동의하게 됩니다."
+  }
+}

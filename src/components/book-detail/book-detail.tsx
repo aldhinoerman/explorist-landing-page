@@ -21,12 +21,14 @@ import { NotFound } from "../error";
 import { useForm } from "react-hook-form";
 import { Destinations } from "../destinations";
 import { Testimoni } from "../testimoni";
+import { useTranslations } from "next-intl";
 
 interface BookDetailProps {
   slug: string;
+  locale: string;
 }
 
-const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
+const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
   const {
     register,
     handleSubmit,
@@ -42,8 +44,10 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
     `tour-packages/${slug}`,
     {
       ...initialParams,
-    }
+    },
+    locale
   );
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState("activities");
   const [modalShow, setModalShow] = useState<boolean>(false);
 
@@ -65,7 +69,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
       tabs.push(
         {
           value: "pricing",
-          txt: "Pricelist",
+          txt: t("book-detail.pricelist"),
           content:
             pack?.pricings?.data && pack?.pricings?.data?.length > 0
               ? {
@@ -117,7 +121,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
       tabs.push(
         {
           value: "activities",
-          txt: "Activities",
+          txt: t("book-detail.activities"),
           content:
             pack?.package_items?.data && pack?.package_items?.data?.length > 0
               ? pack.package_items.data.map((val: any) => ({
@@ -128,7 +132,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         },
         {
           value: "itinerary",
-          txt: "Itinerary",
+          txt: t("book-detail.itinerary"),
           content:
             pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
               ? pack.itineraries.data.map((val: any) => ({
@@ -139,7 +143,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
         },
         {
           value: "pricing",
-          txt: "Pricelist",
+          txt: t("book-detail.pricelist"),
           content:
             pack?.pricings?.data && pack?.pricings?.data?.length > 0
               ? {
@@ -190,7 +194,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
     }
 
     return tabs;
-  }, [pack]);
+  }, [pack, t]);
 
   useEffect(() => {
     if (pack && pack?.title) {
@@ -227,7 +231,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
                 {pack.location}
               </h4>
               <Button variant="primary" size="large" onClick={handleShowModal}>
-                Book Now
+                {t("common.book-now")}
               </Button>
             </div>
           </div>
@@ -258,7 +262,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
 
           <div className="text-center my-12">
             <Button variant="primary" size="large" onClick={handleShowModal}>
-              Book Now
+              {t("common.book-now")}
             </Button>
           </div>
 
@@ -273,23 +277,23 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
 
       <Modal
         isOpen={modalShow}
-        title="Online Booking"
-        closeText="Cancel"
+        title={t("book-detail.online-booking")}
+        closeText={t("common.cancel")}
         onClose={handleShowModal}
       >
         <form className="form flex flex-col gap-8">
           <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-            Name
+            {t("form.label.name")}
             <input
               type="text"
               className="grow text-dark"
-              placeholder="Please Input Your Name"
+              placeholder={t("form.placeholder.input-name")}
               {...register("name", { required: true })}
               aria-invalid={errors.name ? "true" : "false"}
             />
           </label>
           <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-            E-mail
+            {t("form.label.email")}
             <input
               type="email"
               className="grow text-dark"
@@ -298,7 +302,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
             />
           </label>
           <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-            Phone Number
+            {t("form.label.phone-number")}
             <input
               type="tel"
               className="grow text-dark"
@@ -308,22 +312,22 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           </label>
           <div className="flex flex-wrap gap-8">
             <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-              Adult
+              {t("form.label.adult")}
               <input
                 type="number"
                 className="grow text-dark"
-                placeholder="Enter total adult"
+                placeholder={t("form.placeholder.input-adult")}
                 defaultValue={2}
                 min={1}
                 {...register("adult")}
               />
             </label>
             <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-              Child
+              {t("form.label.child")}
               <input
                 type="number"
                 className="grow text-dark"
-                placeholder="Enter total child"
+                placeholder={t("form.placeholder.input-child")}
                 defaultValue={0}
                 min={0}
                 {...register("child")}
@@ -332,7 +336,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           </div>
           <div className="form-control max-w-[100px]">
             <label className="label cursor-pointer">
-              <span className="text-gray">Inclusion</span>
+              <span className="text-gray">{t("form.label.inclusion")}</span>
               <input
                 type="checkbox"
                 defaultChecked
@@ -342,28 +346,28 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
             </label>
           </div>
           <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-            Select Date
+            {t("form.label.select-date")}
             <input
               type="date"
               className="grow text-dark"
-              placeholder="Select a date"
+              placeholder={t("form.placeholder.select-date")}
               {...register("date", { required: true })}
               aria-invalid={errors.date ? "true" : "false"}
             />
           </label>
           <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-            Pick-Up Time
+            {t("form.label.pick-up-time")}
             <input
               type="time"
               className="grow text-dark"
-              placeholder="Select a time"
+              placeholder={t("form.placeholder.select-time")}
               {...register("time", { required: true })}
               aria-invalid={errors.time ? "true" : "false"}
             />
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="text-gray">Pick-Up At</span>
+              <span className="text-gray">{t("form.label.pick-up-at")}</span>
             </div>
             <select
               className="select select-bordered text-dark !outline-none"
@@ -379,7 +383,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           {watch("pick_up_at") === "airport" ? (
             <>
               <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-                Station
+                {t("form.label.station")}
                 <input
                   type="text"
                   className="grow text-dark"
@@ -388,7 +392,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
                 />
               </label>
               <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-                Flight Number
+                {t("form.label.flight-number")}
                 <input
                   type="text"
                   className="grow text-dark"
@@ -400,20 +404,20 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           ) : (
             <>
               <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-                Hotel Name
+                {t("form.label.hotel-name")}
                 <input
                   type="text"
                   className="grow text-dark"
-                  placeholder="Please input your hotel name"
+                  placeholder={t("form.placeholder.input-hotel-name")}
                   {...register("hotel_name")}
                 />
               </label>
               <label className="input input-bordered border-secondary text-gray flex items-center gap-4 !outline-none">
-                Hotel Address
+                {t("form.label.hotel-address")}
                 <input
                   type="text"
                   className="grow text-dark"
-                  placeholder="Please input your hotel address"
+                  placeholder={t("form.placeholder.input-hotel-address")}
                   {...register("hotel_address")}
                 />
               </label>
@@ -421,10 +425,10 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
           )}
           <label className="form-control w-full">
             <div className="label">
-              <span className="text-gray">Notes</span>
+              <span className="text-gray">{t("form.label.notes")}</span>
             </div>
             <textarea
-              placeholder="Enter your message..."
+              placeholder={t("form.placeholder.input-message")}
               className="input input-bordered border-secondary !outline-none p-2 text-dark min-h-32"
               {...register("notes")}
             />
@@ -450,7 +454,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
                 handleShowModal();
               })}
             >
-              Book by E-mail
+              {t("form.button.book-by-email")}
             </Button>
             <Button
               type="submit"
@@ -471,7 +475,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug }) => {
                 handleShowModal();
               })}
             >
-              Book by Whatsapp
+              {t("form.button.book-by-whatsapp")}
             </Button>
           </div>
         </form>

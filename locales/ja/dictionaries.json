@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "activity": "アクティビティ",
+    "package": "パッケージ",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "お問い合わせ"
+  },
+  "home": {
+    "activity": {
+      "title": "最高のアクティビティ",
+      "more": "もっとアクティビティ"
+    },
+    "destinations": {
+      "title": "見逃してはいけない目的地",
+      "description": "目的地を選び、最高のお得情報のために私たちの専門家に連絡してください！"
+    },
+    "nusped": {
+      "title": "ヌサペニダ島ガイド",
+      "description": "美しくエキゾチックなヌサペニダ島は、インドネシアで最も有名な観光地であるバリ島からわずか25キロのところにあります。"
+    },
+    "testimoni": {
+      "title": "レビューしてください"
+    }
+  },
+  "footer": {
+    "title": "つながりを保つ",
+    "cta": "2人のためのツアーが当たるチャンスのために、ソーシャルメディアで私たちをフォローしてください",
+    "newsletter": "ニュースレター",
+    "contact": {
+      "address": "住所: デンパサール, バリ, インドネシア",
+      "phone": "電話番号: (+62) 82 145 500 117",
+      "email": "Eメール: exploristbali@gmail.com"
+    }
+  },
+  "book-detail": {
+    "activities": "アクティビティ",
+    "itinerary": "旅程",
+    "pricelist": "価格表",
+    "online-booking": "オンライン予約"
+  },
+  "banner-detail": {
+    "get-best-deal": "最高のお得情報を手に入れよう"
+  },
+  "form": {
+    "placeholder": {
+      "input": "メールアドレスを入力してください",
+      "input-name": "お名前を入力してください",
+      "input-adult": "大人の合計人数を入力してください",
+      "input-child": "子供の合計人数を入力してください",
+      "select-date": "日付を選択してください",
+      "select-time": "時間を選択してください",
+      "input-hotel-name": "ホテル名を入力してください",
+      "input-hotel-address": "ホテルの住所を入力してください",
+      "input-message": "メッセージを入力してください..."
+    },
+    "button": {
+      "offers": "最もお得なオファーを受け取る",
+      "book-by-email": "Eメールで予約",
+      "book-by-whatsapp": "WhatsAppで予約"
+    },
+    "label": {
+      "name": "名前",
+      "email": "Eメール",
+      "phone-number": "電話番号",
+      "adult": "大人",
+      "child": "子供",
+      "inclusion": "含まれるもの",
+      "select-date": "日付を選択",
+      "pick-up-time": "ピックアップ時間",
+      "pick-up-at": "ピックアップ場所",
+      "station": "駅",
+      "flight-number": "便名",
+      "hotel-name": "ホテル名",
+      "hotel-address": "ホテルの住所",
+      "notes": "備考"
+    }
+  },
+  "common": {
+    "more": "続きを読む",
+    "destinations": "目的地",
+    "back": "戻る",
+    "book-now": "今すぐ予約",
+    "package": "パッケージ",
+    "cancel": "キャンセル",
+    "detail": "詳細",
+    "car": "車",
+    "pax": "乗客",
+    "accept": "同意する",
+    "decline": "拒否する"
+  },
+  "cookie": {
+    "confirm": "お客様の体験を向上させるためにクッキーを使用しています。続行することで、プライバシーポリシーに同意したことになります。"
+  }
+}

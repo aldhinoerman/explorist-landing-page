@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Tahanan",
+    "activity": "Aktibidad",
+    "package": "Pakete",
+    "nusa-penida": "Nusa Penida",
+    "contact-us": "Makipag-ugnayan sa Amin"
+  },
+  "home": {
+    "activity": {
+      "title": "Pinakamahusay na Aktibidad",
+      "more": "Higit pang Aktibidad"
+    },
+    "destinations": {
+      "title": "Mga Destinasyong Hindi Mo Dapat Palampasin",
+      "description": "Piliin ang iyong destinasyon at makipag-ugnayan sa aming mga eksperto para sa pinakamahusay na mga deal!"
+    },
+    "nusped": {
+      "title": "GABAY SA PULO NG NUSA PENIDA",
+      "description": "Ang maganda at kakaibang isla ng Nusa Penida ay matatagpuan lamang ng 25 kilometro mula sa Bali, ang pinakatanyag na destinasyon ng mga turista sa Indonesia."
+    },
+    "testimoni": {
+      "title": "I-review kami sa"
+    }
+  },
+  "footer": {
+    "title": "Manatiling konektado",
+    "cta": "Sundan kami sa social media para manalo ng tour giveaway para sa dalawa",
+    "newsletter": "Newsletter",
+    "contact": {
+      "address": "Address: Denpasar, Bali, Indonesia",
+      "phone": "Telepono: (+62) 82 145 500 117",
+      "email": "E-Mail: exploristbali@gmail.com"
+    }
+  },
+  "book-detail": {
+    "activities": "Mga Aktibidad",
+    "itinerary": "Itineraryo",
+    "pricelist": "Listahan ng Presyo",
+    "online-booking": "Online Booking"
+  },
+  "banner-detail": {
+    "get-best-deal": "Kunin ang pinakamahusay na deal"
+  },
+  "form": {
+    "placeholder": {
+      "input": "Ilagay ang Iyong Email Address",
+      "input-name": "Ipasok ang iyong pangalan",
+      "input-adult": "Ipasok ang kabuuang bilang ng matatanda",
+      "input-child": "Ipasok ang kabuuang bilang ng bata",
+      "select-date": "Piliin ang isang petsa",
+      "select-time": "Piliin ang oras",
+      "input-hotel-name": "Ipasok ang pangalan ng iyong hotel",
+      "input-hotel-address": "Ipasok ang address ng iyong hotel",
+      "input-message": "Ipasok ang iyong mensahe..."
+    },
+    "button": {
+      "offers": "Kunin ang Pinakamainit na Alok",
+      "book-by-email": "Mag-book sa pamamagitan ng E-Mail",
+      "book-by-whatsapp": "Mag-book sa pamamagitan ng WhatsApp"
+    },
+    "label": {
+      "name": "Pangalan",
+      "email": "E-Mail",
+      "phone-number": "Numero ng Telepono",
+      "adult": "Matanda",
+      "child": "Bata",
+      "inclusion": "Pagsasama",
+      "select-date": "Piliin ang Petsa",
+      "pick-up-time": "Oras ng Pagkuha",
+      "pick-up-at": "Kunin sa",
+      "station": "Istasyon",
+      "flight-number": "Numero ng Flight",
+      "hotel-name": "Pangalan ng Hotel",
+      "hotel-address": "Address ng Hotel",
+      "notes": "Mga Tala"
+    }
+  },
+  "common": {
+    "more": "Magbasa Pa",
+    "destinations": "Mga Destinasyon",
+    "back": "Bumalik",
+    "book-now": "Mag-book na",
+    "package": "Pakete",
+    "cancel": "Kanselahin",
+    "detail": "Detalye",
+    "car": "Kotse",
+    "pax": "Pasahero",
+    "accept": "Tanggapin",
+    "decline": "Tanggihan"
+  },
+  "cookie": {
+    "confirm": "Gumagamit kami ng cookies upang mapabuti ang iyong karanasan. Sa pagpapatuloy, sumasang-ayon ka sa aming patakaran sa privacy."
+  }
+}

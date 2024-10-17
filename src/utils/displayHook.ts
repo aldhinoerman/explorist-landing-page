@@ -12,6 +12,7 @@ const useRequest = <T>(
   },
   locale: string = "en"
 ) => {
+  const tempLocale = "en";
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
@@ -22,10 +23,10 @@ const useRequest = <T>(
   );
 
   const fetchData = useCallback(() => {
-    let urls = url + `?locale=${locale}`;
+    let urls = url + `?locale=${tempLocale}`;
 
     if (pagination) {
-      urls = `${url}?locale=${locale}&pagination[page]=${
+      urls = `${url}?locale=${tempLocale}&pagination[page]=${
         pagination.page
       }&pagination[pageSize]=${pagination.pageSize}${
         params?.param ? `&${params.param}` : ""
@@ -33,7 +34,7 @@ const useRequest = <T>(
     }
 
     if (params && params?.param && !pagination) {
-      urls = `${url}?locale=${locale}&${params.param}`;
+      urls = `${url}?locale=${tempLocale}&${params.param}`;
     }
 
     const { request, controller } = requestWithAbort(urls);

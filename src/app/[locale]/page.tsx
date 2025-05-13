@@ -1,4 +1,3 @@
-import { Images } from "@/assets";
 import {
   Activity,
   Destinations,
@@ -11,11 +10,18 @@ import {
   TopTrip,
   WelcomeMessage,
 } from "@/components";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { fetchHero, renderImage } from "@/utils";
+import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 
-export default function Home({ params }: { params: { locale: string } }) {
-  unstable_setRequestLocale(params.locale);
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const hero = await fetchHero(locale);
+  setRequestLocale(locale);
   return (
     <>
       <StickyHeader isParent isParentNav />
@@ -24,7 +30,7 @@ export default function Home({ params }: { params: { locale: string } }) {
         <div className="absolute z-0 top-0 left-0 w-full h-full max-h-[425px] md:max-h-[675px]">
           <div className="relative h-full">
             <Image
-              src={Images.Mountain}
+              src={renderImage(hero?.image?.url)}
               fill
               style={{ objectFit: "cover", filter: "brightness(75%)" }}
               priority
@@ -36,7 +42,7 @@ export default function Home({ params }: { params: { locale: string } }) {
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center mt-16">
-          <Hero title="Explore More Discover More" />
+          <Hero title={hero?.title} description={hero?.description} />
         </div>
 
         <TopTrip />

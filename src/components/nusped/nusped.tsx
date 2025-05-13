@@ -34,13 +34,13 @@ const Nusped = () => {
 
         <div className="flex flex-wrap align-middle justify-center gap-4 mt-16">
           <div className="w-full md:min-w-[350px] max-w-[500px]">
-            <Image
+            {/* <Image
               src="https://friendlybalitour.com/wp-content/uploads/2023/10/1698684178334.jpg"
               alt="nusped-pict"
               width={475}
               height={350}
               className="rounded-3xl"
-            />
+            /> */}
           </div>
           <div className="w-full md:min-w-[350px] max-w-[675px] my-auto">
             <h2 className="mb-8">{t("home.nusped.title")}</h2>

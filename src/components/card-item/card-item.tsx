@@ -84,10 +84,7 @@ const CardItem = ({
             src={
               !data?.package_items?.data?.length
                 ? data.pict
-                : String(
-                    data?.package_items?.data[currentImageIndex]?.attributes
-                      ?.pict
-                  )
+                : String(data?.package_items?.data[currentImageIndex]?.pict)
             }
             alt="image-content"
             width={0}

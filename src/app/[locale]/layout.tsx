@@ -3,7 +3,7 @@ import "../../assets/styles/index.scss";
 import { ContactUs, CookieConfirm, LanguageSwitcher } from "@/components";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 export default async function RootLayout({
@@ -14,7 +14,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const messages = await getMessages();
-  unstable_setRequestLocale(params.locale);
+  setRequestLocale(params.locale);
   return (
     <html lang={String(params?.locale ?? "en")} data-theme="mytheme">
       <body className="bg-white">
@@ -45,7 +45,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const { locale } = params;
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   return {
     metadataBase: new URL("https://exploristtourbali.com"),
     title: "Explorist Tour Bali",

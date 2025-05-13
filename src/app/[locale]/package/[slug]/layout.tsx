@@ -1,20 +1,21 @@
 import { Footer, Header, StickyHeader } from "@/components";
 import { routing } from "@/i18n/routing";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import React from "react";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const PackageLayout = ({
+const PackageLayout = async ({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) => {
-  unstable_setRequestLocale(params.locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <div>
       <StickyHeader isParent />

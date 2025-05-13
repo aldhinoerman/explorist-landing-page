@@ -1,6 +1,6 @@
 import { Footer, StickyHeader } from "@/components";
 import { routing } from "@/i18n/routing";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import React from "react";
 
 export function generateStaticParams() {
@@ -8,13 +8,14 @@ export function generateStaticParams() {
 }
 
 interface BookLayoutProps extends React.PropsWithChildren {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 }
 
-const BookLayout = ({ children, params }: BookLayoutProps) => {
-  unstable_setRequestLocale(params.locale);
+const BookLayout = async ({ children, params }: BookLayoutProps) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <StickyHeader />

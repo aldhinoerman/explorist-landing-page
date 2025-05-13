@@ -23,10 +23,10 @@ const useRequest = <T>(
   );
 
   const fetchData = useCallback(() => {
-    let urls = url + `?locale=${tempLocale}`;
+    let urls = `/${url}` + `?locale=${tempLocale}`;
 
     if (pagination) {
-      urls = `${url}?locale=${tempLocale}&pagination[page]=${
+      urls = `/${url}?locale=${tempLocale}&pagination[page]=${
         pagination.page
       }&pagination[pageSize]=${pagination.pageSize}${
         params?.param ? `&${params.param}` : ""
@@ -34,7 +34,7 @@ const useRequest = <T>(
     }
 
     if (params && params?.param && !pagination) {
-      urls = `${url}?locale=${tempLocale}&${params.param}`;
+      urls = `/${url}?locale=${tempLocale}&${params.param}`;
     }
 
     const { request, controller } = requestWithAbort(urls);
@@ -47,10 +47,10 @@ const useRequest = <T>(
           const response = Array.isArray(res?.data?.data)
             ? res?.data?.data?.map((val: any) => ({
                 id: val.id,
-                ...val.attributes,
+                ...val,
               }))
             : res?.data?.data
-            ? { id: res.data.data.id, ...res?.data?.data?.attributes }
+            ? { id: res.data.data.id, ...res?.data?.data }
             : [];
 
           return response as T;

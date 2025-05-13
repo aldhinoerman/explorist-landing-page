@@ -12,7 +12,7 @@ interface ICardItem {
   link?: string;
   key?: string;
   package_items?: {
-    data?: Array<{ id?: number; attributes?: PackageItemProps }>;
+    data?: Array<PackageItemProps>;
   };
 }
 

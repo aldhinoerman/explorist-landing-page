@@ -7,33 +7,33 @@ interface TourPackagesProps {
   status?: boolean;
   location?: string;
   sequence?: number;
-  categories?: { data?: Array<{ id?: number; attributes?: CategoryProps }> };
+  categories?: { data?: Array<CategoryProps> };
   itineraries?: {
-    data?: Array<{ id?: number; attributes?: ItinerariesProps }>;
+    data?: ItinerariesProps[];
   };
   package_items?: {
-    data?: Array<{ id?: number | undefined; attributes?: PackageItemProps }>;
+    data?: PackageItemProps[];
   };
   terms_conditions?: {
-    data?: Array<{ id?: number; attributes?: TermsProps }>;
+    data?: TermsProps[];
   };
-  pricings?: { data?: Array<{ id?: number; attributes?: PricingProps }> };
+  pricings?: PricingProps[];
   inclusions?: {
-    data?: Array<{ id?: number; attributes?: InclusionsProps }>;
+    data?: InclusionsProps[];
   };
   price_inclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   price_exclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   regular_inclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   regular_exclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
-  regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps }> };
+  regulars?: RegularsProps[];
 }
 
 interface PriceItemProps {
@@ -51,25 +51,20 @@ interface CategoryProps {
 
 interface ItinerariesProps {}
 
-interface IPackageItem {
-  id?: number;
-  attributes?: PackageItemProps;
-}
-
 interface PackageItemProps {
-  id?: number;
-  title?: string;
-  caption?: string;
-  pict?: string;
-  activity?: string;
-  about?: string;
+  id: number;
+  title: string;
+  caption: string;
+  pict: string;
+  activity: string;
+  about: string;
   amenities?: string;
   description?: string;
   stories?: {
-    data?: Array<{ id?: number; attributes?: StoriesProps }>;
+    data?: StoriesProps[];
   };
   tour_packages?: {
-    data?: Array<{ id?: number; attributes?: TourPackagesProps }>;
+    data?: TourPackagesProps[];
   };
 }
 
@@ -124,7 +119,6 @@ export type {
   PricingProps,
   RegularsProps,
   ITableColumns,
-  IPackageItem,
   PriceItemProps,
   IWelcomeMessage,
 };

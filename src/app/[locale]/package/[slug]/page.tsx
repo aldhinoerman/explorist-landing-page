@@ -1,12 +1,12 @@
 import { PackageComponent } from "@/components";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 interface PackagePageProps {
-  params: { slug: string; locale: string };
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 const PackagePage = async ({ params }: PackagePageProps) => {
-  const { slug, locale } = params;
+  const { slug, locale } = await params;
 
   return <PackageComponent slug={slug} locale={locale} />;
 };

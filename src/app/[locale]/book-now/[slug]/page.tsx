@@ -1,13 +1,14 @@
 import React from "react";
 import { BookDetail } from "@/components";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 interface BookNowProps {
-  params: { slug: string; locale: string };
+  params: Promise<{ slug: string; locale: string }>;
 }
 
-const BookNow = ({ params }: BookNowProps) => {
-  const { slug, locale } = params;
+const BookNow = async ({ params }: BookNowProps) => {
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
   return <BookDetail slug={slug} locale={locale} />;
 };
 

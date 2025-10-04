@@ -14,28 +14,22 @@ const TopTrip = () => {
   const paramsFetch = {
     page: 1,
     pageSize: 4,
-    param: "sort=sequence",
+    param:
+      "filters[featured]=true&populate[0]=package_items&populate[1]=package_items.image&populate[2]=categories",
   };
   const { data, loading } = useRequest<TourPackagesProps[]>(
-    "top-trips",
+    "tour-packages",
     {
       ...paramsFetch,
     },
     locale
   );
   const mockArr = new Array(4).fill(null);
-
   return (
     <>
       <div className="relative z-10 mt-44 flex flex-wrap gap-4 justify-center">
         {data && data?.length > 0 && !loading
-          ? data.map((obj: any, idx) => (
-              <CardItem
-                data={obj}
-                key={idx}
-                isCar={Boolean(obj.key === "/package/15")}
-              />
-            ))
+          ? data.map((obj: any, idx) => <CardItem data={obj} key={idx} />)
           : mockArr.map((_, index) => (
               <div className="skeleton h-32 w-32" key={index}></div>
             ))}

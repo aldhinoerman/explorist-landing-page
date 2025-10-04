@@ -4,12 +4,7 @@ import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { CardItem } from "../card-item";
 import Link from "next/link";
-import {
-  IPackageItem,
-  PackageItemProps,
-  TourPackagesProps,
-  useRequest,
-} from "@/utils";
+import { PackageItemProps, TourPackagesProps, useRequest, renderImage } from "@/utils";
 import { NotFound } from "../error";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import ReactMarkdown from "react-markdown";
@@ -49,11 +44,11 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
 
     if (
       response &&
-      response?.package_items?.data &&
-      response?.package_items?.data[0] &&
+      response?.package_items &&
+      response?.package_items[0] &&
       !content
     ) {
-      handleSetContent(response?.package_items?.data[0]);
+      handleSetContent(response?.package_items[0]);
     }
   }, [content, pack]);
 
@@ -61,8 +56,8 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
     getData();
   }, [getData]);
 
-  const handleSetContent = (content: IPackageItem) => {
-    setContent({ id: content?.id, ...content?.attributes });
+  const handleSetContent = (content: PackageItemProps) => {
+    setContent({ ...content });
   };
 
   useEffect(() => {
@@ -80,10 +75,10 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
               <div className="w-full">
                 <Image
                   src={
-                    content && content?.pict
-                      ? content.pict
-                      : pack?.pict
-                      ? pack.pict
+                    content && content?.image?.url
+                      ? renderImage(content.image.url)
+                      : pack?.image?.url
+                      ? renderImage(pack.image.url)
                       : ""
                   }
                   alt="detail-pict"
@@ -112,51 +107,45 @@ const DetailBanner: React.FC<DetailBannerProps> = ({ slug }) => {
           </div>
 
           {pack &&
-            pack?.package_items?.data &&
-            pack?.package_items?.data?.length === 1 &&
-            pack.package_items.data.map((val, index) => (
+            pack?.package_items &&
+            pack?.package_items?.length === 1 &&
+            pack.package_items.map((val, index) => (
               <React.Fragment key={index}>
                 <div className="my-8 max-w-6xl mx-auto flex flex-col gap-4">
-                  <ReactMarkdown>
-                    {val?.attributes?.description ?? ""}
-                  </ReactMarkdown>
+                  <ReactMarkdown>{
+                    typeof val?.description === 'string' 
+                      ? val.description 
+                      : Array.isArray(val?.description) 
+                        ? val.description.join('\n') 
+                        : ""
+                  }</ReactMarkdown>
                 </div>
-                {val?.attributes?.stories?.data &&
-                  val?.attributes?.stories?.data?.length > 0 && (
-                    <div className="mt-4 md:mt-8">
-                      {val?.attributes?.stories?.data?.map((obj, idx) => (
-                        <div key={idx} className="mb-4 md:mb-8">
-                          <Collapse
-                            title={obj?.attributes?.title ?? ""}
-                            isOpen={Boolean(obj?.attributes?.title)}
-                          >
-                            <div className="flex flex-col gap-4">
-                              <ReactMarkdown>
-                                {obj?.attributes?.description}
-                              </ReactMarkdown>
-                            </div>
-                          </Collapse>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                {val?.stories?.data && val?.stories?.data?.length > 0 && (
+                  <div className="mt-4 md:mt-8">
+                    {val?.stories?.data?.map((obj, idx) => (
+                      <div key={idx} className="mb-4 md:mb-8">
+                        <Collapse
+                          title={obj?.title ?? ""}
+                          isOpen={Boolean(obj?.title)}
+                        >
+                          <div className="flex flex-col gap-4">
+                            <ReactMarkdown>{obj?.description}</ReactMarkdown>
+                          </div>
+                        </Collapse>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </React.Fragment>
             ))}
 
-          {pack &&
-            pack?.package_items?.data &&
-            pack?.package_items?.data?.length > 1 && (
-              <div className="flex flex-wrap justify-center gap-4 align-middle my-12 md:my-20">
-                {pack.package_items.data.map((obj: any, idx: number) => (
-                  <CardItem
-                    data={{ id: obj.id, ...obj.attributes }}
-                    key={idx}
-                    useId
-                    to="story"
-                  />
-                ))}
-              </div>
-            )}
+          {pack && pack?.package_items && pack?.package_items?.length > 1 && (
+            <div className="flex flex-wrap justify-center gap-4 align-middle my-12 md:my-20">
+              {pack.package_items.map((obj: any, idx: number) => (
+                <CardItem data={obj} key={idx} useId to="story" />
+              ))}
+            </div>
+          )}
 
           <div className="text-center my-12">
             <Link

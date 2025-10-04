@@ -71,13 +71,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({
         {packages &&
           packages?.length > 0 &&
           packages.map((obj, idx) => (
-            <CardItem
-              data={obj}
-              key={idx}
-              to="details"
-              useId
-              isCar={Boolean(category?.key === "car")}
-            />
+            <CardItem data={obj} key={idx} to="details" useId />
           ))}
       </div>
 
@@ -86,7 +80,7 @@ const PackageComponent: React.FC<PackageComponentProps> = ({
       </div>
 
       {category && category?.key !== "package/nusa-penida" && <Nusped />}
-      <Destinations />
+      {/* <Destinations /> */}
     </>
   );
 };

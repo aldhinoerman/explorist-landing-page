@@ -15,24 +15,15 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "friendlybalitour.com",
+        protocol: "http",
+        hostname: "localhost",
       },
       {
         protocol: "https",
-        hostname: "img.daisyui.com",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.pixabay.com",
-      },
-      {
-        protocol: "https",
-        hostname: "strapi.engkensoft.cloud",
+        hostname: "api.exploristtourbali.com",
       },
     ],
   },
-    
 };
 
 export default withNextIntl(nextConfig);

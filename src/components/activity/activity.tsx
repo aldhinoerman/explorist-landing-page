@@ -22,7 +22,7 @@ const Activity = () => {
     page: 1,
     pageSize: 6,
     param:
-      "filters[categories][key][$contains]=activity&sort=sequence&populate=*",
+      "filters[categories][slug][$contains]=activity&populate[0]=package_items&populate[1]=package_items.image",
   };
   const { data: activities, loading } = useRequest<TourPackagesProps[]>(
     `tour-packages`,
@@ -41,7 +41,7 @@ const Activity = () => {
           <Loading />
         ) : activities && activities?.length > 0 ? (
           activities.map((obj, idx) => (
-            <CardItem data={obj} key={idx} to="details" useId />
+            <CardItem data={obj} key={idx} to="details" />
           ))
         ) : (
           <NotFound />

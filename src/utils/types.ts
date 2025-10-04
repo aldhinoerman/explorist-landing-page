@@ -1,39 +1,47 @@
 interface TourPackagesProps {
   id: number;
+  documentId: string;
   key?: string;
   title: string;
-  pict: string;
+  slug?: string;
+  image?: StrapiImageProps;
   price?: number;
   status?: boolean;
   location?: string;
   sequence?: number;
-  categories?: { data?: Array<{ id?: number; attributes?: CategoryProps }> };
+  featured?: boolean;
+  length?: string;
+  description?: any[];
+  terms?: any[];
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  categories?: Array<CategoryProps>;
   itineraries?: {
-    data?: Array<{ id?: number; attributes?: ItinerariesProps }>;
+    data?: ItinerariesProps[];
   };
-  package_items?: {
-    data?: Array<{ id?: number | undefined; attributes?: PackageItemProps }>;
-  };
+  package_items?: PackageItemProps[];
   terms_conditions?: {
-    data?: Array<{ id?: number; attributes?: TermsProps }>;
+    data?: TermsProps[];
   };
-  pricings?: { data?: Array<{ id?: number; attributes?: PricingProps }> };
+  pricings?: PricingProps[];
   inclusions?: {
-    data?: Array<{ id?: number; attributes?: InclusionsProps }>;
+    data?: InclusionsProps[];
   };
   price_inclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   price_exclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   regular_inclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
   regular_exclusions?: {
-    data?: Array<{ id?: number; attributes: PriceItemProps }>;
+    data?: PriceItemProps[];
   };
-  regulars?: { data?: Array<{ id?: number; attributes?: RegularsProps }> };
+  regulars?: RegularsProps[];
 }
 
 interface PriceItemProps {
@@ -42,35 +50,83 @@ interface PriceItemProps {
 }
 
 interface CategoryProps {
-  key: string;
   id: number;
+  documentId: string;
   title: string;
-  pict: string;
-  description: string;
+  slug: string;
+  description?: string;
+  pict?: string;
+  key?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
 }
 
 interface ItinerariesProps {}
 
-interface IPackageItem {
-  id?: number;
-  attributes?: PackageItemProps;
-}
-
 interface PackageItemProps {
-  id?: number;
-  title?: string;
+  id: number;
+  documentId: string;
+  title: string;
+  slug?: string;
   caption?: string;
-  pict?: string;
+  image?: StrapiImageProps;
   activity?: string;
   about?: string;
   amenities?: string;
-  description?: string;
+  description?: any[];
+  price?: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
   stories?: {
-    data?: Array<{ id?: number; attributes?: StoriesProps }>;
+    data?: StoriesProps[];
   };
   tour_packages?: {
-    data?: Array<{ id?: number; attributes?: TourPackagesProps }>;
+    data?: TourPackagesProps[];
   };
+}
+
+interface StrapiImageProps {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText?: string;
+  caption?: string;
+  width: number;
+  height: number;
+  formats?: {
+    thumbnail?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    large?: StrapiImageFormat;
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string;
+  provider: string;
+  provider_metadata?: any;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+interface StrapiImageFormat {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path?: string;
+  width: number;
+  height: number;
+  size: number;
+  sizeInBytes: number;
+  url: string;
 }
 
 interface StoriesProps {
@@ -110,8 +166,17 @@ interface ITableColumns<T> {
 }
 
 interface IWelcomeMessage {
-  title: string;
-  Description: string;
+  siteName: string;
+  siteDescription: string;
+}
+
+interface ICTAButton {
+  id: number;
+  label: string;
+  asLink: boolean;
+  href?: string;
+  externalUrl?: boolean;
+  variants: 'primary' | 'secondary' | 'outline' | 'ghost';
 }
 
 export type {
@@ -124,7 +189,9 @@ export type {
   PricingProps,
   RegularsProps,
   ITableColumns,
-  IPackageItem,
   PriceItemProps,
   IWelcomeMessage,
+  StrapiImageProps,
+  StrapiImageFormat,
+  ICTAButton,
 };

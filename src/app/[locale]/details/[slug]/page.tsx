@@ -1,13 +1,14 @@
 import React from "react";
 import { DetailBanner } from "@/components";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 interface DetailPageProps {
-  params: { slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }
 
-const Details = ({ params }: DetailPageProps) => {
-  const { slug } = params;
+const Details = async ({ params }: DetailPageProps) => {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <DetailBanner slug={slug} />

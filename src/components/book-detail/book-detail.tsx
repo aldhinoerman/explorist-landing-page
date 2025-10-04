@@ -12,6 +12,7 @@ import {
   capitalizeFirstLetter,
   onSubmitEmail,
   onSubmitWhatsApp,
+  renderImage,
   TourPackagesProps,
   useRequest,
 } from "@/utils";
@@ -62,44 +63,42 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
   const contents = useCallback(() => {
     const tabs = [];
 
-    if (
-      pack &&
-      pack?.categories?.data?.find((x) => x?.attributes?.key === "car")
-    ) {
+    if (pack && pack?.categories?.find((x) => x?.key === "car")) {
       tabs.push(
         {
           value: "pricing",
           txt: t("book-detail.pricelist"),
           content:
-            pack?.pricings?.data && pack?.pricings?.data?.length > 0
+            (pack?.pricings as any)?.data &&
+            (pack?.pricings as any)?.data?.length > 0
               ? {
-                  pricing: pack.pricings.data.map((val: any) => ({
+                  pricing: (pack.pricings as any).data.map((val: any) => ({
                     id: val.id,
-                    ...val.attributes,
+                    ...val,
                   })),
                   price_inclusions:
                     pack?.price_inclusions?.data &&
                     pack.price_inclusions.data.map((valInc: any) => ({
                       id: valInc.id,
-                      ...valInc.attributes,
+                      ...valInc,
                     })),
                   price_exclusions:
                     pack?.price_exclusions?.data &&
                     pack.price_exclusions.data.map((valExc: any) => ({
                       id: valExc.id,
-                      ...valExc.attributes,
+                      ...valExc,
                     })),
                   regular_inclusions:
                     pack?.regular_inclusions?.data &&
                     pack.regular_inclusions.data.map((valReg: any) => ({
                       id: valReg.id,
-                      ...valReg.attributes,
+                      ...valReg,
                     })),
                   regular_exclusions:
                     pack?.regular_exclusions?.data &&
                     pack.regular_exclusions.data.map((valRegEx: any) => ({
                       id: valRegEx.id,
-                      ...valRegEx.attributes,
+                      ...valRegEx,
                     })),
                 }
               : [],
@@ -112,7 +111,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             pack?.terms_conditions?.data?.length > 0
               ? pack.terms_conditions.data.map((val: any) => ({
                   id: val.id,
-                  ...val.attributes,
+                  ...val,
                 }))
               : [],
         }
@@ -123,10 +122,10 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
           value: "activities",
           txt: t("book-detail.activities"),
           content:
-            pack?.package_items?.data && pack?.package_items?.data?.length > 0
-              ? pack.package_items.data.map((val: any) => ({
+            pack?.package_items && pack?.package_items?.length > 0
+              ? pack.package_items.map((val: any) => ({
                   id: val.id,
-                  ...val.attributes,
+                  ...val,
                 }))
               : [],
         },
@@ -137,7 +136,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             pack?.itineraries?.data && pack?.itineraries?.data?.length > 0
               ? pack.itineraries.data.map((val: any) => ({
                   id: val.id,
-                  ...val.attributes,
+                  ...val,
                 }))
               : [],
         },
@@ -145,35 +144,36 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
           value: "pricing",
           txt: t("book-detail.pricelist"),
           content:
-            pack?.pricings?.data && pack?.pricings?.data?.length > 0
+            (pack?.pricings as any)?.data &&
+            (pack?.pricings as any)?.data?.length > 0
               ? {
-                  pricing: pack.pricings.data.map((val: any) => ({
+                  pricing: (pack?.pricings as any).data.map((val: any) => ({
                     id: val.id,
-                    ...val.attributes,
+                    ...val,
                   })),
                   price_inclusions:
                     pack?.price_inclusions?.data &&
                     pack.price_inclusions.data.map((valInc: any) => ({
                       id: valInc.id,
-                      ...valInc.attributes,
+                      ...valInc,
                     })),
                   price_exclusions:
                     pack?.price_exclusions?.data &&
                     pack.price_exclusions.data.map((valExc: any) => ({
                       id: valExc.id,
-                      ...valExc.attributes,
+                      ...valExc,
                     })),
                   regular_inclusions:
                     pack?.regular_inclusions?.data &&
                     pack.regular_inclusions.data.map((valReg: any) => ({
                       id: valReg.id,
-                      ...valReg.attributes,
+                      ...valReg,
                     })),
                   regular_exclusions:
                     pack?.regular_exclusions?.data &&
                     pack.regular_exclusions.data.map((valRegEx: any) => ({
                       id: valRegEx.id,
-                      ...valRegEx.attributes,
+                      ...valRegEx,
                     })),
                 }
               : [],
@@ -186,7 +186,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             pack?.terms_conditions?.data?.length > 0
               ? pack.terms_conditions.data.map((val: any) => ({
                   id: val.id,
-                  ...val.attributes,
+                  ...val,
                 }))
               : [],
         }
@@ -201,10 +201,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
       document.title = `Explorist Tour Bali - Book - ${pack.title}`;
     }
 
-    if (
-      pack &&
-      pack?.categories?.data?.find((x) => x?.attributes?.key === "car")
-    ) {
+    if (pack && pack?.categories?.find((x) => x?.key === "car")) {
       setActiveTab("pricing");
     }
   }, [pack]);
@@ -217,7 +214,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             <div>
               <div className="w-full">
                 <Image
-                  src={pack?.pict ?? ""}
+                  src={pack?.image?.url ? renderImage(pack.image.url) : ""}
                   alt="detail-pict"
                   width={575}
                   height={375}
@@ -266,7 +263,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             </Button>
           </div>
 
-          <Destinations />
+          {/* <Destinations /> */}
           <Testimoni />
         </>
       ) : loading ? (
@@ -445,9 +442,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
                   { ...data, package_name: pack?.title },
                   Boolean(
                     pack &&
-                      pack?.categories?.data?.find(
-                        (x) => x?.attributes?.key === "car"
-                      )
+                      pack?.categories?.find((x) => x?.key === "car")
                   )
                 );
                 reset();
@@ -466,9 +461,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
                   { ...data, package_name: pack?.title },
                   Boolean(
                     pack &&
-                      pack?.categories?.data?.find(
-                        (x) => x?.attributes?.key === "car"
-                      )
+                      pack?.categories?.find((x) => x?.key === "car")
                   )
                 );
                 reset();

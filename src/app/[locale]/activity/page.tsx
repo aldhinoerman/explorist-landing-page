@@ -82,7 +82,7 @@ const Activity: React.FC = () => {
         {loading ? <Loading /> : activities?.length === 0 && <NotFound />}
       </div>
 
-      <Destinations />
+      {/* <Destinations /> */}
     </>
   );
 };

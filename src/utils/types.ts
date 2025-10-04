@@ -1,19 +1,27 @@
 interface TourPackagesProps {
   id: number;
+  documentId: string;
   key?: string;
   title: string;
-  pict: string;
+  slug?: string;
+  image?: StrapiImageProps;
   price?: number;
   status?: boolean;
   location?: string;
   sequence?: number;
-  categories?: { data?: Array<CategoryProps> };
+  featured?: boolean;
+  length?: string;
+  description?: any[];
+  terms?: any[];
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  categories?: Array<CategoryProps>;
   itineraries?: {
     data?: ItinerariesProps[];
   };
-  package_items?: {
-    data?: PackageItemProps[];
-  };
+  package_items?: PackageItemProps[];
   terms_conditions?: {
     data?: TermsProps[];
   };
@@ -42,30 +50,83 @@ interface PriceItemProps {
 }
 
 interface CategoryProps {
-  key: string;
   id: number;
+  documentId: string;
   title: string;
-  pict: string;
-  description: string;
+  slug: string;
+  description?: string;
+  pict?: string;
+  key?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
 }
 
 interface ItinerariesProps {}
 
 interface PackageItemProps {
   id: number;
+  documentId: string;
   title: string;
-  caption: string;
-  pict: string;
-  activity: string;
-  about: string;
+  slug?: string;
+  caption?: string;
+  image?: StrapiImageProps;
+  activity?: string;
+  about?: string;
   amenities?: string;
-  description?: string;
+  description?: any[];
+  price?: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
   stories?: {
     data?: StoriesProps[];
   };
   tour_packages?: {
     data?: TourPackagesProps[];
   };
+}
+
+interface StrapiImageProps {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText?: string;
+  caption?: string;
+  width: number;
+  height: number;
+  formats?: {
+    thumbnail?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    large?: StrapiImageFormat;
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string;
+  provider: string;
+  provider_metadata?: any;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+interface StrapiImageFormat {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path?: string;
+  width: number;
+  height: number;
+  size: number;
+  sizeInBytes: number;
+  url: string;
 }
 
 interface StoriesProps {
@@ -105,8 +166,17 @@ interface ITableColumns<T> {
 }
 
 interface IWelcomeMessage {
-  title: string;
-  Description: string;
+  siteName: string;
+  siteDescription: string;
+}
+
+interface ICTAButton {
+  id: number;
+  label: string;
+  asLink: boolean;
+  href?: string;
+  externalUrl?: boolean;
+  variants: 'primary' | 'secondary' | 'outline' | 'ghost';
 }
 
 export type {
@@ -121,4 +191,7 @@ export type {
   ITableColumns,
   PriceItemProps,
   IWelcomeMessage,
+  StrapiImageProps,
+  StrapiImageFormat,
+  ICTAButton,
 };

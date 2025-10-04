@@ -8,6 +8,7 @@ interface BookNowProps {
 
 const BookNow = async ({ params }: BookNowProps) => {
   const { slug, locale } = await params;
+  setRequestLocale(locale);
   return <BookDetail slug={slug} locale={locale} />;
 };
 

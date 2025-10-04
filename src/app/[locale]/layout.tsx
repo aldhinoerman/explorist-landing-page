@@ -10,13 +10,14 @@ export default async function RootLayout({
   children,
   params,
 }: Readonly<{
-  params: any;
+  params: Promise<{ locale: string }>;
   children: React.ReactNode;
 }>) {
+  const { locale } = await params;
   const messages = await getMessages();
-  setRequestLocale(params.locale);
+  setRequestLocale(locale);
   return (
-    <html lang={String(params?.locale ?? "en")} data-theme="mytheme">
+    <html lang={String(locale ?? "en")} data-theme="mytheme">
       <body className="bg-white">
         <NextIntlClientProvider messages={messages}>
           {children}
@@ -35,16 +36,17 @@ export default async function RootLayout({
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  // Use fallback locales for static generation
   return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   setRequestLocale(locale);
   return {
     metadataBase: new URL("https://exploristtourbali.com"),

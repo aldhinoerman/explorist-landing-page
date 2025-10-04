@@ -12,6 +12,7 @@ import {
   capitalizeFirstLetter,
   onSubmitEmail,
   onSubmitWhatsApp,
+  renderImage,
   TourPackagesProps,
   useRequest,
 } from "@/utils";
@@ -62,7 +63,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
   const contents = useCallback(() => {
     const tabs = [];
 
-    if (pack && pack?.categories?.data?.find((x) => x?.key === "car")) {
+    if (pack && pack?.categories?.find((x) => x?.key === "car")) {
       tabs.push(
         {
           value: "pricing",
@@ -121,8 +122,8 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
           value: "activities",
           txt: t("book-detail.activities"),
           content:
-            pack?.package_items?.data && pack?.package_items?.data?.length > 0
-              ? pack.package_items.data.map((val: any) => ({
+            pack?.package_items && pack?.package_items?.length > 0
+              ? pack.package_items.map((val: any) => ({
                   id: val.id,
                   ...val,
                 }))
@@ -200,7 +201,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
       document.title = `Explorist Tour Bali - Book - ${pack.title}`;
     }
 
-    if (pack && pack?.categories?.data?.find((x) => x?.key === "car")) {
+    if (pack && pack?.categories?.find((x) => x?.key === "car")) {
       setActiveTab("pricing");
     }
   }, [pack]);
@@ -213,7 +214,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             <div>
               <div className="w-full">
                 <Image
-                  src={pack?.pict ?? ""}
+                  src={pack?.image?.url ? renderImage(pack.image.url) : ""}
                   alt="detail-pict"
                   width={575}
                   height={375}
@@ -262,7 +263,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
             </Button>
           </div>
 
-          <Destinations />
+          {/* <Destinations /> */}
           <Testimoni />
         </>
       ) : loading ? (
@@ -441,7 +442,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
                   { ...data, package_name: pack?.title },
                   Boolean(
                     pack &&
-                      pack?.categories?.data?.find((x) => x?.key === "car")
+                      pack?.categories?.find((x) => x?.key === "car")
                   )
                 );
                 reset();
@@ -460,7 +461,7 @@ const BookDetail: React.FC<BookDetailProps> = ({ slug, locale }) => {
                   { ...data, package_name: pack?.title },
                   Boolean(
                     pack &&
-                      pack?.categories?.data?.find((x) => x?.key === "car")
+                      pack?.categories?.find((x) => x?.key === "car")
                   )
                 );
                 reset();

@@ -1,4 +1,4 @@
-const formatCurrency = (value: number, locale = "en-US", currency = "USD") => {
+const formatCurrency = (value: number, locale = "en-US", currency = "IDR") => {
   const formattedValue = new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
@@ -12,6 +12,8 @@ const formatCurrency = (value: number, locale = "en-US", currency = "USD") => {
     return formattedValue.replace("$", "A$");
   } else if (currency === "SGD") {
     return formattedValue.replace("$", "S$");
+  } else {
+    return formattedValue.replace("$", "IDR")
   }
 
   return formattedValue;

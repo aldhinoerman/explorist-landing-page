@@ -3,11 +3,12 @@ import { DetailBanner } from "@/components";
 import { setRequestLocale } from "next-intl/server";
 
 interface DetailPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 const Details = async ({ params }: DetailPageProps) => {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <DetailBanner slug={slug} />

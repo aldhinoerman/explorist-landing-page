@@ -1,6 +1,6 @@
 "use client";
 import { Button, Collapse, Loading, SectionWrapper } from "@/modules";
-import { PackageItemProps, useRequest } from "@/utils";
+import { PackageItemProps, useRequest, renderImage } from "@/utils";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -56,10 +56,10 @@ function StoryComponent({ slug, locale }: PackageComponentProps) {
 
           <div className="flex flex-col md:flex-row gap-12 justify-center align-middle mt-8 mb-4 md:mt-12">
             <div>
-              {packItem?.pict ? (
+              {packItem?.image?.url ? (
                 <div className="w-full">
                   <Image
-                    src={packItem?.pict ?? ""}
+                    src={packItem?.image?.url ? renderImage(packItem.image.url) : ""}
                     alt="detail-pict"
                     width={575}
                     height={375}
@@ -77,7 +77,13 @@ function StoryComponent({ slug, locale }: PackageComponentProps) {
           </div>
         </div>
         <div className="my-8 max-w-6xl mx-auto flex flex-col gap-4">
-          <ReactMarkdown>{packItem?.description ?? ""}</ReactMarkdown>
+          <ReactMarkdown>{
+            typeof packItem?.description === 'string' 
+              ? packItem.description 
+              : Array.isArray(packItem?.description) 
+                ? packItem.description.join('\n') 
+                : ""
+          }</ReactMarkdown>
         </div>
         {packItem?.stories?.data && packItem?.stories?.data?.length > 0 && (
           <div className="mt-4 md:mt-8">
@@ -125,7 +131,7 @@ function StoryComponent({ slug, locale }: PackageComponentProps) {
       </SectionWrapper>
 
       <Nusped />
-      <Destinations />
+      {/* <Destinations /> */}
       <Testimoni />
     </>
   );

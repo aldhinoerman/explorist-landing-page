@@ -3,6 +3,29 @@
 import { useCallback, useEffect, useState } from "react";
 import { requestWithAbort } from "./request";
 
+interface StrapiV5Entity {
+  id: number;
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  [key: string]: any;
+}
+
+interface StrapiV5Response<T> {
+  data: T | T[];
+  meta?: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+type StrapiV5Data<T> = T & StrapiV5Entity;
+
 const useRequest = <T>(
   url: string,
   params?: {
@@ -12,7 +35,6 @@ const useRequest = <T>(
   },
   locale: string = "en"
 ) => {
-  const tempLocale = "en";
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,10 +45,10 @@ const useRequest = <T>(
   );
 
   const fetchData = useCallback(() => {
-    let urls = `/${url}` + `?locale=${tempLocale}`;
+    let urls = `/${url}` + `?locale=${locale}`;
 
     if (pagination) {
-      urls = `/${url}?locale=${tempLocale}&pagination[page]=${
+      urls = `/${url}?locale=${locale}&pagination[page]=${
         pagination.page
       }&pagination[pageSize]=${pagination.pageSize}${
         params?.param ? `&${params.param}` : ""
@@ -34,7 +56,7 @@ const useRequest = <T>(
     }
 
     if (params && params?.param && !pagination) {
-      urls = `/${url}?locale=${tempLocale}&${params.param}`;
+      urls = `/${url}?locale=${locale}&${params.param}`;
     }
 
     const { request, controller } = requestWithAbort(urls);
@@ -42,18 +64,31 @@ const useRequest = <T>(
     setLoading(true);
 
     request
-      .then((res) => {
+      .then((res: { data: StrapiV5Response<any> }) => {
         setData(() => {
-          const response = Array.isArray(res?.data?.data)
-            ? res?.data?.data?.map((val: any) => ({
-                id: val.id,
-                ...val,
-              }))
-            : res?.data?.data
-            ? { id: res.data.data.id, ...res?.data?.data }
-            : [];
-
-          return response as T;
+          const responseData = res?.data?.data;
+          
+          if (Array.isArray(responseData)) {
+            return responseData.map((val: any) => ({
+              id: val.id,
+              documentId: val.documentId,
+              createdAt: val.createdAt,
+              updatedAt: val.updatedAt,
+              publishedAt: val.publishedAt,
+              ...val,
+            })) as T;
+          } else if (responseData) {
+            return {
+              id: responseData.id,
+              documentId: responseData.documentId,
+              createdAt: responseData.createdAt,
+              updatedAt: responseData.updatedAt,
+              publishedAt: responseData.publishedAt,
+              ...responseData,
+            } as T;
+          }
+          
+          return [] as T;
         });
         setLoading(false);
       })

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Card } from "@/modules";
-import { formatCurrency, TourPackagesProps } from "@/utils";
+import { formatCurrency, renderImage, TourPackagesProps } from "@/utils";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { ICardItem } from "./utils";
@@ -18,7 +18,6 @@ interface CardItemProps {
   mobileWidth?: number;
   btnText?: string;
   width?: number;
-  isCar?: boolean;
 }
 
 const CardItem = ({
@@ -29,7 +28,6 @@ const CardItem = ({
   btnText,
   width,
   useId,
-  isCar,
 }: CardItemProps) => {
   const params = useParams();
   const { locale } = params;
@@ -37,17 +35,42 @@ const CardItem = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
+  const getCheapestPrice = useCallback(() => {
+    if (!data?.package_items?.length) return data?.price || null;
+
+    const prices = data.package_items
+      .map((item) => item.price)
+      .filter((price): price is number => typeof price === 'number' && price > 0);
+
+    if (prices.length === 0) return data?.price || null;
+
+    return Math.min(...prices);
+  }, [data?.package_items, data?.price]);
+
+  const cheapestPrice = getCheapestPrice();
+
+  const isCarCharter = useCallback(() => {
+    const tourData = data as TourPackagesProps;
+    return (
+      tourData?.categories?.some(
+        (category) => category.slug === "car-charter"
+      ) || false
+    );
+  }, [data]);
+
+  const isCar = isCarCharter();
+
   const getRandomIndex = (max: number) => {
     return Math.floor(Math.random() * max);
   };
 
   const getRandomPict = useCallback(() => {
-    if (data?.package_items?.data && data?.package_items?.data?.length > 1) {
+    if (data?.package_items && data?.package_items?.length > 1) {
       const interval = setInterval(() => {
         setFade(true);
 
         setTimeout(() => {
-          const packageItems = data?.package_items?.data ?? [];
+          const packageItems = data?.package_items ?? [];
 
           if (packageItems.length > 0) {
             setCurrentImageIndex(getRandomIndex(packageItems.length));
@@ -59,7 +82,7 @@ const CardItem = ({
 
       return () => clearInterval(interval);
     }
-  }, [data?.package_items?.data]);
+  }, [data?.package_items]);
 
   useEffect(() => {
     getRandomPict();
@@ -67,25 +90,26 @@ const CardItem = ({
 
   return (
     <Card
-      bodyClass={`flex flex-col ${data?.price ? "justify-between" : ""}`}
+      bodyClass={`flex flex-col ${cheapestPrice ? "justify-between" : ""}`}
       width={width}
       mobileWidth={mobileWidth}
     >
-      {data?.pict && (
+      {(data?.image?.url || data?.package_items?.length) && (
         <Link
           href={
             to
               ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
-              : (data?.key && locale + data?.key) || ""
+              : (data?.key && locale + data?.key) ||
+                `/${locale}/details/${
+                  (data as TourPackagesProps)?.slug || data?.id
+                }`
           }
           className="w-full"
         >
           <Image
-            src={
-              !data?.package_items?.data?.length
-                ? data.pict
-                : String(data?.package_items?.data[currentImageIndex]?.pict)
-            }
+            src={renderImage(
+              data?.package_items?.[currentImageIndex]?.image?.url || ""
+            )}
             alt="image-content"
             width={0}
             height={0}
@@ -98,7 +122,7 @@ const CardItem = ({
               objectFit: "cover",
             }}
             className={`rounded-t-3xl ${fade ? "opacity-0" : "opacity-100"} ${
-              data?.package_items?.data?.length
+              data?.package_items?.length && data?.package_items?.length > 1
                 ? "transition-opacity duration-500"
                 : ""
             } `}
@@ -106,21 +130,21 @@ const CardItem = ({
         </Link>
       )}
 
-      <div className={`px-2 pt-2 md:px-4 ${data?.price ? "pb-4" : "pb-2"}`}>
+      <div className={`px-2 pt-2 md:px-4 ${cheapestPrice ? "pb-4" : "pb-2"}`}>
         {withSub && "tete"}
 
         <div className="flex flex-col md:flex-row md:gap-2 align-middle justify-between">
-          <div className={`${data?.price ? "" : "min-w-full"}`}>
+          <div className={`${cheapestPrice ? "" : "min-w-full"}`}>
             <h4
               className={`text-center text-sm md:text-xl ${
-                data?.price ? "md:text-left" : "md:text-center"
+                cheapestPrice ? "md:text-left" : "md:text-center"
               }`}
             >
               {data.title}
             </h4>
-            {data?.price && (
+            {cheapestPrice && (
               <h4 className="text-center md:text-left text-success">
-                {formatCurrency(data?.price)}
+                {formatCurrency(cheapestPrice)}
                 <span className="text-secondary text-sm font-normal">
                   /
                   {isCar
@@ -131,12 +155,15 @@ const CardItem = ({
             )}
           </div>
 
-          {data?.price && (
+          {cheapestPrice && (
             <Link
               href={
                 to
                   ? `/${locale}/${to}${useId && data?.id ? `/${data.id}` : ""}`
-                  : (data?.key && locale + data?.key) || ""
+                  : (data?.key && locale + data?.key) ||
+                    `/${locale}/details/${
+                      (data as TourPackagesProps)?.slug || data?.id
+                    }`
               }
               className="mx-auto my-auto md:mr-0 md:ml-auto"
             >

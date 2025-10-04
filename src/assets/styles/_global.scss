@@ -24,6 +24,7 @@ html {
   min-height: 100vh;
   font-size: 14px;
   font-family: $primaryFont;
+  color: $darkColor;
   scroll-behavior: smooth;
 
   @include breakpoint(md) {

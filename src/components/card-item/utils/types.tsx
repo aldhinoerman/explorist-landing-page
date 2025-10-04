@@ -1,9 +1,9 @@
-import { PackageItemProps } from "@/utils";
+import { PackageItemProps, StrapiImageProps } from "@/utils";
 
 interface ICardItem {
   id?: number;
   title?: string;
-  pict?: string | undefined;
+  image?: StrapiImageProps;
   type?: string;
   category?: string;
   lengthTour?: string;
@@ -11,9 +11,7 @@ interface ICardItem {
   price?: number;
   link?: string;
   key?: string;
-  package_items?: {
-    data?: Array<PackageItemProps>;
-  };
+  package_items?: Array<PackageItemProps>;
 }
 
 export type { ICardItem };

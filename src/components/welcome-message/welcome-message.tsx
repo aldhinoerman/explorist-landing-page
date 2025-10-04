@@ -13,7 +13,7 @@ const WelcomeMessage = () => {
     locale = locale[0];
   }
   const { data: message } = useRequest<IWelcomeMessage>(
-    "welcome-message",
+    "global",
     undefined,
     locale
   );
@@ -23,10 +23,10 @@ const WelcomeMessage = () => {
       {message && (
         <SectionWrapper id="about">
           <div className="mx-auto max-w-[860px]">
-            <h3 className="md:text-center">{message?.title}</h3>
+            <h3 className="md:text-center">{message?.siteName}</h3>
 
             <div className="flex flex-col gap-4 text-xl font-light md:text-center mt-6 md:mt-12 welcome">
-              <ReactMarkdown>{message?.Description}</ReactMarkdown>
+              <ReactMarkdown>{message?.siteDescription}</ReactMarkdown>
             </div>
           </div>
         </SectionWrapper>

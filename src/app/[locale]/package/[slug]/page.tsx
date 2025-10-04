@@ -7,6 +7,7 @@ interface PackagePageProps {
 
 const PackagePage = async ({ params }: PackagePageProps) => {
   const { slug, locale } = await params;
+  setRequestLocale(locale);
 
   return <PackageComponent slug={slug} locale={locale} />;
 };
